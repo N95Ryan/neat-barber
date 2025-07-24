@@ -1,0 +1,29 @@
+---
+export interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = "Neat Barber Paris" } = Astro.props;
+---
+
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+
+    <!-- Bootstrap CSS seulement pour commencer -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/css/custom.css" rel="stylesheet" />
+  </head>
+  <body>
+    <slot />
+
+    <!-- Scripts de base seulement -->
+    <script is:inline src="/js/jquery-3.7.1.min.js"></script>
+    <script is:inline src="/js/bootstrap.min.js"></script>
+  </body>
+</html>
