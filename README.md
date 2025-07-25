@@ -1,52 +1,49 @@
-# Astro Starter Kit: Basics
+# Neat Barber Paris - Site Web
 
-```sh
-npm create astro@latest -- --template basics
-```
+Site web moderne pour le salon de coiffure Neat Barber Paris, développé avec Astro.
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
-
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
-
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
-
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
+## 🚀 Structure du Projet
 
 ```text
 /
 ├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
+│   ├── css/          # Styles du template
+│   ├── js/           # Scripts JavaScript
+│   └── images/       # Images et assets
+├── src/
+│   ├── components/
+│   │   ├── Header.astro
+│   │   └── Footer.astro
+│   ├── layouts/
+│   │   └── Layout.astro
+│   └── pages/
+│       └── index.astro
 └── package.json
 ```
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+## 🧞 Commandes
 
-## 🧞 Commands
+Toutes les commandes sont exécutées depuis la racine du projet :
 
-All commands are run from the root of the project, from a terminal:
+| Commande            | Action                                                 |
+| :------------------ | :----------------------------------------------------- |
+| `npm install`       | Installe les dépendances                               |
+| `npm run dev`       | Lance le serveur de développement sur `localhost:4321` |
+| `npm run build`     | Construit le site pour la production dans `./dist/`    |
+| `npm run preview`   | Prévisualise le build localement avant le déploiement  |
+| `npm run astro ...` | Exécute les commandes CLI Astro                        |
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+## 🎨 Fonctionnalités
 
-## 👀 Want to learn more?
+- Design moderne et responsive
+- Animations fluides
+- Intégration Planity pour les réservations
+- Optimisé pour les performances
+- SEO-friendly
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+## 📝 Technologies
+
+- **Astro** - Framework web moderne
+- **Bootstrap** - Framework CSS
+- **jQuery** - Manipulation DOM
+- **GSAP** - Animations avancées
