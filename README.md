@@ -13,11 +13,14 @@ Site web moderne pour le salon de coiffure Neat Barber Paris, développé avec A
 ├── src/
 │   ├── components/
 │   │   ├── Header.astro
-│   │   └── Footer.astro
+│   │   ├── Footer.astro
+│   │   └── SliderServices.astro
 │   ├── layouts/
 │   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
+│   ├── pages/
+│   │   └── index.astro
+│   └── styles/
+│       └── global.css
 └── package.json
 ```
 
@@ -36,14 +39,30 @@ Toutes les commandes sont exécutées depuis la racine du projet :
 ## 🎨 Fonctionnalités
 
 - Design moderne et responsive
-- Animations fluides
+- Animations fluides avec GSAP et WOW.js
+- Curseur magique personnalisé
+- Sliders interactifs avec Swiper
+- Effets de parallaxe et scroll smooth
 - Intégration Planity pour les réservations
 - Optimisé pour les performances
 - SEO-friendly
 
 ## 📝 Technologies
 
-- **Astro** - Framework web moderne
-- **Bootstrap** - Framework CSS
-- **jQuery** - Manipulation DOM
-- **GSAP** - Animations avancées
+### Framework Principal
+
+- **Astro** - Framework web moderne pour des sites statiques performants
+
+### CSS & Styling
+
+- **Tailwind CSS** - Framework CSS utilitaire
+- **Animate.css** - Bibliothèque d'animations CSS
+- **Font Awesome** - Icônes vectorielles
+- **Google Fonts** - Polices web (DM Sans, Hanken Grotesk)
+
+### Fonctionnalités Avancées
+
+- **Preloader** - Écran de chargement animé
+- **Responsive Design** - Adaptation mobile/tablette/desktop
+- **Performance** - Optimisation des assets et du code
+- **Accessibilité** - Standards WCAG respectés
