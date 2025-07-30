@@ -1,0 +1,210 @@
+---
+// Composant WhyChooseUs pour la section "Pourquoi nous choisir"
+---
+
+<div class="why-choose-us py-20 bg-white" id="why-choose-us">
+  <div class="container mx-auto px-4">
+    <div class="row flex flex-col-reverse lg:flex-row items-center">
+      <div class="col-lg-6 w-full lg:w-1/2 mt-12 lg:mt-0">
+        <!-- Section Title Start -->
+        <div class="section-title">
+          <h3
+            class="text-gray-400 text-sm font-medium tracking-wider uppercase mb-4 animate-fade-in-up"
+          >
+            Pourquoi nous choisir ?
+          </h3>
+          <h2
+            class="text-4xl lg:text-5xl font-bold text-gray-900 leading-tight mb-8 animate-fade-in-up"
+          >
+            Êtes-vous prêt à faire un grand changement ?
+          </h2>
+        </div>
+        <!-- Section Title End -->
+
+        <!-- Whyus Content Start -->
+        <div class="whyus-content space-y-8">
+          <!-- Whyus Item Start -->
+          <div
+            class="whyus-feature-item flex items-start space-x-6 animate-fade-in-up"
+            data-wow-delay="0.5s"
+          >
+            <div class="whyus-icon flex-shrink-0">
+              <div
+                class="w-16 h-16 bg-[#222222] rounded-lg flex items-center justify-center"
+              >
+                <img
+                  src="/images/whyus-1.svg"
+                  alt="Certified Stylists"
+                  class="w-8 h-8"
+                />
+              </div>
+            </div>
+
+            <div class="whyus-desc flex-1">
+              <h3 class="text-xl font-bold text-gray-900 mb-3">
+                Coiffeurs certifiés
+              </h3>
+              <p class="text-gray-600 leading-relaxed">
+                Nos coiffeurs sont certifiés et formés aux dernières techniques
+                de coiffure. Ils possèdent une expertise reconnue pour vous
+                offrir des résultats exceptionnels.
+              </p>
+            </div>
+          </div>
+          <!-- Whyus Item End -->
+
+          <!-- Whyus Item Start -->
+          <div
+            class="whyus-feature-item flex items-start space-x-6 animate-fade-in-up"
+            data-wow-delay="0.75s"
+          >
+            <div class="whyus-icon flex-shrink-0">
+              <div
+                class="w-16 h-16 bg-[#222222] rounded-lg flex items-center justify-center"
+              >
+                <img
+                  src="/images/whyus-2.svg"
+                  alt="Organic Cosmetics"
+                  class="w-8 h-8"
+                />
+              </div>
+            </div>
+
+            <div class="whyus-desc flex-1">
+              <h3 class="text-xl font-bold text-gray-900 mb-3">
+                Cosmétiques 100% Bio
+              </h3>
+              <p class="text-gray-600 leading-relaxed">
+                Nous utilisons exclusivement des produits cosmétiques
+                biologiques et naturels pour prendre soin de vos cheveux tout en
+                respectant l'environnement.
+              </p>
+            </div>
+          </div>
+          <!-- Whyus Item End -->
+        </div>
+        <!-- Whyus Content End -->
+      </div>
+
+      <div class="col-lg-6 w-full lg:w-1/2">
+        <!-- Video Start -->
+        <div class="why-choose-us-video relative">
+          <div class="video-image">
+            <figure class="hover-anime rounded-lg overflow-hidden shadow-lg">
+              <img
+                src="/images/video-image.jpg"
+                alt="Vidéo de présentation"
+                class="w-full h-auto"
+                style="outline: none; border: none;"
+              />
+            </figure>
+          </div>
+
+          <div
+            class="video-play-button absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+          >
+            <a
+              href="https://www.youtube.com/watch?v=2JNMGesMC2Y"
+              class="popup-video w-20 h-20 rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                src="/images/play.svg"
+                alt="Play"
+                class="w-10 h-10 flex-shrink-0"
+              />
+            </a>
+          </div>
+        </div>
+        <!-- Video End -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .why-choose-us {
+    position: relative;
+  }
+
+  .why-choose-us::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      135deg,
+      rgba(34, 34, 34, 0.02) 0%,
+      rgba(34, 34, 34, 0.05) 100%
+    );
+    pointer-events: none;
+  }
+
+  .whyus-feature-item {
+    transition: transform 0.3s ease;
+  }
+
+  .whyus-feature-item:hover {
+    transform: translateX(10px);
+  }
+
+  .video-image figure {
+    transition: transform 0.3s ease;
+  }
+
+  .video-image figure:hover {
+    transform: scale(1.05);
+  }
+
+  .popup-video:hover {
+    transform: scale(1.1);
+  }
+
+  .popup-video {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .popup-video img {
+    display: block;
+    width: 40px;
+    height: 40px;
+    filter: brightness(0) invert(1);
+    outline: none;
+    border: none;
+  }
+
+  @keyframes fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-in-up {
+    animation: fade-in-up 0.6s ease-out;
+  }
+
+  .animate-fade-in-left {
+    animation: fade-in-left 0.6s ease-out;
+  }
+
+  @keyframes fade-in-left {
+    from {
+      opacity: 0;
+      transform: translateX(-30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+</style>
