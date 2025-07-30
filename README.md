@@ -7,7 +7,7 @@ Site web moderne pour le salon de coiffure Neat Barber Paris, développé avec *
 ```text
 /
 ├── public/
-│   ├── css/          # Styles Bootstrap et personnalisés
+│   ├── css/          # Styles Bootstrap + Personnalisés
 │   ├── js/           # Scripts JavaScript (jQuery, GSAP, etc.)
 │   └── images/       # Images et assets
 ├── src/
