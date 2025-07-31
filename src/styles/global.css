@@ -12,10 +12,7 @@
   transition: all 0.3s ease;
 }
 
-.hover-anime:hover {
-  transform: scale(1.05);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-}
+/* L'effet de surbrillance est géré par custom.css avec l'animation shine */
 
 /* Animation reveal pour l'apparition */
 .reveal {
