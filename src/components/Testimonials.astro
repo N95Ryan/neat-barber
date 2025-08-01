@@ -1,0 +1,175 @@
+---
+// Testimonials Component
+---
+
+<div class="testimonials">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <!-- Section Title Start -->
+        <div class="section-title">
+          <h3 class="wow fadeInUp">Témoignages Clients</h3>
+          <h2 class="text-anime">Ce que disent nos clients</h2>
+        </div>
+        <!-- Section Title End -->
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <!-- Testimonial Carousel Start -->
+        <div class="testimonial-carousel">
+          <div class="swiper">
+            <div class="swiper-wrapper">
+              <!-- Testimonial Slide Start -->
+              <div class="swiper-slide">
+                <div class="testimonial-slide">
+                  <div class="testimonial-header">
+                    <div class="author-img">
+                      <img src="/images/author-1.jpg" alt="Emma Johnson" />
+                    </div>
+
+                    <div class="author-info">
+                      <h3>Emma Johnson</h3>
+                      <div class="rating-star">
+                        <img src="/images/icon-rating.svg" alt="5 étoiles" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="testimonial-content">
+                    <p>
+                      Excellente expérience chez Neat Barber ! Le coiffeur a
+                      vraiment pris le temps de comprendre ce que je voulais et
+                      le résultat est parfait. L'ambiance est détendue et
+                      professionnelle. Je recommande vivement !
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <!-- Testimonial Slide End -->
+
+              <!-- Testimonial Slide Start -->
+              <div class="swiper-slide">
+                <div class="testimonial-slide">
+                  <div class="testimonial-header">
+                    <div class="author-img">
+                      <img src="/images/author-2.jpg" alt="Olivia Davis" />
+                    </div>
+
+                    <div class="author-info">
+                      <h3>Olivia Davis</h3>
+                      <div class="rating-star">
+                        <img src="/images/icon-rating.svg" alt="5 étoiles" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="testimonial-content">
+                    <p>
+                      Service exceptionnel ! L'équipe est très accueillante et
+                      professionnelle. Ma coupe de cheveux est exactement comme
+                      je l'imaginais. L'attention aux détails est remarquable.
+                      Je reviendrai sans hésiter !
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <!-- Testimonial Slide End -->
+
+              <!-- Testimonial Slide Start -->
+              <div class="swiper-slide">
+                <div class="testimonial-slide">
+                  <div class="testimonial-header">
+                    <div class="author-img">
+                      <img src="/images/author-1.jpg" alt="Thomas Martin" />
+                    </div>
+
+                    <div class="author-info">
+                      <h3>Thomas Martin</h3>
+                      <div class="rating-star">
+                        <img src="/images/icon-rating.svg" alt="5 étoiles" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="testimonial-content">
+                    <p>
+                      Première visite chez Neat Barber et je suis très satisfait
+                      ! L'équipe est compétente et l'ambiance est agréable. Ma
+                      barbe a été parfaitement taillée et ma coupe de cheveux
+                      est moderne. Prix raisonnables pour un service de qualité.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <!-- Testimonial Slide End -->
+
+              <!-- Testimonial Slide Start -->
+              <div class="swiper-slide">
+                <div class="testimonial-slide">
+                  <div class="testimonial-header">
+                    <div class="author-img">
+                      <img src="/images/author-2.jpg" alt="Sophie Bernard" />
+                    </div>
+
+                    <div class="author-info">
+                      <h3>Sophie Bernard</h3>
+                      <div class="rating-star">
+                        <img src="/images/icon-rating.svg" alt="5 étoiles" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="testimonial-content">
+                    <p>
+                      Un salon de coiffure moderne avec une équipe très
+                      professionnelle. J'ai apprécié les conseils personnalisés
+                      et le soin apporté à chaque détail. Le résultat dépasse
+                      mes attentes. Je recommande !
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <!-- Testimonial Slide End -->
+            </div>
+
+            <div class="swiper-pagination"></div>
+          </div>
+        </div>
+        <!-- Testimonial Carousel End -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Initialize Swiper for testimonials
+  document.addEventListener("DOMContentLoaded", function () {
+    // @ts-ignore
+    if (typeof window.Swiper !== "undefined") {
+      // @ts-ignore
+      const testimonialSwiper = new window.Swiper(".testimonials .swiper", {
+        slidesPerView: 1,
+        spaceBetween: 30,
+        loop: true,
+        autoplay: {
+          delay: 5000,
+          disableOnInteraction: false,
+        },
+        pagination: {
+          el: ".testimonials .swiper-pagination",
+          clickable: true,
+        },
+        breakpoints: {
+          768: {
+            slidesPerView: 2,
+          },
+          1024: {
+            slidesPerView: 3,
+          },
+        },
+      });
+    }
+  });
+</script>
