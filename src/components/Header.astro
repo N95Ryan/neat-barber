@@ -1,54 +1,9 @@
+---
+import Navbar from "./Navbar.astro";
+---
+
 <header class="main-header">
   <div class="header-sticky">
-    <nav class="navbar navbar-expand-lg">
-      <div class="container">
-        <a class="navbar-brand" href="/">
-          <img src="/images/logo.svg" alt="Logo" />
-        </a>
-        <div class="collapse navbar-collapse main-menu">
-          <ul class="navbar-nav mr-auto" id="menu">
-            <li class="nav-item"><a class="nav-link" href="/">Accueil</a></li>
-            <li class="nav-item">
-              <a class="nav-link" href="/about">À propos</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/services">Services</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/pricing">Tarifs</a>
-            </li>
-            <li class="nav-item submenu">
-              <a class="nav-link" href="#">Pages</a>
-              <ul>
-                <li class="nav-item">
-                  <a class="nav-link" href="/service-single">Service unique</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="/blog">Blog</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="/blog-single">Article</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="/faq">FAQs</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="/404">404</a>
-                </li>
-              </ul>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/contact">Contact</a>
-            </li>
-            <li class="nav-item highlighted-menu">
-              <a class="nav-link" href="#">Réserver</a>
-            </li>
-          </ul>
-        </div>
-        <div class="navbar-toggle"></div>
-      </div>
-    </nav>
-    <div class="responsive-menu"></div>
+    <Navbar />
   </div>
 </header>
-
