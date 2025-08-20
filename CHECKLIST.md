@@ -1,5 +1,68 @@
 # ✅ Checklist de Configuration - Neat Barber Paris
 
+## 🚨 PRIORITÉ 1 - Modifications Client (TERMINÉES)
+
+### ✅ Bannière "Prendre RDV" fixe
+
+- [x] ~~Créer un composant `<FixedBookingBanner>` sticky~~ (Non retenu)
+- [x] ~~Positionner la bannière en `position: fixed`~~ (Non retenu)
+- [x] ~~Assurer la visibilité sur toutes les pages et breakpoints~~ (Non retenu)
+- [x] ~~Gérer le z-index pour qu'elle reste au-dessus de tout contenu~~ (Non retenu)
+- [x] ~~Tester le comportement lors du scroll~~ (Non retenu)
+- [x] ~~S'assurer que le bouton "Prendre RDV" reste centré et accessible~~ (Non retenu)
+
+### ✅ Remonter les avis clients
+
+- [x] Identifier l'emplacement actuel de la section avis
+- [x] Déplacer la section avis plus haut dans la structure (après hero/services)
+- [x] Vérifier que le design s'adapte bien à la nouvelle position
+- [x] Tester l'impact visuel et la cohérence du parcours utilisateur
+
+### ✅ Refonte des textes
+
+- [ ] **Récupérer le contenu existant :**
+  - [ ] Extraire les textes du site NEAT 1 (actuel)
+  - [ ] Récupérer les descriptions de la fiche Google My Business
+- [ ] **Harmoniser le contenu :**
+  - [ ] Adapter les textes pour la nouvelle charte graphique
+  - [ ] Optimiser pour le SEO (mots-clés pertinents)
+  - [ ] Garder le ton premium et professionnel
+- [ ] **Pages concernées :**
+  - [ ] Page d'accueil (hero, présentation)
+  - [ ] Page services/prestations
+  - [ ] À propos / équipe
+  - [ ] Meta descriptions et titres
+
+### ✅ Optimisation section prestations
+
+- [x] ~~Réduire l'espace occupé~~ (Modifications rejetées par le client)
+- [x] ~~Condenser la présentation~~ (Modifications rejetées par le client)
+- [x] ~~Raccourcir les descriptions~~ (Modifications rejetées par le client)
+- [x] ~~Optimiser la typography~~ (Modifications rejetées par le client)
+- [x] ~~Améliorer la lisibilité~~ (Modifications rejetées par le client)
+- [x] ~~Utiliser des icônes ou visuels~~ (Modifications rejetées par le client)
+- [x] ~~Tester sur mobile~~ (Modifications rejetées par le client)
+
+### ✅ Navigation et responsive
+
+- [x] Centrer le bouton dans la Navbar
+- [x] Rendre la Navbar sticky au scroll
+- [x] Appliquer la sticky position au Header
+- [x] Corriger le bug de disparition du header
+- [x] Restaurer le CSS original du header
+- [x] Restaurer le CSS original de la navbar
+- [x] S'assurer que la navbar prend toute sa largeur verticale
+- [x] Adapter la palette de couleurs vert-gris
+- [x] Ajouter une transition au hover sur le bouton
+- [x] Adapter la responsive mobile
+- [x] Remplacer la navbar par un menu burger en format mobile
+- [x] Supprimer le logo NEAT en responsive
+- [x] Décaler le menu burger sur la gauche
+- [x] Réduire la taille de l'icône du menu burger
+- [x] Ajouter du margin-left au logo NEAT en responsive
+
+---
+
 ## 🎯 Configuration de base
 
 ### ✅ Informations générales
@@ -13,6 +76,7 @@
 ### ✅ Couleurs et branding
 
 - [x] Couleurs principales modifiées dans `css/custom.css`
+- [x] Palette vert-gris implémentée (#4a5d4a, #6b7a6b)
 - [x] Couleurs cohérentes sur toutes les pages
 - [x] Logo visible et bien positionné
 - [x] Typographie adaptée à votre marque (DM Sans, Hanken Grotesk)
@@ -64,6 +128,10 @@
 ### ✅ Test mobile
 
 - [x] Navigation mobile fonctionnelle
+- [x] Menu burger mobile implémenté
+- [x] Logo NEAT supprimé en responsive
+- [x] Bouton burger repositionné à gauche
+- [x] Icône burger optimisée (24x18px)
 - [x] Texte lisible sur mobile
 - [x] Images adaptées aux petits écrans
 - [x] Boutons et liens accessibles
@@ -80,6 +148,13 @@
 - [x] Design optimal sur grand écran
 - [x] Animations fluides
 - [x] Navigation claire
+
+### ✅ Breakpoints et optimisation
+
+- [x] Breakpoints optimisés (768px, 576px, 480px, 375px)
+- [x] Navigation adaptative (desktop → mobile)
+- [x] Espacement progressif sur mobile
+- [x] Margin-left adaptatif pour le burger
 
 ## 🔧 Fonctionnalités
 
@@ -104,13 +179,20 @@
 - [x] Animations au scroll fonctionnelles (WOW.js)
 - [x] Curseur personnalisé actif (MagicCursor)
 - [x] Effets de hover opérationnels
+- [x] Animation burger menu (burger vers X)
+- [x] Transitions fluides sur boutons et liens
 - [x] Carousels et sliders fluides (Swiper.js)
 
 ### ✅ Navigation
 
 - [x] Menu principal fonctionnel
 - [x] Sous-menus opérationnels
-- [x] Menu mobile responsive
+- [x] Menu mobile responsive avec burger
+- [x] Menu burger mobile avec overlay
+- [x] Animation burger vers X
+- [x] Navigation mobile avec CTA intégré
+- [x] Gestion JavaScript complète (ouverture/fermeture)
+- [x] Support clavier (Escape) et clic overlay
 - [x] Liens internes corrects
 
 ## 🚀 Performance et SEO
@@ -217,4 +299,4 @@
 
 **✅ Projet en développement actif - Version 0.0.2 🚀**
 
-**📅 Dernière mise à jour : Janvier 2025**
+**📅 Dernière mise à jour : Août 2025 - Menu burger mobile implémenté**
