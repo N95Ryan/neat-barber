@@ -1,0 +1,29 @@
+3669b4d 2025-08-20 feat: transitions smooth optimisées pour les boutons de prise de RDV
+3fcf833 2025-08-20 feat: transitions smooth optimisées pour les boutons de prise de RDV
+3ac7931 2025-08-20 gne gne gne
+cad1e5a 2025-08-20 Merge pull request #13 from N95Ryan/QuickFixes
+177338c 2025-08-20 feat: implémentation menu burger mobile responsive
+40a0bd4 2025-07-31 update checklist
+8b0392f 2025-08-01 Merge pull request #11 from N95Ryan/QuickFixes
+497d499 2025-07-31 feat: update footer with real NEAT Paris contact info and social links
+2404d73 2025-08-01 Merge pull request #9 from N95Ryan/QuickFixes
+627ce57 2025-07-31 feat: refactor navbar structure and update navigation links
+1403749 2025-07-31 feat: ajouter la section Latest Posts avec les articles de blog
+0c33bd5 2025-07-31 feat: ajouter la section témoignages clients avec carousel interactif
+c54441f 2025-07-31 feat: ajouter la section Cartes Cadeaux
+b6bd0e7 2025-07-31 feat: intégrer les vraies photos du salon dans la galerie
+79737c1 2025-07-31 feat: refactoriser pricing avec array de services
+fbc57b6 2025-07-31 feat: ajouter la section Galerie Photos avec effet de surbrillance
+826db7a 2025-07-29 feat: add Facts component and update SliderServices background
+c9bc4e6 2025-07-29 fix CSS + hover
+7e0aec5 2025-07-29 Update README
+c1feed2 2025-07-29 update Readme
+c91990e 2025-07-29 feat: add Why Choose Us section with video player
+aa9014a 2025-07-29 feat: add professional services section
+0330676 2025-07-26 feat: implement About component with animations and hover effects
+b53c247 2025-07-25 update README
+a6eff2f 2025-07-25 Mise à jour de la checklist du projet
+91489d3 2025-07-24 feat(slider): improve services carousel for smooth infinite scrolling and modern look
+e26af0d 2025-07-24 refactor: clean up project structure and remove unused files
+579320b 2025-07-24 feat: migrate home page to Astro with original template styles and scripts
+d0e6119 2025-07-17 Initial commit from Astro
