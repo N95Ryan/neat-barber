@@ -1,9 +1,23 @@
 <nav class="navbar navbar-expand-lg">
   <div class="container">
+    <!-- Logo à gauche -->
     <a class="navbar-brand" href="/">
       <h1 style="color: white; font-weight: bold; margin: 0;">NEAT</h1>
     </a>
-    <div class="navbar-collapse main-menu">
+
+    <!-- Bouton centré -->
+    <div class="navbar-center">
+      <a
+        class="btn-booking-centered"
+        href="https://neatparis.fr/prise-de-rdv-1/"
+        target="_blank"
+      >
+        PRENDRE RENDEZ-VOUS
+      </a>
+    </div>
+
+    <!-- Menu desktop -->
+    <div class="navbar-collapse main-menu desktop-menu">
       <ul class="navbar-nav ms-auto" id="menu">
         <li class="nav-item">
           <a
@@ -12,16 +26,652 @@
             target="_blank">LE MAG</a
           >
         </li>
-        <li class="nav-item highlighted-menu">
-          <a
-            class="nav-link"
-            href="https://neatparis.fr/category/le-mag/"
-            target="_blank">PRENDRE RENDEZ-VOUS</a
-          >
-        </li>
       </ul>
     </div>
-    <div class="navbar-toggle"></div>
+
+    <!-- Bouton burger mobile -->
+    <button class="burger-menu-btn" id="burgerMenuBtn" aria-label="Menu">
+      <span class="burger-line"></span>
+      <span class="burger-line"></span>
+      <span class="burger-line"></span>
+    </button>
   </div>
 </nav>
+
+<!-- Menu mobile overlay -->
+<div class="mobile-menu-overlay" id="mobileMenuOverlay">
+  <div class="mobile-menu-content">
+    <div class="mobile-menu-header">
+      <h2 style="color: white; font-weight: bold; margin: 0;">NEAT</h2>
+      <button
+        class="close-menu-btn"
+        id="closeMenuBtn"
+        aria-label="Fermer le menu"
+      >
+        <span class="close-line"></span>
+        <span class="close-line"></span>
+      </button>
+    </div>
+
+    <nav class="mobile-menu-nav">
+      <ul class="mobile-menu-list">
+        <li class="mobile-menu-item">
+          <a
+            class="mobile-menu-link"
+            href="https://neatparis.fr/category/le-mag/"
+            target="_blank"
+          >
+            LE MAG
+          </a>
+        </li>
+        <li class="mobile-menu-item">
+          <a
+            class="mobile-menu-link mobile-cta"
+            href="https://neatparis.fr/prise-de-rdv-1/"
+            target="_blank"
+          >
+            PRENDRE RENDEZ-VOUS
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>
 <div class="responsive-menu"></div>
+
+<style>
+  .navbar {
+    position: relative;
+    z-index: 1000;
+    height: 80px;
+    display: flex;
+    align-items: center;
+  }
+
+  .navbar .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    height: 100%;
+    width: 100%;
+  }
+
+  /* Logo */
+  .navbar-brand {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    height: 100%;
+  }
+
+  /* Bouton centré */
+  .navbar-center {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1001;
+  }
+
+  .btn-booking-centered {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #4a5d4a 0%, #6b7a6b 100%);
+    color: #ffffff;
+    text-decoration: none;
+    padding: 12px 24px;
+    border-radius: 25px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    white-space: nowrap;
+    box-shadow: 0 4px 15px rgba(74, 93, 74, 0.3);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-booking-centered::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.1),
+      transparent
+    );
+    transition: left 0.6s ease;
+  }
+
+  .btn-booking-centered:hover {
+    background: linear-gradient(135deg, #6b7a6b 0%, #4a5d4a 100%);
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 8px 25px rgba(74, 93, 74, 0.5);
+    color: #ffffff;
+  }
+
+  .btn-booking-centered:hover::before {
+    left: 100%;
+  }
+
+  .btn-booking-centered:active {
+    transform: translateY(-1px) scale(1.01);
+    transition: all 0.1s ease;
+  }
+
+  /* Menu desktop */
+  .navbar-collapse {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    height: 100%;
+  }
+
+  .navbar-nav {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    height: 100%;
+  }
+
+  .nav-link {
+    color: #ffffff !important;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .nav-link:hover {
+    color: #6b7a6b !important;
+  }
+
+  /* Bouton burger mobile */
+  .burger-menu-btn {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 24px;
+    height: 18px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 1002;
+  }
+
+  .burger-line {
+    width: 100%;
+    height: 2px;
+    background-color: #ffffff;
+    border-radius: 1px;
+    transition: all 0.3s ease;
+    transform-origin: center;
+  }
+
+  .burger-menu-btn.active .burger-line:nth-child(1) {
+    transform: rotate(45deg) translate(4px, 4px);
+  }
+
+  .burger-menu-btn.active .burger-line:nth-child(2) {
+    opacity: 0;
+  }
+
+  .burger-menu-btn.active .burger-line:nth-child(3) {
+    transform: rotate(-45deg) translate(4px, -4px);
+  }
+
+  /* Menu mobile overlay */
+  .mobile-menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(42, 52, 42, 0.98);
+    backdrop-filter: blur(10px);
+    z-index: 1001;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .mobile-menu-overlay.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .mobile-menu-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 80px 20px 40px;
+  }
+
+  .mobile-menu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 30px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .close-menu-btn {
+    width: 30px;
+    height: 30px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    padding: 0;
+  }
+
+  .close-line {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 2px;
+    background-color: #ffffff;
+    transform-origin: center;
+  }
+
+  .close-line:nth-child(1) {
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+
+  .close-line:nth-child(2) {
+    transform: translate(-50%, -50%) rotate(-45deg);
+  }
+
+  .mobile-menu-nav {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .mobile-menu-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+  }
+
+  .mobile-menu-item {
+    margin-bottom: 20px;
+  }
+
+  .mobile-menu-link {
+    display: block;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: 500;
+    padding: 15px 0;
+    text-align: center;
+    transition: all 0.3s ease;
+    border-radius: 8px;
+  }
+
+  .mobile-menu-link:hover {
+    color: #6b7a6b;
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+
+  .mobile-menu-link.mobile-cta {
+    background: linear-gradient(135deg, #4a5d4a 0%, #6b7a6b 100%);
+    color: #ffffff;
+    padding: 15px 30px;
+    border-radius: 25px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 20px;
+  }
+
+  .mobile-menu-link.mobile-cta:hover {
+    background: linear-gradient(135deg, #6b7a6b 0%, #4a5d4a 100%);
+    color: #ffffff;
+    transform: translateY(-2px);
+  }
+
+  /* Responsive */
+  @media (max-width: 991px) {
+    .navbar {
+      height: auto;
+      min-height: 70px;
+      padding: 10px 0;
+    }
+
+    .navbar .container {
+      flex-wrap: wrap;
+      gap: 12px;
+      height: auto;
+      padding: 10px 0;
+    }
+
+    .navbar-brand {
+      order: 1;
+      height: auto;
+    }
+
+    .navbar-center {
+      position: static;
+      transform: none;
+      order: 2;
+      width: auto;
+    }
+
+    .navbar-collapse {
+      order: 3;
+      width: 100%;
+      margin-top: 8px;
+      height: auto;
+    }
+
+    .navbar-nav {
+      height: auto;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    .btn-booking-centered {
+      padding: 10px 18px;
+      font-size: 0.85rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    /* Masquer le menu desktop et le bouton centré */
+    .desktop-menu {
+      display: none !important;
+    }
+
+    .navbar-center {
+      display: none !important;
+    }
+
+    /* Masquer le logo */
+    .navbar-brand {
+      display: none !important;
+    }
+
+    /* Afficher le bouton burger */
+    .burger-menu-btn {
+      display: flex !important;
+      order: 1;
+      margin-left: 15px;
+    }
+
+    .navbar {
+      min-height: 65px;
+      padding: 8px 0;
+    }
+
+    .navbar .container {
+      gap: 10px;
+      padding: 8px 0;
+      justify-content: flex-start;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .navbar {
+      min-height: 65px;
+      padding: 8px 0;
+    }
+
+    .navbar .container {
+      gap: 10px;
+      padding: 8px 0;
+    }
+
+    .nav-link {
+      font-size: 0.9rem;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .navbar {
+      min-height: 60px;
+      padding: 6px 0;
+    }
+
+    .navbar .container {
+      gap: 8px;
+      padding: 6px 0;
+    }
+
+    .burger-menu-btn {
+      margin-left: 12px;
+    }
+
+    .btn-booking-centered {
+      max-width: 260px;
+      padding: 10px 16px;
+      font-size: 0.85rem;
+    }
+
+    .navbar-nav {
+      gap: 10px;
+    }
+
+    .nav-link {
+      font-size: 0.85rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .navbar {
+      min-height: 55px;
+      padding: 5px 0;
+    }
+
+    .navbar .container {
+      gap: 6px;
+      padding: 5px 0;
+    }
+
+    .burger-menu-btn {
+      margin-left: 10px;
+    }
+
+    .btn-booking-centered {
+      max-width: 240px;
+      padding: 8px 14px;
+      font-size: 0.8rem;
+    }
+
+    .navbar-nav {
+      gap: 8px;
+    }
+
+    .nav-link {
+      font-size: 0.8rem;
+    }
+  }
+
+  @media (max-width: 375px) {
+    .navbar {
+      min-height: 50px;
+      padding: 4px 0;
+    }
+
+    .navbar .container {
+      gap: 5px;
+      padding: 4px 0;
+    }
+
+    .burger-menu-btn {
+      margin-left: 8px;
+    }
+
+    .btn-booking-centered {
+      max-width: 220px;
+      padding: 7px 12px;
+      font-size: 0.75rem;
+    }
+
+    .navbar-nav {
+      gap: 6px;
+    }
+
+    .nav-link {
+      font-size: 0.75rem;
+    }
+  }
+
+  /* Mobile optimisations supplémentaires */
+  @media (max-width: 768px) {
+    .btn-booking-centered {
+      /* Optimisation pour le tactile */
+      min-height: 44px;
+      touch-action: manipulation;
+    }
+
+    .btn-booking-centered:hover {
+      /* Désactiver les effets hover sur mobile */
+      transform: none;
+      box-shadow: 0 4px 15px rgba(74, 93, 74, 0.3);
+    }
+
+    .btn-booking-centered:active {
+      /* Effet de pression tactile */
+      transform: scale(0.98);
+      transition: transform 0.1s ease;
+    }
+
+    .nav-link {
+      /* Optimisation pour le tactile */
+      min-height: 44px;
+      display: flex;
+      align-items: center;
+      padding: 8px 12px;
+      touch-action: manipulation;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .btn-booking-centered {
+      /* Bouton plus accessible sur petit écran */
+      min-height: 48px;
+      border-radius: 24px;
+    }
+
+    .nav-link {
+      /* Liens plus accessibles */
+      min-height: 48px;
+      padding: 10px 15px;
+      border-radius: 8px;
+    }
+
+    .nav-link:hover {
+      /* Effet de fond au lieu de couleur */
+      background-color: rgba(107, 122, 107, 0.1);
+      color: #ffffff !important;
+    }
+  }
+
+  @media (max-width: 375px) {
+    .btn-booking-centered {
+      /* Optimisation pour très petit écran */
+      min-height: 44px;
+      font-size: 0.7rem;
+      letter-spacing: 0.3px;
+    }
+
+    .navbar-brand h1 {
+      /* Logo plus compact */
+      font-size: 1.1rem;
+    }
+
+    .nav-link {
+      /* Navigation ultra-compacte */
+      min-height: 40px;
+      padding: 8px 12px;
+      font-size: 0.7rem;
+    }
+  }
+
+  /* Orientation paysage sur mobile */
+  @media (max-width: 768px) and (orientation: landscape) {
+    .navbar {
+      min-height: 50px;
+      padding: 4px 0;
+    }
+
+    .navbar .container {
+      gap: 8px;
+      padding: 4px 0;
+    }
+
+    .btn-booking-centered {
+      max-width: 200px;
+      padding: 8px 16px;
+      font-size: 0.8rem;
+    }
+
+    .navbar-nav {
+      gap: 8px;
+    }
+  }
+</style>
+
+<script>
+  // Gestion du menu burger mobile
+  (function () {
+    const burgerBtn = document.getElementById("burgerMenuBtn");
+    const closeBtn = document.getElementById("closeMenuBtn");
+    const mobileMenu = document.getElementById("mobileMenuOverlay");
+    const body = document.body;
+
+    function openMenu() {
+      burgerBtn?.classList.add("active");
+      mobileMenu?.classList.add("active");
+      body.style.overflow = "hidden"; // Empêcher le scroll
+    }
+
+    function closeMenu() {
+      burgerBtn?.classList.remove("active");
+      mobileMenu?.classList.remove("active");
+      body.style.overflow = ""; // Restaurer le scroll
+    }
+
+    // Événements
+    burgerBtn?.addEventListener("click", openMenu);
+    closeBtn?.addEventListener("click", closeMenu);
+
+    // Fermer le menu en cliquant sur l'overlay
+    mobileMenu?.addEventListener("click", (e) => {
+      if (e.target === mobileMenu) {
+        closeMenu();
+      }
+    });
+
+    // Fermer le menu avec la touche Escape
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && mobileMenu?.classList.contains("active")) {
+        closeMenu();
+      }
+    });
+
+    // Fermer le menu lors du clic sur un lien
+    const mobileLinks = document.querySelectorAll(".mobile-menu-link");
+    mobileLinks.forEach((link) => {
+      link.addEventListener("click", closeMenu);
+    });
+
+    // Gestion du redimensionnement de la fenêtre
+    window.addEventListener("resize", () => {
+      if (window.innerWidth > 768 && mobileMenu?.classList.contains("active")) {
+        closeMenu();
+      }
+    });
+  })();
+</script>
