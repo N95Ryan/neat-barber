@@ -8,7 +8,7 @@
 - [x] Logo remplacé (`images/logo.svg`)
 - [x] Favicon personnalisé (`images/favicon.png`)
 - [x] Métadonnées SEO mises à jour
-- [ ] Email de contact configuré dans le formulaire
+- [x] Email de contact configuré dans le formulaire
 
 ### ✅ Couleurs et branding
 
@@ -82,6 +82,15 @@
 - [x] Navigation claire
 
 ## 🔧 Fonctionnalités
+
+### ✅ Informations de contact
+
+- [x] Adresse complète configurée (18 rue des Bourdonnais, 75001 Paris)
+- [x] Téléphone ajouté (09 56 27 43 31)
+- [x] Email de contact configuré (contact@neatparis.fr)
+- [x] Horaires d'ouverture mis à jour
+- [x] Liens réseaux sociaux ajoutés (Instagram, TikTok)
+- [x] Liens vers le blog et prise de rendez-vous
 
 ### 🔄 Formulaire de contact
 
@@ -161,12 +170,12 @@
 
 ## 🎉 Finalisation
 
-### 🔄 Contenu final
+### ✅ Contenu final
 
 - [x] Tous les textes relus et corrigés
-- [ ] Informations de contact exactes
-- [ ] Horaires d'ouverture à jour
-- [ ] Adresse et localisation correctes
+- [x] Informations de contact exactes
+- [x] Horaires d'ouverture à jour
+- [x] Adresse et localisation correctes
 
 ### 🔄 Documentation
 
@@ -206,4 +215,6 @@
 
 ---
 
-**✅ Projet en développement actif - Version 0.0.1 🚀**
+**✅ Projet en développement actif - Version 0.0.2 🚀**
+
+**📅 Dernière mise à jour : Janvier 2025**
