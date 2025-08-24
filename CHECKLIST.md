@@ -20,18 +20,18 @@
 
 ### ✅ Refonte des textes
 
-- [ ] **Récupérer le contenu existant :**
-  - [ ] Extraire les textes du site NEAT 1 (actuel)
-  - [ ] Récupérer les descriptions de la fiche Google My Business
-- [ ] **Harmoniser le contenu :**
-  - [ ] Adapter les textes pour la nouvelle charte graphique
-  - [ ] Optimiser pour le SEO (mots-clés pertinents)
-  - [ ] Garder le ton premium et professionnel
-- [ ] **Pages concernées :**
-  - [ ] Page d'accueil (hero, présentation)
-  - [ ] Page services/prestations
-  - [ ] À propos / équipe
-  - [ ] Meta descriptions et titres
+- [x] **Récupérer le contenu existant :**
+  - [x] Extraire les textes du site NEAT 1 (actuel)
+  - [x] Récupérer les descriptions de la fiche Google My Business
+- [x] **Harmoniser le contenu :**
+  - [x] Adapter les textes pour la nouvelle charte graphique
+  - [x] Optimiser pour le SEO (mots-clés pertinents)
+  - [x] Garder le ton premium et professionnel
+- [x] **Pages concernées :**
+  - [x] Page d'accueil (hero, présentation)
+  - [x] Page services/prestations
+  - [x] À propos / équipe
+  - [x] Meta descriptions et titres
 
 ### ✅ Optimisation section prestations
 
@@ -90,11 +90,11 @@
 - [x] Section "À propos" adaptée
 - [x] Liste des services actualisée
 - [x] Avantages concurrentiels personnalisés
-- [ ] Statistiques (Fun Facts) mises à jour
-- [ ] Galerie photos remplacée
-- [ ] Tarifs actualisés
-- [ ] Témoignages clients ajoutés
-- [ ] Articles de blog récents
+- [x] Statistiques (Fun Facts) mises à jour
+- [x] Galerie photos remplacée
+- [x] Tarifs actualisés
+- [x] Témoignages clients ajoutés
+- [x] Articles de blog récents
 
 ### 🔄 Pages secondaires
 
@@ -113,7 +113,7 @@
 - [x] Images de la page d'accueil remplacées
 - [ ] Photos de l'équipe ajoutées
 - [x] Images des services mises à jour
-- [ ] Galerie photos personnalisée
+- [x] Galerie photos personnalisée
 - [x] Images optimisées pour le web
 - [x] Attributs alt ajoutés pour le SEO
 
@@ -122,6 +122,14 @@
 - [x] Icônes FontAwesome appropriées
 - [x] SVG et icônes personnalisées
 - [x] Couleurs des icônes cohérentes
+
+### ✅ Intégration Cloudinary
+
+- [x] Configuration Cloudinary dans `lib/cloudinary.ts`
+- [x] API photos dans `pages/api/photos.ts`
+- [x] Galerie photos dynamique avec Cloudinary
+- [x] Optimisation des images (WebP, responsive)
+- [x] Lazy loading des images
 
 ## 📱 Responsive Design
 
@@ -203,6 +211,8 @@
 - [x] CSS et JS minifiés (Bootstrap, jQuery, etc.)
 - [x] Temps de chargement acceptable
 - [x] Pas d'erreurs dans la console
+- [x] Lazy loading des images
+- [x] Optimisation Cloudinary
 
 ### ✅ SEO de base
 
@@ -212,7 +222,7 @@
 - [ ] URLs propres et descriptives
 - [ ] Sitemap créé (optionnel)
 
-### 🔄 Accessibilité
+### ✅ Accessibilité
 
 - [x] Contraste des couleurs suffisant
 - [x] Navigation au clavier possible
@@ -259,9 +269,11 @@
 - [x] Horaires d'ouverture à jour
 - [x] Adresse et localisation correctes
 
-### 🔄 Documentation
+### ✅ Documentation
 
 - [x] Guide d'utilisation créé (README.md)
+- [x] Workflow documenté (WORKFLOW.md)
+- [x] Checklist mise à jour (CHECKLIST.md)
 - [ ] Codes d'accès documentés
 - [ ] Procédures de maintenance établies
 
@@ -276,6 +288,7 @@
 - Tailwind CSS est configuré avec des animations personnalisées
 - Le formulaire de contact nécessite une solution backend (API, Netlify Forms, etc.)
 - Testez toujours sur un serveur en ligne pour les fonctionnalités dynamiques
+- Cloudinary est intégré pour la gestion des images
 
 ### 🔄 Maintenance
 
@@ -294,9 +307,10 @@
 - **Swiper.js** - Carousels
 - **WOW.js** - Animations au scroll
 - **MagicCursor** - Curseur personnalisé
+- **Cloudinary** - Gestion des images
 
 ---
 
-**✅ Projet en développement actif - Version 0.0.2 🚀**
+**✅ Projet en développement actif - Version 0.0.3 🚀**
 
-**📅 Dernière mise à jour : Août 2025 - Menu burger mobile implémenté**
+**📅 Dernière mise à jour : Août 2025 - Tous les composants principaux implémentés**

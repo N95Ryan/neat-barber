@@ -14,9 +14,16 @@ Site web moderne pour le salon de coiffure Neat Barber Paris, développé avec *
 │   ├── components/   # Composants réutilisables
 │   │   ├── Header.astro
 │   │   ├── Footer.astro
+│   │   ├── Navbar.astro
 │   │   ├── About.astro
 │   │   ├── Services.astro
-│   │   └── SliderServices.astro
+│   │   ├── SliderServices.astro
+│   │   ├── Facts.astro
+│   │   ├── PhotoGallery.astro
+│   │   ├── Pricing.astro
+│   │   ├── GiftCards.astro
+│   │   ├── Testimonials.astro
+│   │   └── LatestPosts.astro
 │   ├── sections/     # Sections de page
 │   │   ├── About.astro
 │   │   ├── ProServices.astro
@@ -25,7 +32,11 @@ Site web moderne pour le salon de coiffure Neat Barber Paris, développé avec *
 │   ├── layouts/
 │   │   └── Layout.astro
 │   ├── pages/
-│   │   └── index.astro
+│   │   ├── index.astro
+│   │   └── api/
+│   │       └── photos.ts
+│   ├── lib/
+│   │   └── cloudinary.ts
 │   └── styles/
 │       └── global.css
 ├── astro.config.mjs
@@ -55,6 +66,7 @@ Toutes les commandes sont exécutées depuis la racine du projet :
 - **Sliders interactifs** avec Swiper.js
 - **Effets de parallaxe** et scroll smooth
 - **Preloader animé** au chargement
+- **Navigation mobile** avec menu burger et overlay
 
 ### ✅ Technologies Utilisées
 
@@ -79,6 +91,11 @@ Toutes les commandes sont exécutées depuis la racine du projet :
 - **MagicCursor** - Curseur personnalisé
 - **SmoothScroll** - Défilement fluide
 
+#### Intégrations
+
+- **Cloudinary** - Gestion des images et galerie photos
+- **Planity** - Système de réservation en ligne
+
 ### ✅ Sections Implémentées
 
 #### Page d'Accueil
@@ -88,21 +105,38 @@ Toutes les commandes sont exécutées depuis la racine du projet :
 - **About Section** - Présentation du salon
 - **Pro Services** - Services détaillés
 - **Why Choose Us** - Avantages concurrentiels
+- **Pricing** - Tarifs des prestations
+- **Facts** - Statistiques et chiffres clés
+- **Photo Gallery** - Galerie photos du salon
+- **Gift Cards** - Cartes cadeaux
+- **Testimonials** - Avis clients
+- **Latest Posts** - Articles de blog récents
 
 #### Composants
 
 - **Header** - Navigation responsive avec menu mobile
+- **Navbar** - Navigation sticky avec bouton CTA centré
 - **Footer** - Informations de contact et liens
 - **Layout** - Structure globale avec preloader et scripts
+
+### ✅ Navigation et Responsive
+
+- **Menu burger mobile** avec overlay plein écran
+- **Navigation sticky** avec effet de scroll
+- **Bouton CTA centré** dans la navbar
+- **Transitions fluides** et animations
+- **Support clavier** (Escape pour fermer le menu)
+- **Design adaptatif** pour tous les écrans
 
 ### ✅ Optimisations
 
 #### Performance
 
-- **Images optimisées** pour le web
+- **Images optimisées** pour le web (WebP)
 - **CSS et JS minifiés** (Bootstrap, jQuery, etc.)
 - **Chargement asynchrone** des scripts
 - **Preloader** pour une meilleure UX
+- **Lazy loading** des images
 
 #### SEO & Accessibilité
 
@@ -110,6 +144,7 @@ Toutes les commandes sont exécutées depuis la racine du projet :
 - **Structure sémantique** correcte
 - **Images avec alt** pour l'accessibilité
 - **Navigation au clavier** possible
+- **Contraste des couleurs** suffisant
 
 ## 📝 Configuration
 
@@ -120,7 +155,8 @@ Toutes les commandes sont exécutées depuis la racine du projet :
   "astro": "^5.12.0",
   "@astrojs/tailwind": "^6.0.2",
   "@tailwindcss/typography": "^0.5.16",
-  "tailwindcss": "^3.4.17"
+  "tailwindcss": "^3.4.17",
+  "cloudinary": "^2.7.0"
 }
 ```
 
@@ -129,6 +165,7 @@ Toutes les commandes sont exécutées depuis la racine du projet :
 - Animations personnalisées (fade-in, scroll, etc.)
 - Plugin typography pour un meilleur rendu du texte
 - Configuration responsive complète
+- Palette de couleurs vert-gris (#4a5d4a, #6b7a6b)
 
 ## 🚀 Déploiement
 
@@ -144,19 +181,23 @@ Le site est prêt pour le déploiement sur n'importe quel hébergeur statique :
 ### ✅ Terminé
 
 - [x] Structure Astro configurée
-- [x] Page d'accueil complète
+- [x] Page d'accueil complète avec toutes les sections
 - [x] Composants réutilisables
-- [x] Design responsive
+- [x] Design responsive avec navigation mobile
 - [x] Animations et interactions
 - [x] Optimisations de performance
+- [x] Intégration Cloudinary pour la galerie
+- [x] Navigation sticky avec menu burger
+- [x] Informations de contact réelles
+- [x] Liens vers Planity et réseaux sociaux
 
 ### 🔄 En cours
 
 - [ ] Pages secondaires (À propos, Services, Contact)
 - [ ] Formulaire de contact fonctionnel
-- [ ] Intégration Planity pour réservations
 - [ ] Tests utilisateurs complets
+- [ ] Optimisations SEO avancées
 
 ---
 
-**🎯 Projet en développement actif - Version 0.0.1**
+**🎯 Projet en développement actif - Version 0.0.3**
