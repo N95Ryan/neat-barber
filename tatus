@@ -1,7 +1,0 @@
-[33m0330676[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32msandbox[m[33m)[m feat: implement About component with animations and hover effects
-[33mb53c247[m update README
-[33ma6eff2f[m Mise à jour de la checklist du projet
-[33m91489d3[m feat(slider): improve services carousel for smooth infinite scrolling and modern look
-[33me26af0d[m[33m ([m[1;31morigin/migration[m[33m, [m[1;32mmigration[m[33m)[m refactor: clean up project structure and remove unused files
-[33m579320b[m feat: migrate home page to Astro with original template styles and scripts
-[33md0e6119[m[33m ([m[1;32mmaster[m[33m)[m Initial commit from Astro

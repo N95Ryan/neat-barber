@@ -6,141 +6,201 @@ let images: any[] = [];
 let error = null;
 
 try {
-    // Ajouter un timeout de 5 secondes pour éviter les blocages
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 5000);
-    
-    const response = await fetch(`${Astro.url.origin}/api/photos`, {
-        signal: controller.signal
-    });
-    
-    clearTimeout(timeoutId);
-    
-    if (!response.ok) {
-        throw new Error(`Erreur HTTP: ${response.status}`);
-    }
-    
-    const data = await response.json();
-    
-    if (data.success) {
-        images = data.images;
-    } else {
-        error = data.error || 'Erreur lors de la récupération des images';
-    }
+  // Ajouter un timeout de 5 secondes pour éviter les blocages
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), 5000);
+
+  const response = await fetch(`${Astro.url.origin}/api/photos`, {
+    signal: controller.signal,
+  });
+
+  clearTimeout(timeoutId);
+
+  if (!response.ok) {
+    throw new Error(`Erreur HTTP: ${response.status}`);
+  }
+
+  const data = await response.json();
+
+  if (data.success) {
+    images = data.images;
+  } else {
+    error = data.error || "Erreur lors de la récupération des images";
+  }
 } catch (err: any) {
-    if (err.name === 'AbortError') {
-        error = 'Délai d\'attente dépassé - Connexion lente';
-    } else if (err.message && err.message.includes('HTTP')) {
-        error = 'Erreur de connexion au serveur';
-    } else {
-        error = 'Erreur de connexion au serveur';
-    }
-    console.error('Erreur lors de la récupération des images:', err);
+  if (err.name === "AbortError") {
+    error = "Délai d'attente dépassé - Connexion lente";
+  } else if (err.message && err.message.includes("HTTP")) {
+    error = "Erreur de connexion au serveur";
+  } else {
+    error = "Erreur de connexion au serveur";
+  }
+  console.error("Erreur lors de la récupération des images:", err);
 }
 
 // Images de fallback si aucune image Cloudinary n'est disponible
 const fallbackImages = [
-    {
-        url: "/images/photo-gallery/1.webp",
-        alt: "Salon de coiffure Neat Barber - Vue d'ensemble",
-    },
-    {
-        url: "/images/photo-gallery/2.webp",
-        alt: "Salon de coiffure Neat Barber - Espace de travail",
-    },
-    {
-        url: "/images/photo-gallery/3.webp",
-        alt: "Salon de coiffure Neat Barber - Ambiance salon",
-    },
-    {
-        url: "/images/photo-gallery/4.webp",
-        alt: "Salon de coiffure Neat Barber - Zone d'accueil",
-    },
-    {
-        url: "/images/photo-gallery/5.webp",
-        alt: "Salon de coiffure Neat Barber - Détails d'équipement",
-    },
-    {
-        url: "/images/photo-gallery/6.webp",
-        alt: "Salon de coiffure Neat Barber - Espace détente",
-    },
-    {
-        url: "/images/photo-gallery/7.webp",
-        alt: "Salon de coiffure Neat Barber - Vue complète",
-    },
+  {
+    url: "/images/photo-gallery/1.webp",
+    alt: "Salon de coiffure Neat Barber - Vue d'ensemble",
+  },
+  {
+    url: "/images/photo-gallery/2.webp",
+    alt: "Salon de coiffure Neat Barber - Espace de travail",
+  },
+  {
+    url: "/images/photo-gallery/3.webp",
+    alt: "Salon de coiffure Neat Barber - Ambiance salon",
+  },
+  {
+    url: "/images/photo-gallery/4.webp",
+    alt: "Salon de coiffure Neat Barber - Zone d'accueil",
+  },
+  {
+    url: "/images/photo-gallery/5.webp",
+    alt: "Salon de coiffure Neat Barber - Détails d'équipement",
+  },
+  {
+    url: "/images/photo-gallery/6.webp",
+    alt: "Salon de coiffure Neat Barber - Espace détente",
+  },
+  {
+    url: "/images/photo-gallery/7.webp",
+    alt: "Salon de coiffure Neat Barber - Vue complète",
+  },
 ];
 
 // Utiliser les images Cloudinary si disponibles, sinon les images de fallback
 const displayImages = images.length > 0 ? images : fallbackImages;
 ---
 
-<div class="photo-gallery">
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-md-12">
-        <!-- Section Title Start -->
-        <div class="section-title">
-          <h3 class="wow fadeInUp">Galerie Photos</h3>
-          <h2 class="text-anime">Découvrez nos locaux</h2>
-        </div>
-        <!-- Section Title End -->
+<div class="photo-gallery bg-neutral-50 py-24">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-16">
+      <!-- Section Title Start -->
+      <div class="section-title">
+        <h3
+          class="text-neutral-500 text-sm font-medium tracking-wider uppercase mb-4 animate-fade-in-up"
+        >
+          Galerie Photos
+        </h3>
+        <h2
+          class="text-4xl lg:text-5xl font-bold text-neutral-900 leading-tight mb-6 animate-fade-in-up"
+        >
+          Découvrez notre univers
+        </h2>
       </div>
+      <!-- Section Title End -->
     </div>
 
-    <div class="row">
-      <div class="col-md-12">
-        {error && (
-          <div class="alert alert-warning text-center mb-4">
-            <p>⚠️ {error}</p>
-            <p class="mb-0">Affichage des images par défaut.</p>
+    <div class="w-full">
+      {
+        error && (
+          <div class="bg-amber-50 border-l-4 border-amber-400 p-4 mb-8 rounded-lg">
+            <div class="flex items-center">
+              <div class="flex-shrink-0 text-amber-400">
+                <svg
+                  class="h-5 w-5"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+              </div>
+              <div class="ml-3">
+                <p class="text-sm text-amber-700">{error}</p>
+                <p class="text-xs text-amber-600">
+                  Affichage des images par défaut.
+                </p>
+              </div>
+            </div>
           </div>
-        )}
-        
-        {displayImages.length === 0 ? (
-          <div class="text-center py-5">
+        )
+      }
+
+      {
+        displayImages.length === 0 ? (
+          <div class="text-center py-16 bg-neutral-100 rounded-xl">
             <div class="no-photos-message">
-              <h4>📸 Aucune photo disponible pour le moment</h4>
-              <p>Notre galerie sera bientôt mise à jour avec de nouvelles photos de notre salon.</p>
+              <svg
+                class="mx-auto h-12 w-12 text-neutral-400"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1"
+                  d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"
+                />
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1"
+                  d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"
+                />
+              </svg>
+              <h4 class="mt-4 text-lg font-medium text-neutral-700">
+                Aucune photo disponible pour le moment
+              </h4>
+              <p class="mt-2 text-neutral-500">
+                Notre galerie sera bientôt mise à jour avec de nouvelles photos
+                de notre salon.
+              </p>
             </div>
           </div>
         ) : (
-          <div class="photo-gallery-ticker">
-            <!-- Photo Gallery Images Start -->
-            <div class="photo-gallery-content">
-              {displayImages.map((image: any) => (
-                <div class="photo-gallery-item">
-                  <figure class="hover-anime">
-                    <img 
-                      src={image.url} 
-                      alt={image.alt} 
-                      loading="lazy"
-                      width={image.width || 400}
-                      height={image.height || 300}
-                    />
-                  </figure>
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            {displayImages.map((image: any, index: number) => (
+              <div
+                class={`gallery-item ${index === 0 ? "md:col-span-2 md:row-span-2" : ""}`}
+              >
+                <div class="relative overflow-hidden rounded-xl shadow-lg group h-full">
+                  <img
+                    src={image.url}
+                    alt={image.alt}
+                    loading="lazy"
+                    class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                  <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                    <div class="p-4 w-full">
+                      <h3 class="text-white text-lg font-medium transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                        {image.alt.replace(
+                          "Salon de coiffure Neat Barber - ",
+                          ""
+                        )}
+                      </h3>
+                    </div>
+                  </div>
                 </div>
-              ))}
-            </div>
-
-            <div class="photo-gallery-content">
-              {displayImages.map((image: any) => (
-                <div class="photo-gallery-item">
-                  <figure class="hover-anime">
-                    <img 
-                      src={image.url} 
-                      alt={image.alt} 
-                      loading="lazy"
-                      width={image.width || 400}
-                      height={image.height || 300}
-                    />
-                  </figure>
-                </div>
-              ))}
-            </div>
-            <!-- Photo Gallery Images End -->
+              </div>
+            ))}
           </div>
-        )}
-      </div>
+        )
+      }
     </div>
   </div>
 </div>
+
+<style>
+  .gallery-item {
+    aspect-ratio: 1 / 1;
+  }
+
+  .gallery-item:first-child {
+    aspect-ratio: auto;
+  }
+
+  @media (max-width: 768px) {
+    .gallery-item {
+      aspect-ratio: 3 / 2;
+    }
+  }
+</style>
