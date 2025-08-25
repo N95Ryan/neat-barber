@@ -1,76 +1,274 @@
 ---
 // Pricing component for Neat Barber services
-const services = [
-  {
-    name: "Classic NEAT #1",
-    description: "Coupe classique.",
-    price: "30€"
-  },
-  {
-    name: "Classic NEAT #2",
-    description: "Coupe classique & shampoing pour un soin complet.",
-    price: "35€"
-  },
-  {
-    name: "Barbe NEAT",
-    description: "Taille de barbe, contours & soins (serviette chaude & soin visage).",
-    price: "25€"
-  },
-  {
-    name: "Signature NEAT",
-    description: "Coupe, barbe & soin (shampoing, serviette chaude, soin visage).",
-    price: "60€"
-  },
-  {
-    name: "Complète NEAT",
-    description: "Coupe, barbe & shampoing pour un soin complet.",
-    price: "55€"
-  },
-  {
-    name: "Complète NEAT",
-    description: "Coupe & Barbe pour un style parfait.",
-    price: "50€"
-  },
-  {
-    name: "Soignée NEAT",
-    description: "Coupe & Soins (shampoing serviette chaude/froide, exfoliant visage).",
-    price: "50€"
-  }
-];
 
-const delays = [0.50, 0.74, 1.0, 1.25, 1.50, 1.75, 2.00];
+// Interface pour les services
+interface Service {
+  name: string;
+  description: string;
+  price: string;
+  popular?: boolean;
+  duration?: string;
+}
+
+// Catégories de services
+interface Category {
+  title: string;
+  services: Service[];
+}
+
+// Liste des catégories et services
+const categories: Category[] = [
+  {
+    title: "Coupes",
+    services: [
+      {
+        name: "Classic NEAT",
+        description: "Coupe classique avec finition parfaite.",
+        price: "30€",
+        duration: "30 min",
+      },
+      {
+        name: "Premium NEAT",
+        description: "Coupe classique & shampoing pour un soin complet.",
+        price: "35€",
+        duration: "45 min",
+      },
+      {
+        name: "Signature NEAT",
+        description: "Coupe, shampoing, serviette chaude & soin visage.",
+        price: "45€",
+        popular: true,
+        duration: "60 min",
+      },
+    ],
+  },
+  {
+    title: "Barbe & Soins",
+    services: [
+      {
+        name: "Barbe NEAT",
+        description: "Taille de barbe, contours & soins.",
+        price: "25€",
+        duration: "30 min",
+      },
+      {
+        name: "Barbe Premium",
+        description: "Taille de barbe, contours & serviette chaude.",
+        price: "30€",
+        duration: "45 min",
+      },
+      {
+        name: "Soin Visage",
+        description: "Serviette chaude/froide, exfoliant & massage facial.",
+        price: "25€",
+        duration: "30 min",
+      },
+    ],
+  },
+  {
+    title: "Formules Complètes",
+    services: [
+      {
+        name: "Complète NEAT",
+        description: "Coupe & Barbe pour un style parfait.",
+        price: "50€",
+        duration: "60 min",
+      },
+      {
+        name: "Signature Complète",
+        description:
+          "Coupe, barbe & soin (shampoing, serviette chaude, soin visage).",
+        price: "60€",
+        popular: true,
+        duration: "90 min",
+      },
+      {
+        name: "VIP NEAT",
+        description:
+          "Formule complète avec produits premium et service personnalisé.",
+        price: "75€",
+        duration: "120 min",
+      },
+    ],
+  },
+];
 ---
 
-<div class="pricing">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <!-- Section Title Start -->
-        <div class="section-title">
-          <h3 class="wow fadeInUp">Tarifs</h3>
-          <h2 class="text-anime">Nos prix</h2>
-        </div>
-        <!-- Section Title End -->
+<div class="pricing-section py-24 bg-white" id="pricing">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-16">
+      <!-- Section Title Start -->
+      <div class="section-title">
+        <h3
+          class="text-neutral-500 text-sm font-medium tracking-wider uppercase mb-4 animate-fade-in-up"
+        >
+          Tarifs
+        </h3>
+        <h2
+          class="text-4xl lg:text-5xl font-bold text-neutral-900 leading-tight mb-6 animate-fade-in-up"
+        >
+          Nos prestations
+        </h2>
+        <p
+          class="text-neutral-600 text-lg max-w-3xl mx-auto animate-fade-in-up"
+        >
+          Des tarifs transparents pour des prestations de qualité. Prenez
+          rendez-vous facilement et profitez d'une expérience sur mesure.
+        </p>
+      </div>
+      <!-- Section Title End -->
+    </div>
+
+    <!-- Pricing Tabs -->
+    <div class="pricing-categories mb-12">
+      <div class="flex flex-wrap justify-center gap-4">
+        {
+          categories.map((category, index) => (
+            <button
+              class="category-tab px-6 py-3 rounded-lg font-medium transition-all duration-300 focus:outline-none data-[active=true]:bg-neutral-900 data-[active=true]:text-white bg-neutral-100 text-neutral-700 hover:bg-neutral-200"
+              data-category={index}
+              data-active={index === 0 ? "true" : "false"}
+            >
+              {category.title}
+            </button>
+          ))
+        }
       </div>
     </div>
 
-    <div class="row">
-      {services.map((service, index) => (
-        <div class="col-lg-4 col-md-6">
-          <!-- Pricing Item Start -->
-          <div class="pricing-item wow fadeInUp" data-wow-delay={`${delays[index]}s`}>
-            <div class="pricing-info">
-              <h3>{service.name}</h3>
-              <p>{service.description}</p>
-            </div>
+    <!-- Pricing Content -->
+    <div class="pricing-content">
+      {
+        categories.map((category, categoryIndex) => (
+          <div
+            class={`pricing-category-content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 ${categoryIndex === 0 ? "block" : "hidden"}`}
+            data-category={categoryIndex}
+          >
+            {category.services.map((service, serviceIndex) => (
+              <div
+                class={`pricing-card relative overflow-hidden rounded-2xl bg-white border border-neutral-100 shadow-sm hover:shadow-md transition-all duration-300 ${service.popular ? "ring-2 ring-neutral-900" : ""}`}
+              >
+                {service.popular && (
+                  <div class="absolute top-0 right-0">
+                    <div class="bg-neutral-900 text-white text-xs font-bold px-3 py-1 uppercase tracking-wider transform rotate-45 translate-x-6 -translate-y-1">
+                      Populaire
+                    </div>
+                  </div>
+                )}
 
-            <div class="pricing-price">
-              <p>{service.price}</p>
-            </div>
+                <div class="p-8">
+                  <div class="flex justify-between items-start mb-4">
+                    <h3 class="text-xl font-bold text-neutral-900">
+                      {service.name}
+                    </h3>
+                    <span class="text-2xl font-bold text-neutral-900">
+                      {service.price}
+                    </span>
+                  </div>
+
+                  <p class="text-neutral-600 mb-6">{service.description}</p>
+
+                  <div class="flex items-center text-neutral-500 text-sm mb-6">
+                    <svg
+                      class="w-5 h-5 mr-2"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                      />
+                    </svg>
+                    <span>{service.duration}</span>
+                  </div>
+
+                  <a
+                    href="#"
+                    class={`block w-full text-center py-3 px-6 rounded-lg transition-colors duration-300 ${service.popular ? "bg-neutral-900 text-white hover:bg-neutral-800" : "border-2 border-neutral-900 text-neutral-900 hover:bg-neutral-900 hover:text-white"}`}
+                  >
+                    Réserver
+                  </a>
+                </div>
+              </div>
+            ))}
           </div>
-          <!-- Pricing Item End -->
-        </div>
-      ))}
+        ))
+      }
     </div>
   </div>
 </div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const categoryTabs = document.querySelectorAll(".category-tab");
+    const categoryContents = document.querySelectorAll(
+      ".pricing-category-content"
+    );
+
+    categoryTabs.forEach((tab) => {
+      tab.addEventListener("click", () => {
+        const category = tab.getAttribute("data-category");
+
+        // Update active tab
+        categoryTabs.forEach((t) => t.setAttribute("data-active", "false"));
+        tab.setAttribute("data-active", "true");
+
+        // Show selected category content
+        categoryContents.forEach((content) => {
+          if (content.getAttribute("data-category") === category) {
+            content.classList.remove("hidden");
+            content.classList.add("block");
+          } else {
+            content.classList.add("hidden");
+            content.classList.remove("block");
+          }
+        });
+      });
+    });
+  });
+</script>
+
+<style>
+  .pricing-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    transform: translateY(0);
+    transition: transform 0.3s ease;
+  }
+
+  .pricing-card:hover {
+    transform: translateY(-5px);
+  }
+
+  .category-tab[data-active="true"] {
+    position: relative;
+  }
+
+  .category-tab[data-active="true"]::after {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 2px;
+    background-color: currentColor;
+  }
+
+  @media (max-width: 768px) {
+    .pricing-categories {
+      overflow-x: auto;
+      white-space: nowrap;
+      padding-bottom: 1rem;
+    }
+
+    .pricing-card {
+      margin-bottom: 1.5rem;
+    }
+  }
+</style>

@@ -1,0 +1,232 @@
+---
+import Navbar from "../components/Navbar.astro";
+---
+
+<header class="main-header">
+  <Navbar />
+</header>
+
+<!-- Hero Section Start -->
+<section id="accueil" class="hero relative">
+  <!-- Background Image with Overlay -->
+  <div class="absolute inset-0 bg-hero-pattern bg-cover bg-center bg-no-repeat">
+    <div
+      class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-transparent"
+    >
+    </div>
+  </div>
+
+  <div class="container relative z-10">
+    <div class="row align-items-center min-h-[90vh] py-20">
+      <div class="col-lg-6">
+        <!-- Hero Left Content Start -->
+        <div class="hero-content text-white">
+          <div class="section-title">
+            <h3 class="wow fadeInUp text-neutral-300">
+              Bienvenue chez Neat Barber Shop - Paris
+            </h3>
+            <h1 class="text-anime text-white">
+              Une expérience capillaire unique, moderne et raffinée.
+            </h1>
+          </div>
+          <div class="hero-content-body wow fadeInUp" data-wow-delay="0.5s">
+            <p class="text-neutral-200 text-lg">
+              NEAT, c'est une ambiance élégante et apaisante où chaque client se
+              sent unique.
+              <br />
+              Plus qu'une coupe, une expérience. NEAT, c'est toi en mieux.
+            </p>
+
+            <div class="mt-8 flex flex-wrap gap-4">
+              <a
+                href="#tarifs"
+                class="btn-primary px-8 py-4 rounded-lg font-medium"
+              >
+                Découvrir nos tarifs
+              </a>
+              <a
+                href="#a-propos"
+                class="btn-outline px-8 py-4 rounded-lg font-medium"
+              >
+                En savoir plus
+              </a>
+            </div>
+          </div>
+        </div>
+        <!-- Hero Left Content End -->
+      </div>
+
+      <div class="col-lg-6">
+        <!-- Hero Image Start -->
+        <div class="hero-image wow fadeInUp" data-wow-delay="0.75s">
+          <figure class="hover-anime rounded-2xl overflow-hidden shadow-2xl">
+          </figure>
+        </div>
+        <!-- Hero Image End -->
+      </div>
+    </div>
+
+    <!-- Hero Scroll Down Arrow Start -->
+    <div class="row">
+      <div
+        class="col-md-12 scrollsp absolute bottom-10 left-1/2 transform -translate-x-1/2"
+      >
+        <a href="#a-propos" class="scroll-down text-white"><span></span></a>
+      </div>
+    </div>
+    <!-- Hero Scroll Down Arrow End -->
+  </div>
+</section>
+<!-- Hero Section End -->
+
+<style>
+  .main-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: rgba(42, 52, 42, 0);
+    backdrop-filter: blur(0px);
+    transition: all 0.3s ease;
+  }
+
+  .main-header.scrolled {
+    background: rgba(42, 52, 42, 0.98);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+  }
+
+  .bg-hero-pattern {
+    background-image: url("https://res.cloudinary.com/drhqmgbm0/image/upload/v1755728033/3_mbs6k1.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  .hero {
+    position: relative;
+    overflow: hidden;
+    padding-top: 80px; /* Espace pour le header fixe */
+  }
+
+  /* Boutons simples avec changement de couleur au hover */
+  .btn-primary {
+    display: inline-block;
+    background-color: white;
+    color: #171717;
+    transition: background-color 0.3s ease;
+  }
+
+  .btn-primary:hover {
+    background-color: #3b3b3b;
+    color: #e5e5e5;
+  }
+
+  .btn-outline {
+    display: inline-block;
+    /* border: 2px solid white; */
+    color: #3b3b3b;
+    transition: background-color 0.3s ease;
+    background-color: #e5e5e5;
+  }
+
+  .btn-outline:hover {
+    background-color: #3b3b3b;
+    color: #e5e5e5;
+  }
+
+  .scroll-down {
+    position: relative;
+    display: inline-block;
+    width: 30px;
+    height: 50px;
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    border-radius: 15px;
+  }
+
+  .scroll-down span {
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    width: 6px;
+    height: 6px;
+    margin-left: -3px;
+    background-color: #fff;
+    border-radius: 50%;
+    animation: scrollDown 2s infinite;
+  }
+
+  @keyframes scrollDown {
+    0% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+  }
+
+  @media (max-width: 991px) {
+    .hero {
+      padding-top: 70px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .hero {
+      padding-top: 65px;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .hero {
+      padding-top: 60px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .hero {
+      padding-top: 55px;
+    }
+  }
+
+  @media (max-width: 375px) {
+    .hero {
+      padding-top: 50px;
+    }
+  }
+</style>
+
+<script>
+  // Gestion du header sticky avec effet de scroll
+  (function () {
+    const header = document.querySelector(".main-header");
+
+    // Vérifier immédiatement la position de scroll
+    function checkScroll() {
+      const scrollTop =
+        window.pageYOffset || document.documentElement.scrollTop;
+
+      if (scrollTop > 50) {
+        header?.classList.add("scrolled");
+      } else {
+        header?.classList.remove("scrolled");
+      }
+    }
+
+    // Exécuter immédiatement
+    checkScroll();
+
+    // Écouter les événements de scroll
+    window.addEventListener("scroll", checkScroll, { passive: true });
+
+    // S'assurer que le header est visible au chargement
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", checkScroll);
+    } else {
+      checkScroll();
+    }
+  })();
+</script>

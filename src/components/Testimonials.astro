@@ -1,143 +1,110 @@
 ---
 // Composant Témoignages
+
+// Interface pour les témoignages
+interface Testimonial {
+  name: string;
+  image: string;
+  rating: number;
+  content: string;
+  date?: string;
+}
+
+// Témoignages par défaut
+const testimonials: Testimonial[] = [
+  {
+    name: "Emma Johnson",
+    image: "/images/author-1.jpg",
+    rating: 5,
+    content: "Excellente expérience chez Neat Barber ! Le coiffeur a vraiment pris le temps de comprendre ce que je voulais et le résultat est parfait. L'ambiance est détendue et professionnelle. Je recommande vivement !",
+    date: "15 juin 2023"
+  },
+  {
+    name: "Olivia Davis",
+    image: "/images/author-2.jpg",
+    rating: 5,
+    content: "Service exceptionnel ! L'équipe est très accueillante et professionnelle. Ma coupe de cheveux est exactement comme je l'imaginais. L'attention aux détails est remarquable. Je reviendrai sans hésiter !",
+    date: "3 juillet 2023"
+  },
+  {
+    name: "Thomas Martin",
+    image: "/images/author-1.jpg",
+    rating: 5,
+    content: "Première visite chez Neat Barber et je suis très satisfait ! L'équipe est compétente et l'ambiance est agréable. Ma barbe a été parfaitement taillée et ma coupe de cheveux est moderne. Prix raisonnables pour un service de qualité.",
+    date: "28 août 2023"
+  },
+  {
+    name: "Sophie Bernard",
+    image: "/images/author-2.jpg",
+    rating: 5,
+    content: "Un salon de coiffure moderne avec une équipe très professionnelle. J'ai apprécié les conseils personnalisés et le soin apporté à chaque détail. Le résultat dépasse mes attentes. Je recommande !",
+    date: "12 septembre 2023"
+  }
+];
 ---
 
-<div class="testimonials">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <!-- Section Title Start -->
-        <div class="section-title">
-          <h3 class="wow fadeInUp">Témoignages Clients</h3>
-          <h2 class="text-anime">Ce que disent nos clients</h2>
-        </div>
-        <!-- Section Title End -->
+<div class="testimonials-section py-24 bg-neutral-50">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-16">
+      <!-- Section Title Start -->
+      <div class="section-title">
+        <h3 class="text-neutral-500 text-sm font-medium tracking-wider uppercase mb-4 animate-fade-in-up">
+          Témoignages Clients
+        </h3>
+        <h2 class="text-4xl lg:text-5xl font-bold text-neutral-900 leading-tight mb-6 animate-fade-in-up">
+          Ce que disent nos clients
+        </h2>
       </div>
+      <!-- Section Title End -->
     </div>
 
-    <div class="row">
-      <div class="col-md-12">
-        <!-- Testimonial Carousel Start -->
-        <div class="testimonial-carousel">
-          <div class="swiper">
-            <div class="swiper-wrapper">
-              <!-- Testimonial Slide Start -->
-              <div class="swiper-slide">
-                <div class="testimonial-slide">
-                  <div class="testimonial-header">
-                    <div class="author-img">
-                      <img src="/images/author-1.jpg" alt="Emma Johnson" />
+    <div class="testimonials-carousel">
+      <div class="swiper">
+        <div class="swiper-wrapper">
+          {testimonials.map((testimonial) => (
+            <div class="swiper-slide">
+              <div class="testimonial-card bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 h-full flex flex-col">
+                <!-- Quote Icon -->
+                <div class="quote-icon mb-6 text-neutral-200">
+                  <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10 11H6C4.89543 11 4 10.1046 4 9V7C4 5.89543 4.89543 5 6 5H8C9.10457 5 10 5.89543 10 7V11ZM10 11V13C10 16.866 6.86599 20 3 20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M20 11H16C14.8954 11 14 10.1046 14 9V7C14 5.89543 14.8954 5 16 5H18C19.1046 5 20 5.89543 20 7V11ZM20 11V13C20 16.866 16.866 20 13 20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+                
+                <!-- Testimonial Content -->
+                <div class="testimonial-content flex-grow mb-6">
+                  <p class="text-neutral-600 text-lg leading-relaxed italic">
+                    {testimonial.content}
+                  </p>
+                </div>
+                
+                <!-- Testimonial Footer -->
+                <div class="testimonial-footer flex items-center justify-between">
+                  <div class="author-info flex items-center">
+                    <div class="author-img w-14 h-14 rounded-full overflow-hidden border-2 border-neutral-200">
+                      <img src={testimonial.image} alt={testimonial.name} class="w-full h-full object-cover" />
                     </div>
-
-                    <div class="author-info">
-                      <h3>Emma Johnson</h3>
-                      <div class="rating-star">
-                        <img src="/images/icon-rating.svg" alt="5 étoiles" />
-                      </div>
+                    <div class="ml-4">
+                      <h3 class="font-bold text-neutral-900">{testimonial.name}</h3>
+                      {testimonial.date && <p class="text-neutral-500 text-sm">{testimonial.date}</p>}
                     </div>
                   </div>
-
-                  <div class="testimonial-content">
-                    <p>
-                      Excellente expérience chez Neat Barber ! Le coiffeur a
-                      vraiment pris le temps de comprendre ce que je voulais et
-                      le résultat est parfait. L'ambiance est détendue et
-                      professionnelle. Je recommande vivement !
-                    </p>
+                  
+                  <div class="rating flex">
+                    {Array.from({ length: testimonial.rating }).map(() => (
+                      <svg class="w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                      </svg>
+                    ))}
                   </div>
                 </div>
               </div>
-              <!-- Testimonial Slide End -->
-
-              <!-- Testimonial Slide Start -->
-              <div class="swiper-slide">
-                <div class="testimonial-slide">
-                  <div class="testimonial-header">
-                    <div class="author-img">
-                      <img src="/images/author-2.jpg" alt="Olivia Davis" />
-                    </div>
-
-                    <div class="author-info">
-                      <h3>Olivia Davis</h3>
-                      <div class="rating-star">
-                        <img src="/images/icon-rating.svg" alt="5 étoiles" />
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="testimonial-content">
-                    <p>
-                      Service exceptionnel ! L'équipe est très accueillante et
-                      professionnelle. Ma coupe de cheveux est exactement comme
-                      je l'imaginais. L'attention aux détails est remarquable.
-                      Je reviendrai sans hésiter !
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <!-- Testimonial Slide End -->
-
-              <!-- Testimonial Slide Start -->
-              <div class="swiper-slide">
-                <div class="testimonial-slide">
-                  <div class="testimonial-header">
-                    <div class="author-img">
-                      <img src="/images/author-1.jpg" alt="Thomas Martin" />
-                    </div>
-
-                    <div class="author-info">
-                      <h3>Thomas Martin</h3>
-                      <div class="rating-star">
-                        <img src="/images/icon-rating.svg" alt="5 étoiles" />
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="testimonial-content">
-                    <p>
-                      Première visite chez Neat Barber et je suis très satisfait
-                      ! L'équipe est compétente et l'ambiance est agréable. Ma
-                      barbe a été parfaitement taillée et ma coupe de cheveux
-                      est moderne. Prix raisonnables pour un service de qualité.
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <!-- Testimonial Slide End -->
-
-              <!-- Testimonial Slide Start -->
-              <div class="swiper-slide">
-                <div class="testimonial-slide">
-                  <div class="testimonial-header">
-                    <div class="author-img">
-                      <img src="/images/author-2.jpg" alt="Sophie Bernard" />
-                    </div>
-
-                    <div class="author-info">
-                      <h3>Sophie Bernard</h3>
-                      <div class="rating-star">
-                        <img src="/images/icon-rating.svg" alt="5 étoiles" />
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="testimonial-content">
-                    <p>
-                      Un salon de coiffure moderne avec une équipe très
-                      professionnelle. J'ai apprécié les conseils personnalisés
-                      et le soin apporté à chaque détail. Le résultat dépasse
-                      mes attentes. Je recommande !
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <!-- Testimonial Slide End -->
             </div>
-
-            <div class="swiper-pagination"></div>
-          </div>
+          ))}
         </div>
-        <!-- Testimonial Carousel End -->
+        
+        <div class="swiper-pagination mt-10"></div>
       </div>
     </div>
   </div>
@@ -149,7 +116,7 @@
     // @ts-ignore
     if (typeof window.Swiper !== "undefined") {
       // @ts-ignore
-      const testimonialSwiper = new window.Swiper(".testimonials .swiper", {
+      const testimonialSwiper = new window.Swiper(".testimonials-section .swiper", {
         slidesPerView: 1,
         spaceBetween: 30,
         loop: true,
@@ -158,10 +125,13 @@
           disableOnInteraction: false,
         },
         pagination: {
-          el: ".testimonials .swiper-pagination",
+          el: ".testimonials-section .swiper-pagination",
           clickable: true,
         },
         breakpoints: {
+          640: {
+            slidesPerView: 1,
+          },
           768: {
             slidesPerView: 2,
           },
@@ -173,3 +143,29 @@
     }
   });
 </script>
+
+<style>
+  .testimonials-section .swiper-pagination-bullet {
+    width: 10px;
+    height: 10px;
+    background: #d1d5db;
+    opacity: 1;
+    margin: 0 5px;
+    transition: all 0.3s ease;
+  }
+
+  .testimonials-section .swiper-pagination-bullet-active {
+    background: #262626;
+    transform: scale(1.2);
+  }
+  
+  .testimonial-card {
+    min-height: 400px;
+  }
+  
+  @media (max-width: 768px) {
+    .testimonial-card {
+      min-height: 350px;
+    }
+  }
+</style>
