@@ -116,24 +116,36 @@ const { services = defaultServices, speed = 20, className = "" } = Astro.props;
 </div>
 
 <style>
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  .animate-scroll {
+    animation: scroll linear infinite;
+  }
+
   /* Animation pause au survol */
   .services-ticker:hover .animate-scroll {
-    animation-play-state: paused;
+    @apply animate-none;
   }
 
   /* Responsive */
   @media (max-width: 768px) {
     .services-ticker {
-      height: auto;
+      @apply h-auto;
     }
 
     .services-ticker ul {
-      font-size: 1rem;
-      gap: 1.5rem;
+      @apply text-base gap-6;
     }
 
     .services-ticker .relative {
-      height: 5rem;
+      @apply h-20;
     }
   }
 </style>

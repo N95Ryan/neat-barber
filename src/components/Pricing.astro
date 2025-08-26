@@ -146,7 +146,7 @@ const categories: Category[] = [
           >
             {category.services.map((service, serviceIndex) => (
               <div
-                class={`pricing-card relative overflow-hidden rounded-2xl bg-white border border-neutral-100 shadow-sm hover:shadow-md transition-all duration-300 ${service.popular ? "ring-2 ring-neutral-900" : ""}`}
+                class={`flex flex-col h-full relative overflow-hidden rounded-2xl bg-white border border-neutral-100 shadow-sm hover:shadow-md transition-all duration-300 transform hover:-translate-y-1.5 ${service.popular ? "ring-2 ring-neutral-900" : ""}`}
               >
                 {service.popular && (
                   <div class="absolute top-0 right-0">
@@ -233,42 +233,18 @@ const categories: Category[] = [
 </script>
 
 <style>
-  .pricing-card {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    transform: translateY(0);
-    transition: transform 0.3s ease;
-  }
-
-  .pricing-card:hover {
-    transform: translateY(-5px);
-  }
-
   .category-tab[data-active="true"] {
-    position: relative;
+    @apply relative;
   }
 
   .category-tab[data-active="true"]::after {
     content: "";
-    position: absolute;
-    bottom: -5px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 20px;
-    height: 2px;
-    background-color: currentColor;
+    @apply absolute -bottom-1.5 left-1/2 transform -translate-x-1/2 w-5 h-0.5 bg-current;
   }
 
   @media (max-width: 768px) {
     .pricing-categories {
-      overflow-x: auto;
-      white-space: nowrap;
-      padding-bottom: 1rem;
-    }
-
-    .pricing-card {
-      margin-bottom: 1.5rem;
+      @apply overflow-x-auto whitespace-nowrap pb-4;
     }
   }
 </style>
