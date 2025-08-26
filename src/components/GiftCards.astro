@@ -61,7 +61,7 @@ const customOptions = [
 
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
       {giftCards.map((card, index) => (
-        <div class="gift-card-container group">
+        <div class="group mb-8 md:mb-0">
           <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
             <div class="flex flex-col md:flex-row">
               <!-- Gift Card Image -->
@@ -140,7 +140,7 @@ const customOptions = [
         </div>
         
         <div class="w-full md:w-1/2 relative">
-          <div class="gift-card-custom relative mx-auto max-w-sm">
+          <div class="relative mx-auto max-w-sm transform-gpu transition-transform duration-600 hover:rotate-y-5 hover:rotate-x-5" style="transform-style: preserve-3d;">
             <div class="absolute inset-0 bg-gradient-to-br from-neutral-900 to-neutral-700 rounded-2xl transform rotate-3 scale-105 opacity-30"></div>
             <div class="relative bg-gradient-to-br from-neutral-900 to-neutral-700 rounded-2xl p-8 text-white shadow-xl">
               <div class="flex justify-between items-start mb-12">
@@ -175,19 +175,3 @@ const customOptions = [
 </div>
 <!-- Gift Cards Section End -->
 
-<style>
-  .gift-card-custom {
-    transform-style: preserve-3d;
-    transition: transform 0.6s;
-  }
-  
-  .gift-card-custom:hover {
-    transform: rotateY(5deg) rotateX(5deg);
-  }
-  
-  @media (max-width: 768px) {
-    .gift-card-container {
-      margin-bottom: 2rem;
-    }
-  }
-</style>

@@ -76,6 +76,13 @@ documentation:
 # Commits
 commits:
   format: conventional
+  style: message_only
   quoting:
-    outer: double quotes
-    inner: single quotes
+    outer: single quotes
+  rules:
+    - Always output ONLY the commit message, nothing else
+    - type: must follow Conventional Commits (feat, fix, refactor, chore, style, docs, test, etc.)
+    - scope: must reflect the context (frontend, backend, ui, deps, etc.)
+    - description: short, action-oriented, max 1 line
+    - Do not generate git commands, double quotes, or explanations
+    - Example output: "feat(ui): add responsive navbar"
