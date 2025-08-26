@@ -1,0 +1,81 @@
+# .cursorrules — Neat Barber Workflow
+
+# Communication
+language: en
+explanations:
+  tone: natural, relaxed
+  style: clear, precise, concise
+  examples: yes (when necessary)
+
+# Code & structure
+code_style:
+  idiomatic: true
+  comment_when_needed: true
+  readability_priority: true
+testing:
+  unit_tests: true
+  integration_tests: true
+  e2e_tests: true
+  edge_cases: yes
+performance:
+  lazy_loading: yes
+  optimize_images: yes
+  reduce_dependencies: yes
+  responsive_design: yes
+security:
+  sanitize_inputs: yes (frontend + backend)
+  flag_risky_practices: yes
+  follow_owasp_guidelines: yes
+
+# Technology stack
+stack:
+  frontend:
+    frameworks: Astro v5, Tailwind CSS 3, Bootstrap 5
+    js_libs: jQuery 3, GSAP, WOW.js, Swiper.js, MagicCursor, SmoothScroll
+  integrations:
+    booking: Planity
+    images: Cloudinary
+  styling: Animate.css, Font Awesome, Google Fonts
+  optimizations: WebP images, async scripts, lazy-loading
+  seo_accessibility: meta tags, alt attributes, keyboard navigation
+
+# AI agents
+agents:
+  frontend:
+    file: ai-agents/front_agent.claude.txt
+    description: Generate and improve front-end code (Astro/Tailwind/JS)
+
+  doc_audit:
+    file: ai-agents/doc_agent.gpt4o.txt
+    description: Documentation, code audit, performance and security recommendations
+  testing:
+    file: ai-agents/testing_agent.gpt4o.txt
+    description: Create unit, integration, and e2e tests
+  security:
+    file: ai-agents/security_agent.gpt4o.txt
+    description: Security audit, vulnerability detection and actionable fixes
+  devops:
+    file: ai-agents/devops_agent.deepseek.txt
+    description: CI/CD, infrastructure, hosting and environment configuration suggestions
+  refactor:
+    file: ai-agents/refactor_agent.claude.txt
+    description: Refactoring, improve readability and performance
+  ux:
+    file: ai-agents/ux_agent.claude.txt
+    description: Microcopy, UX writing, tone consistency
+  perf:
+    file: ai-agents/perf_agent.deepseek.txt
+    description: Frontend, backend, and database performance optimization
+
+# Documentation
+documentation:
+  reference: always refer to official documentation (Astro, Tailwind, Node.js, Supabase)
+  format: docstrings or JSDoc depending on language
+  comment_only_when_needed: true
+
+# Commits
+commits:
+  format: conventional
+  quoting:
+    outer: double quotes
+    inner: single quotes
