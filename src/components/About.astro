@@ -1,5 +1,10 @@
 ---
 // Composant About pour la section "À propos"
+import { getOptimizedImageUrl } from "../lib/api/cloudinary";
+
+// URL directe de l'image Cloudinary
+const aboutImageUrl =
+  "https://res.cloudinary.com/drhqmgbm0/image/upload/v1755728029/1_oajndh.jpg";
 ---
 
 <div class="about-us-section py-24" id="aboutus">
@@ -12,12 +17,13 @@
             <div class="w-full sm:w-7/12 mb-6 sm:mb-0 sm:pr-4">
               <div class="about-img right-shape">
                 <figure
-                  class="reveal hover-anime overflow-hidden rounded-xl shadow-lg"
+                  class="hover-anime overflow-hidden rounded-xl shadow-lg"
                 >
                   <img
-                    src="/images/about-img-1.jpg"
+                    src={aboutImageUrl}
                     alt="Neat Barber Shop"
                     class="w-full h-auto object-cover transition-transform duration-700 hover:scale-110"
+                    loading="lazy"
                   />
                 </figure>
               </div>
@@ -38,12 +44,13 @@
 
                 <div class="about-img left-shape">
                   <figure
-                    class="reveal hover-anime overflow-hidden rounded-xl shadow-lg"
+                    class="hover-anime overflow-hidden rounded-xl shadow-lg"
                   >
                     <img
-                      src="/images/about-img-2.jpg"
+                      src={aboutImageUrl}
                       alt="Neat Barber Experience"
                       class="w-full h-auto object-cover transition-transform duration-700 hover:scale-110"
+                      loading="lazy"
                     />
                   </figure>
                 </div>
