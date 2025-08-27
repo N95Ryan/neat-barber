@@ -1,0 +1,76 @@
+---
+// Pricing component for Neat Barber services
+const services = [
+  {
+    name: "Classic NEAT #1",
+    description: "Coupe classique.",
+    price: "30€"
+  },
+  {
+    name: "Classic NEAT #2",
+    description: "Coupe classique & shampoing pour un soin complet.",
+    price: "35€"
+  },
+  {
+    name: "Barbe NEAT",
+    description: "Taille de barbe, contours & soins (serviette chaude & soin visage).",
+    price: "25€"
+  },
+  {
+    name: "Signature NEAT",
+    description: "Coupe, barbe & soin (shampoing, serviette chaude, soin visage).",
+    price: "60€"
+  },
+  {
+    name: "Complète NEAT",
+    description: "Coupe, barbe & shampoing pour un soin complet.",
+    price: "55€"
+  },
+  {
+    name: "Complète NEAT",
+    description: "Coupe & Barbe pour un style parfait.",
+    price: "50€"
+  },
+  {
+    name: "Soignée NEAT",
+    description: "Coupe & Soins (shampoing serviette chaude/froide, exfoliant visage).",
+    price: "50€"
+  }
+];
+
+const delays = [0.50, 0.74, 1.0, 1.25, 1.50, 1.75, 2.00];
+---
+
+<div class="pricing">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <!-- Section Title Start -->
+        <div class="section-title text-center">
+          <h3 class="subtitle wow fadeInUp">Tarifs</h3>
+          <h2 class="title">Nos prix</h2>
+        </div>
+        <!-- Section Title End -->
+      </div>
+    </div>
+
+    <div class="row">
+      {services.map((service, index) => (
+        <div class="col-lg-4 col-md-6">
+          <!-- Pricing Item Start -->
+          <div class="pricing-item wow fadeInUp" data-wow-delay={`${delays[index]}s`}>
+            <div class="pricing-info">
+              <h3>{service.name}</h3>
+              <p>{service.description}</p>
+            </div>
+
+            <div class="pricing-price">
+              <p>{service.price}</p>
+            </div>
+          </div>
+          <!-- Pricing Item End -->
+        </div>
+      ))}
+    </div>
+  </div>
+</div>

@@ -1,14 +1,13 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Header from "../sections/Header.astro";
+import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
-import SliderServices from "../components/SliderServices.astro";
 import About from "../components/About.astro";
-import ProServices from "../sections/ProServices.astro";
-import WhyChooseUs from "../sections/WhyChooseUs.astro";
-import Facts from "../components/Facts.astro";
+import SliderServices from "../components/ServicesSlider.astro";
+import WhyChooseUs from "../components/WhyChooseUs.astro";
+import Stats from "../components/Stats.astro";
 import PhotoGallery from "../components/PhotoGallery.astro";
-import Pricing from "../components/Pricing.astro";
+import Prices from "../components/Prices.astro";
 import GiftCards from "../components/GiftCards.astro";
 import Testimonials from "../components/Testimonials.astro";
 import LatestPosts from "../components/LatestPosts.astro";
@@ -33,9 +32,9 @@ import LatestPosts from "../components/LatestPosts.astro";
     <About />
   </section>
 
-  <!-- Services Section -->
-  <section id="services">
-    <ProServices />
+  <!-- Pricing Section -->
+  <section id="prices">
+    <Prices />
   </section>
 
   <!-- Why Choose Us Section -->
@@ -43,14 +42,9 @@ import LatestPosts from "../components/LatestPosts.astro";
     <WhyChooseUs />
   </section>
 
-  <!-- Pricing Section -->
-  <section id="prices">
-    <Pricing />
-  </section>
-
   <!-- Facts Section -->
-  <section id="facts">
-    <Facts />
+  <section id="stats">
+    <Stats />
   </section>
 
   <!-- Photo Gallery Section -->
