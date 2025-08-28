@@ -89,11 +89,13 @@
       <div class="col-lg-6 w-full lg:w-1/2">
         <!-- Video Start -->
         <div class="why-choose-us-video relative">
-          <div class="video-container rounded-lg overflow-hidden shadow-xl">
+          <div
+            class="video-container rounded-lg overflow-hidden flex justify-center w-full"
+          >
             <video
-              class="w-full h-auto"
+              class="vertical-video"
               controls
-              poster="https://res.cloudinary.com/drhqmgbm0/video/upload/so_35,q_70,w_800,h_450,c_fill,g_auto,e_preview/v1756349293/NEAT_-_Opening_Party_pqkjlt.jpg"
+              poster="https://res.cloudinary.com/drhqmgbm0/video/upload/so_35,q_70,w_auto,h_550,c_fill,g_auto,e_preview/v1756349293/NEAT_-_Opening_Party_pqkjlt.jpg"
               preload="metadata"
             >
               <source
@@ -142,7 +144,10 @@
     transition: transform 0.3s ease;
     position: relative;
     overflow: hidden;
-    border-radius: 12px;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
   }
 
   .video-container:hover {
@@ -151,12 +156,12 @@
 
   .video-container video {
     display: block;
-    width: 100%;
+    width: auto;
     height: auto;
     object-fit: contain;
     background-color: #000;
-    /* Solution temporaire pour vidéo verticale */
-    max-height: 450px;
+    max-height: 550px;
+    max-width: 100%;
     margin: 0 auto;
   }
 
@@ -188,5 +193,14 @@
       opacity: 1;
       transform: translateX(0);
     }
+  }
+  .vertical-video {
+    aspect-ratio: 9/16;
+    height: auto;
+    width: auto;
+    max-height: 550px;
+    max-width: 100%;
+    box-sizing: border-box;
+    border-radius: 8px;
   }
 </style>
