@@ -1,149 +1,107 @@
 ---
 // Composant WhyChooseUs pour la section "Pourquoi nous choisir"
-
-// Interface pour les avantages
-interface Advantage {
-  title: string;
-  description: string;
-  icon: string;
-}
-
-// Liste des avantages
-const advantages: Advantage[] = [
-  {
-    title: "Expertise professionnelle",
-    description:
-      "Notre équipe de barbiers expérimentés possède une formation de haut niveau et une expertise reconnue dans les dernières techniques de coiffure masculine.",
-    icon: "/images/whyus-1.svg",
-  },
-  {
-    title: "Produits premium",
-    description:
-      "Nous utilisons exclusivement des produits haut de gamme, biologiques et naturels pour prendre soin de vos cheveux et de votre barbe tout en respectant l'environnement.",
-    icon: "/images/whyus-2.svg",
-  },
-  {
-    title: "Expérience unique",
-    description:
-      "Chez NEAT, chaque visite est une expérience complète : ambiance relaxante, boissons offertes, et attention personnalisée pour un moment de détente absolue.",
-    icon: "/images/service-3.svg",
-  },
-  {
-    title: "Résultats garantis",
-    description:
-      "Nous nous engageons à vous offrir une satisfaction totale. Notre approche méticuleuse et notre souci du détail garantissent des résultats impeccables à chaque visite.",
-    icon: "/images/service-1.svg",
-  },
-];
 ---
 
-<div class="why-choose-us py-24 bg-neutral-50" id="why-choose-us">
+<div class="why-choose-us py-20 bg-white" id="why-choose-us">
   <div class="container mx-auto px-4">
-    <div class="flex flex-col lg:flex-row items-center gap-16">
-      <div class="w-full lg:w-1/2 order-2 lg:order-1">
+    <div class="row flex flex-col-reverse lg:flex-row items-center">
+      <div class="col-lg-6 w-full lg:w-1/2 mt-12 lg:mt-0">
         <!-- Section Title Start -->
-        <div class="section-title mb-12">
+        <div class="section-title">
           <h3
-            class="text-neutral-500 text-sm font-medium tracking-wider uppercase mb-4 animate-fade-in-up"
+            class="text-gray-400 text-sm font-medium tracking-wider uppercase mb-4 animate-fade-in-up"
           >
             Pourquoi nous choisir ?
           </h3>
           <h2
-            class="text-4xl lg:text-5xl font-bold text-neutral-900 leading-tight mb-8 animate-fade-in-up"
+            class="text-4xl lg:text-5xl font-bold text-gray-900 leading-tight mb-8 animate-fade-in-up"
           >
-            Une expérience de barbier exceptionnelle
+            Êtes-vous prêt à faire un grand changement ?
           </h2>
-          <p
-            class="text-neutral-600 text-lg leading-relaxed animate-fade-in-up"
-          >
-            Chez NEAT, nous nous engageons à offrir bien plus qu'une simple
-            coupe de cheveux. Découvrez ce qui fait de notre salon un lieu
-            unique à Paris.
-          </p>
         </div>
         <!-- Section Title End -->
 
-        <!-- Advantages Grid Start -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {
-            advantages.map((advantage, index) => (
+        <!-- Whyus Content Start -->
+        <div class="whyus-content space-y-8">
+          <!-- Whyus Item Start -->
+          <div
+            class="whyus-feature-item flex items-start space-x-6 animate-fade-in-up"
+            data-wow-delay="0.5s"
+          >
+            <div class="whyus-icon flex-shrink-0">
               <div
-                class="advantage-card p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 group"
-                style={`animation-delay: ${0.2 * (index + 1)}s`}
+                class="w-16 h-16 bg-[#222222] rounded-lg flex items-center justify-center"
               >
-                <div class="flex items-center mb-4">
-                  <div class="w-12 h-12 bg-neutral-900 rounded-lg flex items-center justify-center mr-4 group-hover:bg-neutral-800 transition-colors duration-300">
-                    <img
-                      src={advantage.icon}
-                      alt={advantage.title}
-                      class="w-6 h-6"
-                    />
-                  </div>
-                  <h3 class="text-xl font-bold text-neutral-900 group-hover:text-neutral-700 transition-colors duration-300">
-                    {advantage.title}
-                  </h3>
-                </div>
-                <p class="text-neutral-600 leading-relaxed pl-16">
-                  {advantage.description}
-                </p>
+                <img
+                  src="/images/whyus-1.svg"
+                  alt="Certified Stylists"
+                  class="w-8 h-8"
+                />
               </div>
-            ))
-          }
+            </div>
+
+            <div class="whyus-desc flex-1">
+              <h3 class="text-xl font-bold text-gray-900 mb-3">
+                Coiffeurs certifiés
+              </h3>
+              <p class="text-gray-600 leading-relaxed">
+                Nos coiffeurs sont certifiés et formés aux dernières techniques
+                de coiffure. Ils possèdent une expertise reconnue pour vous
+                offrir des résultats exceptionnels.
+              </p>
+            </div>
+          </div>
+          <!-- Whyus Item End -->
+
+          <!-- Whyus Item Start -->
+          <div
+            class="whyus-feature-item flex items-start space-x-6 animate-fade-in-up"
+            data-wow-delay="0.75s"
+          >
+            <div class="whyus-icon flex-shrink-0">
+              <div
+                class="w-16 h-16 bg-[#222222] rounded-lg flex items-center justify-center"
+              >
+                <img
+                  src="/images/whyus-2.svg"
+                  alt="Organic Cosmetics"
+                  class="w-8 h-8"
+                />
+              </div>
+            </div>
+
+            <div class="whyus-desc flex-1">
+              <h3 class="text-xl font-bold text-gray-900 mb-3">
+                Cosmétiques 100% Bio
+              </h3>
+              <p class="text-gray-600 leading-relaxed">
+                Nous utilisons exclusivement des produits cosmétiques
+                biologiques et naturels pour prendre soin de vos cheveux tout en
+                respectant l'environnement.
+              </p>
+            </div>
+          </div>
+          <!-- Whyus Item End -->
         </div>
-        <!-- Advantages Grid End -->
+        <!-- Whyus Content End -->
       </div>
 
-      <div class="w-full lg:w-1/2 order-1 lg:order-2">
+      <div class="col-lg-6 w-full lg:w-1/2">
         <!-- Video Start -->
-        <div class="video-showcase relative">
-          <div class="video-image rounded-2xl overflow-hidden shadow-xl">
-            <figure class="hover-anime relative">
-              <img
-                src="/images/video-image.jpg"
-                alt="Vidéo de présentation"
-                class="w-full h-auto object-cover rounded-2xl"
-              />
-              <div class="absolute inset-0 bg-black/20 rounded-2xl"></div>
-            </figure>
-          </div>
-
-          <div
-            class="video-play-button absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10"
-          >
-            <a
-              href="https://www.youtube.com/watch?v=2JNMGesMC2Y"
-              class="popup-video w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110"
-              target="_blank"
-              rel="noopener noreferrer"
+        <div class="why-choose-us-video relative">
+          <div class="video-container rounded-lg overflow-hidden shadow-xl">
+            <video
+              class="w-full h-auto"
+              controls
+              poster="https://res.cloudinary.com/drhqmgbm0/video/upload/so_35,q_70,w_800,h_450,c_fill,g_auto,e_preview/v1756349293/NEAT_-_Opening_Party_pqkjlt.jpg"
+              preload="metadata"
             >
-              <svg
-                class="w-8 h-8 text-neutral-900"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path d="M8 5v14l11-7z"></path>
-              </svg>
-            </a>
-          </div>
-
-          <!-- Experience Badges -->
-          <div
-            class="absolute -bottom-6 -left-6 bg-neutral-900 text-white py-4 px-6 rounded-xl shadow-lg"
-          >
-            <p class="text-neutral-400 text-sm uppercase tracking-wider">
-              Expérience
-            </p>
-            <p class="text-3xl font-bold">25+ ans</p>
-          </div>
-
-          <div
-            class="absolute -top-6 -right-6 bg-white py-4 px-6 rounded-xl shadow-lg"
-          >
-            <p class="text-neutral-500 text-sm uppercase tracking-wider">
-              Clients satisfaits
-            </p>
-            <p class="text-3xl font-bold text-neutral-900">10,000+</p>
+              <source
+                src="https://res.cloudinary.com/drhqmgbm0/video/upload/v1756349293/NEAT_-_Opening_Party_pqkjlt.mp4"
+                type="video/mp4"
+              />
+              Votre navigateur ne prend pas en charge la lecture de vidéos.
+            </video>
           </div>
         </div>
         <!-- Video End -->
@@ -153,16 +111,11 @@ const advantages: Advantage[] = [
 </div>
 
 <style>
-  .advantage-card {
-    animation: fade-in-up 0.6s ease-out forwards;
-    opacity: 0;
+  .why-choose-us {
+    position: relative;
   }
 
-  .video-showcase {
-    animation: fade-in-left 0.8s ease-out forwards;
-  }
-
-  .video-image figure::after {
+  .why-choose-us::before {
     content: "";
     position: absolute;
     top: 0;
@@ -170,33 +123,70 @@ const advantages: Advantage[] = [
     right: 0;
     bottom: 0;
     background: linear-gradient(
-      to bottom right,
-      rgba(0, 0, 0, 0.2),
-      rgba(0, 0, 0, 0)
+      135deg,
+      rgba(34, 34, 34, 0.02) 0%,
+      rgba(34, 34, 34, 0.05) 100%
     );
-    z-index: 1;
     pointer-events: none;
   }
 
-  .video-image img {
-    transition: transform 0.7s ease;
+  .whyus-feature-item {
+    transition: transform 0.3s ease;
   }
 
-  .video-image:hover img {
-    transform: scale(1.05);
+  .whyus-feature-item:hover {
+    transform: translateX(10px);
   }
 
-  @media (max-width: 1024px) {
-    .absolute.-bottom-6.-left-6,
-    .absolute.-top-6.-right-6 {
-      position: relative;
-      bottom: auto;
-      left: auto;
-      top: auto;
-      right: auto;
-      margin-top: 1rem;
-      display: inline-block;
-      margin-right: 1rem;
+  .video-container {
+    transition: transform 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+  }
+
+  .video-container:hover {
+    transform: scale(1.02);
+  }
+
+  .video-container video {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    background-color: #000;
+    /* Solution temporaire pour vidéo verticale */
+    max-height: 450px;
+    margin: 0 auto;
+  }
+
+  @keyframes fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-in-up {
+    animation: fade-in-up 0.6s ease-out;
+  }
+
+  .animate-fade-in-left {
+    animation: fade-in-left 0.6s ease-out;
+  }
+
+  @keyframes fade-in-left {
+    from {
+      opacity: 0;
+      transform: translateX(-30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
     }
   }
 </style>

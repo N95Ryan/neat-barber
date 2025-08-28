@@ -1,36 +1,38 @@
 ---
 // Composant About pour la section "À propos"
 import { getOptimizedImageUrl } from "../lib/api/cloudinary";
+import "../styles/about-override.css";
 
-// URL directe de l'image Cloudinary
-const aboutImageUrl =
+// URLs directes des images Cloudinary
+const aboutImageUrl1 =
   "https://res.cloudinary.com/drhqmgbm0/image/upload/v1755728029/1_oajndh.jpg";
+const aboutImageUrl2 =
+  "https://res.cloudinary.com/drhqmgbm0/image/upload/v1756349812/5_qxx40g.webp";
 ---
 
 <div class="about-us-section py-24" id="aboutus">
   <div class="container mx-auto px-4">
-    <div class="flex flex-col lg:flex-row items-center">
+    <div class="flex flex-col lg:flex-row items-stretch">
       <div class="w-full lg:w-1/2">
         <!-- About Left Image Start -->
         <div class="about-image">
           <div class="flex flex-col sm:flex-row">
             <div class="w-full sm:w-7/12 mb-6 sm:mb-0 sm:pr-4">
               <div class="about-img right-shape">
-                <figure
-                  class="hover-anime overflow-hidden rounded-xl shadow-lg"
-                >
+                <figure class="overflow-hidden rounded-xl shadow-lg">
                   <img
-                    src={aboutImageUrl}
+                    src={aboutImageUrl1}
                     alt="Neat Barber Shop"
-                    class="w-full h-auto object-cover transition-transform duration-700 hover:scale-110"
+                    class="w-full object-cover"
                     loading="lazy"
                   />
                 </figure>
               </div>
             </div>
 
-            <div class="w-full sm:w-5/12">
+            <div class="w-full sm:w-5/12 flex flex-col">
               <div class="about-year-image">
+                <!-- Bloc de date - ne bouge pas -->
                 <div
                   class="bg-neutral-900 text-white text-center px-8 py-8 rounded-3xl mb-6 w-full transform transition-transform hover:translate-y-[-5px] duration-300 shadow-lg"
                 >
@@ -42,14 +44,13 @@ const aboutImageUrl =
                   <h4 class="counter font-bold text-4xl">1998</h4>
                 </div>
 
-                <div class="about-img left-shape">
-                  <figure
-                    class="hover-anime overflow-hidden rounded-xl shadow-lg"
-                  >
+                <!-- Image de droite - s'aligne en bas avec l'image de gauche -->
+                <div class="about-img left-shape flex-grow">
+                  <figure class="overflow-hidden rounded-xl shadow-lg h-full">
                     <img
-                      src={aboutImageUrl}
+                      src={aboutImageUrl2}
                       alt="Neat Barber Experience"
-                      class="w-full h-auto object-cover transition-transform duration-700 hover:scale-110"
+                      class="w-full h-full object-cover"
                       loading="lazy"
                     />
                   </figure>

@@ -1,0 +1,67 @@
+/* Override des filtres pour les images dans le composant About */
+.about-img img {
+  filter: none !important;
+}
+
+.about-image:hover img {
+  filter: none !important;
+}
+
+/* Configuration pour aligner les images au bas */
+.about-us-section .flex-col.lg\:flex-row {
+  align-items: stretch !important;
+}
+
+/* Structure de base */
+.about-image {
+  display: flex;
+  flex-direction: column;
+}
+
+.about-image > div {
+  display: flex;
+}
+
+/* Configuration de la disposition en ligne */
+.about-image .flex-col.sm\:flex-row {
+  display: flex;
+  align-items: flex-start; /* Aligne les éléments par le haut */
+  margin-bottom: 0;
+}
+
+/* Configuration de l'image de gauche - garder sa taille d'origine */
+.about-img.right-shape img {
+  width: 100%;
+  height: auto; /* Garde les proportions d'origine */
+  object-fit: cover;
+}
+
+/* Configuration du bloc de droite */
+.about-year-image {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Distribue l'espace entre les éléments */
+}
+
+/* Configuration du bloc de date - aligné en haut */
+.about-year-image > div:first-child {
+  flex-shrink: 0; /* Empêche le bloc de se rétrécir */
+  margin-top: 0; /* Assure qu'il est bien en haut */
+}
+
+/* Configuration de l'image de droite */
+.about-year-image .about-img.left-shape {
+  flex-grow: 0; /* Ne force pas l'expansion */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end; /* Aligne au bas */
+  margin-top: auto; /* Pousse vers le bas */
+}
+
+/* Ajustement de la hauteur de l'image de droite pour s'aligner avec celle de gauche */
+.about-img.left-shape img {
+  object-fit: cover;
+  object-position: center;
+  height: auto; /* La hauteur sera déterminée par le conteneur */
+}
