@@ -47,7 +47,7 @@ const delays = [0.50, 0.74, 1.0, 1.25, 1.50, 1.75, 2.00];
       <div class="col-md-12">
         <!-- Section Title Start -->
         <div class="section-title text-center">
-          <h3 class="subtitle wow fadeInUp">Tarifs</h3>
+          <h3 class="subtitle">Tarifs</h3>
           <h2 class="title">Nos prix</h2>
         </div>
         <!-- Section Title End -->
@@ -58,7 +58,7 @@ const delays = [0.50, 0.74, 1.0, 1.25, 1.50, 1.75, 2.00];
       {services.map((service, index) => (
         <div class="col-lg-4 col-md-6">
           <!-- Pricing Item Start -->
-          <div class="pricing-item wow fadeInUp" data-wow-delay={`${delays[index]}s`}>
+          <div class="pricing-item wow" data-wow-delay={`${delays[index]}s`}>
             <div class="pricing-info">
               <h3>{service.name}</h3>
               <p>{service.description}</p>
