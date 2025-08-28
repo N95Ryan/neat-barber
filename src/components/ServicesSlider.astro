@@ -6,7 +6,7 @@ interface Service {
   description?: string;
 }
 
-// Services par défaut
+// Services par défaut avec icônes cohérentes (garder les originales + compléter)
 const defaultServices: Service[] = [
   {
     name: "Coupe classique",
@@ -25,17 +25,23 @@ const defaultServices: Service[] = [
   },
   {
     name: "Contours",
-    icon: "/images/ticker-icon.svg",
+    icon: `<svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+      <path d="M12,2L13.09,8.26L22,9L13.09,9.74L12,16L10.91,9.74L2,9L10.91,8.26L12,2M12,4.5L11.5,7.5L8.5,8L11.5,8.5L12,11.5L12.5,8.5L15.5,8L12.5,7.5L12,4.5Z"/>
+    </svg>`,
     description: "Finition soignée",
   },
   {
     name: "Serviette chaude",
-    icon: "/images/ticker-icon.svg",
+    icon: `<svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+      <path d="M12,6.5A1.5,1.5 0 0,1 13.5,8A1.5,1.5 0 0,1 12,9.5A1.5,1.5 0 0,1 10.5,8A1.5,1.5 0 0,1 12,6.5M12,2A1.5,1.5 0 0,1 13.5,3.5A1.5,1.5 0 0,1 12,5A1.5,1.5 0 0,1 10.5,3.5A1.5,1.5 0 0,1 12,2M6,16H18A2,2 0 0,1 20,18V20A2,2 0 0,1 18,22H6A2,2 0 0,1 4,20V18A2,2 0 0,1 6,16M6,18V20H18V18H6Z"/>
+    </svg>`,
     description: "Détente ultime",
   },
   {
     name: "Soin de visage",
-    icon: "/images/ticker-icon.svg",
+    icon: `<svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+      <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M7,9.5C7,8.7 7.7,8 8.5,8C9.3,8 10,8.7 10,9.5C10,10.3 9.3,11 8.5,11C7.7,11 7,10.3 7,9.5M14,17.5H10C10,16.1 11.1,15 12.5,15C13.9,15 15,16.1 15,17.5H14M15.5,11C14.7,11 14,10.3 14,9.5C14,8.7 14.7,8 15.5,8C16.3,8 17,8.7 17,9.5C17,10.3 16.3,11 15.5,11Z"/>
+    </svg>`,
     description: "Exfoliation premium",
   },
 ];
@@ -47,70 +53,77 @@ interface Props {
   className?: string;
 }
 
-const { services = defaultServices, speed = 20, className = "" } = Astro.props;
+const { services = defaultServices, speed = 30, className = "" } = Astro.props;
 ---
 
 <div
   class={`services-ticker py-6 bg-neutral-100 overflow-hidden w-full ${className}`}
 >
-  <div class="relative h-20 flex items-center overflow-hidden w-full">
+  <div class="relative h-20 flex items-center">
     <div
-      class="animate-scroll flex items-center w-max"
+      class="animate-scroll flex items-center"
       style={`animation-duration: ${speed}s;`}
     >
-      <ul class="flex items-center w-max space-x-16 whitespace-nowrap">
-        {
-          services.map((service) => (
-            <li class="flex-shrink-0 group">
-              <div class="flex items-center space-x-4">
-                <div class="w-12 h-12 flex items-center justify-center bg-neutral-800 rounded-full p-2 transition-all duration-300 group-hover:bg-neutral-900">
-                  <img
-                    src={service.icon}
-                    alt=""
-                    class="w-6 h-6 object-contain"
-                  />
-                </div>
-                <div>
-                  <span class="block text-neutral-900 font-bold text-xl leading-tight transition-all duration-300 group-hover:text-neutral-700">
-                    {service.name}
-                  </span>
-                  {service.description && (
-                    <span class="text-neutral-500 text-sm block mt-1">
-                      {service.description}
-                    </span>
-                  )}
-                </div>
-              </div>
-            </li>
-          ))
-        }
-        {/* DUPLICATION pour effet infini */}
-        {
-          services.map((service) => (
-            <li class="flex-shrink-0 group" aria-hidden="true">
-              <div class="flex items-center space-x-4">
-                <div class="w-12 h-12 flex items-center justify-center bg-neutral-800 rounded-full p-2 transition-all duration-300 group-hover:bg-neutral-900">
-                  <img
-                    src={service.icon}
-                    alt=""
-                    class="w-6 h-6 object-contain"
-                  />
-                </div>
-                <div>
-                  <span class="block text-neutral-900 font-bold text-xl leading-tight transition-all duration-300 group-hover:text-neutral-700">
-                    {service.name}
-                  </span>
-                  {service.description && (
-                    <span class="text-neutral-500 text-sm block mt-1">
-                      {service.description}
-                    </span>
-                  )}
-                </div>
-              </div>
-            </li>
-          ))
-        }
-      </ul>
+      <!-- Premier set de services -->
+      {
+        services.map((service) => (
+          <div class="flex items-center space-x-4 mx-8 flex-shrink-0 group">
+            <div class="w-12 h-12 flex items-center justify-center bg-neutral-800 rounded-full transition-all duration-300 group-hover:bg-neutral-900">
+              {service.icon.startsWith("<svg") ? (
+                <div class="text-white w-6 h-6" set:html={service.icon} />
+              ) : (
+                <img
+                  src={service.icon}
+                  alt=""
+                  class="w-6 h-6 object-contain brightness-0 invert"
+                />
+              )}
+            </div>
+            <div>
+              <span class="block text-neutral-900 font-bold text-xl leading-tight whitespace-nowrap transition-all duration-300 group-hover:text-neutral-700">
+                {service.name}
+              </span>
+              {service.description && (
+                <span class="text-neutral-500 text-sm block mt-1 whitespace-nowrap">
+                  {service.description}
+                </span>
+              )}
+            </div>
+          </div>
+        ))
+      }
+
+      <!-- Duplication pour boucle infinie -->
+      {
+        services.map((service) => (
+          <div
+            class="flex items-center space-x-4 mx-8 flex-shrink-0 group"
+            aria-hidden="true"
+          >
+            <div class="w-12 h-12 flex items-center justify-center bg-neutral-800 rounded-full transition-all duration-300 group-hover:bg-neutral-900">
+              {service.icon.startsWith("<svg") ? (
+                <div class="text-white w-6 h-6" set:html={service.icon} />
+              ) : (
+                <img
+                  src={service.icon}
+                  alt=""
+                  class="w-6 h-6 object-contain brightness-0 invert"
+                />
+              )}
+            </div>
+            <div>
+              <span class="block text-neutral-900 font-bold text-xl leading-tight whitespace-nowrap transition-all duration-300 group-hover:text-neutral-700">
+                {service.name}
+              </span>
+              {service.description && (
+                <span class="text-neutral-500 text-sm block mt-1 whitespace-nowrap">
+                  {service.description}
+                </span>
+              )}
+            </div>
+          </div>
+        ))
+      }
     </div>
   </div>
 </div>
@@ -127,25 +140,44 @@ const { services = defaultServices, speed = 20, className = "" } = Astro.props;
 
   .animate-scroll {
     animation: scroll linear infinite;
+    display: flex;
+    width: calc(100% * 2);
   }
 
-  /* Animation pause au survol */
-  .services-ticker:hover .animate-scroll {
-    @apply animate-none;
+  /* Assurer une boucle parfaite sans interruption */
+  .services-ticker .animate-scroll {
+    will-change: transform;
   }
+
+  /* Suppression de la pause au survol pour un défilement continu */
+  /* .services-ticker:hover .animate-scroll {
+    animation-play-state: paused;
+  } */
 
   /* Responsive */
   @media (max-width: 768px) {
     .services-ticker {
-      @apply h-auto;
-    }
-
-    .services-ticker ul {
-      @apply text-base gap-6;
+      @apply py-4;
     }
 
     .services-ticker .relative {
-      @apply h-20;
+      @apply h-16;
+    }
+
+    .services-ticker span {
+      @apply text-base;
+    }
+
+    .services-ticker .w-12 {
+      @apply w-10 h-10;
+    }
+
+    .services-ticker .text-xl {
+      @apply text-lg;
+    }
+
+    .services-ticker .mx-8 {
+      @apply mx-6;
     }
   }
 </style>

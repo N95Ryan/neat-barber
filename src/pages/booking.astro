@@ -1,0 +1,140 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/Navbar.astro";
+---
+
+<Layout title="Réservation - Neat Barber Paris">
+  <!-- Header fixe avec Navbar -->
+  <header class="main-header">
+    <Navbar />
+  </header>
+
+  <!-- Section Booking avec background et widget Planity -->
+  <section class="booking-section relative">
+    <!-- Background avec overlay -->
+    <div
+      class="absolute inset-0 bg-hero-pattern bg-cover bg-center bg-no-repeat"
+    >
+      <div
+        class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-transparent"
+      >
+      </div>
+    </div>
+
+    <!-- Conteneur du widget Planity -->
+    <div class="container relative z-10">
+      <div class="row justify-content-center">
+        <div class="col-lg-10 col-md-12">
+          <div class="planity-wrapper">
+            <div id="planity-container" style="min-height: 800px;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Scripts Planity injectés après le DOM -->
+  <script is:inline>
+    document.addEventListener("DOMContentLoaded", function () {
+      const container = document.getElementById("planity-container");
+
+      if (!container) {
+        console.error("Le conteneur Planity n'a pas été trouvé");
+        return;
+      }
+
+      // Configuration du widget
+      window.planity = {
+        key: "-NvNYgniXfZWyI50hdFe",
+        primaryColor: "#000000",
+        container,
+      };
+
+      // Scripts externes Planity
+      const polyfills = document.createElement("script");
+      polyfills.src =
+        "https://d2skjte8udjqxw.cloudfront.net/widget/production/2/polyfills.latest.js";
+      polyfills.async = true;
+      document.body.appendChild(polyfills);
+
+      const app = document.createElement("script");
+      app.src =
+        "https://d2skjte8udjqxw.cloudfront.net/widget/production/2/app.latest.js";
+      app.async = true;
+      document.body.appendChild(app);
+    });
+  </script>
+
+  <!-- Fallback si le widget ne charge pas -->
+  <noscript>
+    <div
+      style="text-align:center; padding:40px; background:white; border-radius:16px; margin:40px 0;"
+    >
+      <h3>Le système de réservation nécessite JavaScript</h3>
+      <p>
+        Veuillez activer JavaScript pour utiliser le widget de réservation ou
+        cliquez <a
+          href="https://neatparis.fr/prise-de-rdv-1/"
+          target="_blank"
+          style="color:#4a5d4a;font-weight:bold;">ici</a
+        >
+      </p>
+    </div>
+  </noscript>
+</Layout>
+
+<style>
+  .main-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: rgba(42, 52, 42, 0);
+    backdrop-filter: blur(0px);
+    transition: all 0.3s ease;
+  }
+  .main-header.scrolled {
+    background: rgba(42, 52, 42, 0.98);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+  }
+  .booking-section {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 80px;
+    padding-bottom: 40px;
+  }
+  .bg-hero-pattern {
+    background-image: url("https://res.cloudinary.com/drhqmgbm0/image/upload/v1755728033/3_mbs6k1.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  .planity-wrapper {
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    margin: 40px 0;
+    max-width: 100%;
+  }
+</style>
+
+<script>
+  // Gestion du header sticky avec effet de scroll
+  (function () {
+    const header = document.querySelector(".main-header");
+    function checkScroll() {
+      const scrollTop =
+        window.pageYOffset || document.documentElement.scrollTop;
+      if (scrollTop > 50) header?.classList.add("scrolled");
+      else header?.classList.remove("scrolled");
+    }
+    checkScroll();
+    window.addEventListener("scroll", checkScroll, { passive: true });
+  })();
+</script>
