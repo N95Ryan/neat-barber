@@ -42,23 +42,35 @@
       <div class="row align-items-center">
         <div class="col-lg-5">
           <div class="footer-logo">
-            <h2 style="color: white; font-weight: bold; margin: 0;">NEAT</h2>
+            <h2
+              style="color: white; font-size: 50px; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; margin: 0;"
+            >
+              NEAT
+            </h2>
           </div>
           <div class="footer-social">
             <ul>
               <li>
-                <a href="https://www.instagram.com/neat_paris/" target="_blank"
-                  ><i class="fab fa-instagram"></i></a
+                <a
+                  href="https://www.instagram.com/neat_paris/"
+                  target="_blank"
+                  aria-label="Instagram"
+                  ><i class="fa-brands fa-instagram"></i></a
                 >
               </li>
               <li>
-                <a href="https://www.tiktok.com/@neat_paris/" target="_blank"
-                  ><i class="fab fa-tiktok"></i></a
+                <a
+                  href="https://www.tiktok.com/@neat_paris/"
+                  target="_blank"
+                  aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a
                 >
               </li>
               <li>
-                <a href="mailto:contact@neatparis.fr"
-                  ><i class="fas fa-envelope"></i></a
+                <a
+                  href="https://maps.app.goo.gl/dd8PJrLagtaLNgdj8"
+                  target="_blank"
+                  aria-label="Google Maps"
+                  ><i class="fa-solid fa-map-location"></i></a
                 >
               </li>
             </ul>
@@ -68,13 +80,14 @@
           <div class="footer-menu">
             <ul>
               <li>
-                <a href="https://neatparis.fr/category/le-mag/" target="_blank"
-                  >LE MAG</a
-                >
+                <a href="/#prices">TARIFS</a>
+              </li>
+              <li>
+                <a href="/#gallery">GALERIE</a>
               </li>
               <li>
                 <a href="https://neatparis.fr/category/le-mag/" target="_blank"
-                  >PRENDRE RENDEZ-VOUS</a
+                  >LE MAG</a
                 >
               </li>
             </ul>
@@ -87,3 +100,108 @@
     </div>
   </div>
 </footer>
+
+<style>
+  /* Styles pour les icônes sociales du footer */
+  .footer-social ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 20px 0 0 0;
+    gap: 15px;
+  }
+
+  .footer-social a {
+    color: #ffffff;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .footer-social a:hover {
+    color: #ffffff;
+    transform: translateY(-2px);
+    background-color: rgba(107, 122, 107, 0.7);
+  }
+
+  /* Styles pour le menu du footer */
+  .footer-menu ul {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    gap: 20px;
+    justify-content: flex-end;
+  }
+
+  .footer-menu a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .footer-menu a:hover {
+    color: #6b7a6b;
+  }
+
+  .footer-menu a.btn-booking {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #4a5d4a 0%, #6b7a6b 100%);
+    color: #ffffff;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 10px rgba(74, 93, 74, 0.3);
+  }
+
+  .footer-menu a.btn-booking:hover {
+    background: linear-gradient(135deg, #3a4a3a 0%, #5a6a5a 100%);
+    color: #ffffff;
+    transform: translateY(-2px);
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .footer-menu ul {
+      justify-content: center;
+      margin-bottom: 15px;
+    }
+
+    .footer-social ul {
+      justify-content: center;
+    }
+
+    .copyright {
+      text-align: center;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .footer-menu ul {
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .footer-menu a.btn-booking {
+      padding: 8px 14px;
+      font-size: 0.8rem;
+    }
+  }
+</style>
