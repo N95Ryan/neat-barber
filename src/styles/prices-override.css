@@ -1,0 +1,41 @@
+/* Styles personnalisés pour le composant Prices */
+.pricing {
+  background: url('/images/4_q3efgd.webp') center/cover no-repeat;
+  position: relative;
+  padding: 100px 0 70px;
+}
+
+.pricing::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 1;
+}
+
+.pricing .container {
+  position: relative;
+  z-index: 2;
+}
+
+.pricing .section-title h2 {
+  color: #fff;
+}
+.pricing .subtitle {
+  color: #fff;
+}
+
+.pricing-item {
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.pricing-item .pricing-info h3 {
+  color: var(--primary-color);
+}
+
+.pricing-item .pricing-info p {
+  color: var(--text-color);
+}
