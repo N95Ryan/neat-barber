@@ -1,5 +1,5 @@
 ---
-// Testimonials Component
+// Testimonials.astro
 ---
 
 <div class="py-24 bg-gray-50">
@@ -25,6 +25,12 @@
 
     <div class="row">
       <div class="col-md-12">
+        <!-- Review Pixel Widget -->
+        <div class="mb-12">
+          <emr-simple-carousel widget-id="9ad155a2-7a40-4d40-8915-a7253b37557e"
+          ></emr-simple-carousel>
+        </div>
+
         <!-- Testimonial Carousel Start -->
         <div class="relative">
           <div class="swiper">
@@ -224,7 +230,33 @@
   }
 </style>
 
-<script>
+<!-- Review Pixel Script -->
+<script is:inline type="text/javascript">
+  !(function () {
+    var e,
+      t = document;
+    (e = function () {
+      if (window.EMRPixel) return console.info("EMR: Pixel already loaded");
+      var e = t.createElement("script");
+      (e.defer = !0),
+        (e.src =
+          "https://cdn2.revw.me/js/pixel.js?t=" +
+          864e5 * Math.ceil(new Date() / 864e5));
+      var n = t.getElementsByTagName("script")[0];
+      (n.charset = "utf-8"),
+        n.parentNode.insertBefore(e, n),
+        (e.onload = function () {
+          EMRPixel.init("app.getcoucou.io", 11);
+        });
+    }),
+      "interactive" === t.readyState || "complete" === t.readyState
+        ? e()
+        : t.addEventListener("DOMContentLoaded", e);
+  })();
+</script>
+
+<!-- Swiper Initialization -->
+<script is:inline>
   // Initialize Swiper for testimonials
   document.addEventListener("DOMContentLoaded", function () {
     // @ts-ignore
