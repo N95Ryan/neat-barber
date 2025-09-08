@@ -19,14 +19,14 @@
         <i class="fa-brands fa-instagram"></i>
       </a>
       <a
-        href="https://www.tiktok.com/@neatparis"
+        href="https://www.tiktok.com/@neat_paris"
         target="_blank"
         aria-label="TikTok"
       >
         <i class="fa-brands fa-tiktok"></i>
       </a>
       <a
-        href="https://share.google.com/gkJr9CY3cFj7xJwZY"
+        href="https://maps.app.goo.gl/dd8PJrLagtaLNgdj8"
         target="_blank"
         aria-label="Google Maps"
       >
@@ -43,13 +43,24 @@
     <div class="navbar-collapse main-menu desktop-menu">
       <ul class="navbar-nav ms-auto" id="menu">
         <li class="nav-item d-flex">
-          <a class="nav-link" href="#prices"> TARIFS </a>
-          <a class="nav-link" href="#gallery"> GALERIE </a>
+          <a class="nav-link" href="/#prices"> TARIFS </a>
+          <a class="nav-link" href="/#gallery"> GALERIE </a>
           <a class="nav-link" href="https://neatparis.fr/category/le-mag/"
             >LE MAG</a
           >
         </li>
       </ul>
+    </div>
+
+    <!-- Bouton de réservation mobile (visible uniquement en mobile) -->
+    <div class="mobile-booking-btn-container">
+      <a
+        class="mobile-booking-btn"
+        href="/booking"
+        aria-label="Prendre rendez-vous"
+      >
+        <span>PRENDRE RENDEZ-VOUS</span>
+      </a>
     </div>
 
     <!-- Bouton burger mobile -->
@@ -66,7 +77,7 @@
   <div class="mobile-menu-content">
     <div class="mobile-menu-header">
       <h2
-        style="color: white; font-weight: bold; margin: 0; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif"
+        style="color: white; font-size: 50px; font-weight; margin: 0; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif"
       >
         NEAT
       </h2>
@@ -83,6 +94,12 @@
     <nav class="mobile-menu-nav">
       <ul class="mobile-menu-list">
         <li class="mobile-menu-item">
+          <a class="mobile-menu-link" href="/#prices"> TARIFS </a>
+        </li>
+        <li class="mobile-menu-item">
+          <a class="mobile-menu-link" href="/#gallery"> GALERIE </a>
+        </li>
+        <li class="mobile-menu-item">
           <a
             class="mobile-menu-link"
             href="https://neatparis.fr/category/le-mag/"
@@ -92,11 +109,7 @@
           </a>
         </li>
         <li class="mobile-menu-item">
-          <a
-            class="mobile-menu-link mobile-cta"
-            href="https://neatparis.fr/prise-de-rdv-1/"
-            target="_blank"
-          >
+          <a class="mobile-menu-link mobile-cta" href="/booking">
             PRENDRE RENDEZ-VOUS
           </a>
         </li>
@@ -110,18 +123,18 @@
               <i class="fa-brands fa-instagram"></i>
             </a>
             <a
-              href="https://www.facebook.com/neatparis/"
-              target="_blank"
-              aria-label="Facebook"
-            >
-              <i class="fa-brands fa-facebook-f"></i>
-            </a>
-            <a
-              href="https://www.tiktok.com/@neatparis"
+              href="https://www.tiktok.com/@neat_paris"
               target="_blank"
               aria-label="TikTok"
             >
               <i class="fa-brands fa-tiktok"></i>
+            </a>
+            <a
+              href="https://maps.app.goo.gl/dd8PJrLagtaLNgdj8"
+              target="_blank"
+              aria-label="Google Maps"
+            >
+              <i class="fa-solid fa-map-location"></i>
             </a>
           </div>
         </li>
@@ -279,6 +292,7 @@
     cursor: pointer;
     padding: 0;
     z-index: 1002;
+    margin-left: 25px;
   }
 
   .burger-line {
@@ -728,6 +742,51 @@
       gap: 8px;
     }
   }
+
+  /* Bouton de réservation mobile intégré à la navbar */
+  .mobile-booking-btn-container {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    width: auto;
+    max-width: 80%;
+  }
+
+  .mobile-booking-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #4a5d4a 0%, #6b7a6b 100%);
+    color: #ffffff;
+    text-decoration: none;
+    padding: 8px 12px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+  }
+
+  /* Suppression du style pour l'icône qui n'est plus utilisée */
+
+  .mobile-booking-btn:hover {
+    background: linear-gradient(135deg, #3a4a3a 0%, #5a6a5a 100%);
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.35);
+  }
+
+  @media (max-width: 768px) {
+    .mobile-booking-btn-container {
+      display: block;
+    }
+  }
 </style>
 
 <script>
@@ -776,8 +835,11 @@
 
     // Gestion du redimensionnement de la fenêtre
     window.addEventListener("resize", () => {
-      if (window.innerWidth > 768 && mobileMenu?.classList.contains("active")) {
-        closeMenu();
+      if (window.innerWidth > 768) {
+        // Fermer le menu si on passe en desktop
+        if (mobileMenu?.classList.contains("active")) {
+          closeMenu();
+        }
       }
     });
   })();
