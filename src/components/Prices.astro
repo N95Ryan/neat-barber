@@ -2,6 +2,11 @@
 // Pricing component for Neat Barber services
 const services = [
   {
+    name: "Barbe NEAT",
+    description: "Taille de barbe, contours & soins (serviette chaude & soin visage).",
+    price: "25€"
+  },
+  {
     name: "Classic NEAT #1",
     description: "Coupe classique.",
     price: "30€"
@@ -12,14 +17,9 @@ const services = [
     price: "35€"
   },
   {
-    name: "Barbe NEAT",
-    description: "Taille de barbe, contours & soins (serviette chaude & soin visage).",
-    price: "25€"
-  },
-  {
-    name: "Signature NEAT",
-    description: "Coupe, barbe & soin (shampoing, serviette chaude, soin visage).",
-    price: "60€"
+    name: "Complète NEAT",
+    description: "Coupe & Barbe pour un style parfait.",
+    price: "50€"
   },
   {
     name: "Complète NEAT",
@@ -27,15 +27,15 @@ const services = [
     price: "55€"
   },
   {
-    name: "Complète NEAT",
-    description: "Coupe & Barbe pour un style parfait.",
-    price: "50€"
+    name: "Signature NEAT",
+    description: "Coupe, barbe & soin (shampoing, serviette chaude, soin visage).",
+    price: "60€"
   },
-  {
-    name: "Soignée NEAT",
-    description: "Coupe & Soins (shampoing serviette chaude/froide, exfoliant visage).",
-    price: "50€"
-  }
+  // {
+  //   name: "Soignée NEAT",
+  //   description: "Coupe & Soins (shampoing serviette chaude/froide, exfoliant visage).",
+  //   price: "50€"
+  // }
 ];
 
 const delays = [0.50, 0.74, 1.0, 1.25, 1.50, 1.75, 2.00];
@@ -47,8 +47,8 @@ const delays = [0.50, 0.74, 1.0, 1.25, 1.50, 1.75, 2.00];
       <div class="col-md-12">
         <!-- Section Title Start -->
         <div class="section-title text-center">
-          <h3 class="subtitle">Tarifs</h3>
-          <h2 class="title">Nos prix</h2>
+          <h2 class="subtitle">Nos tarifs</h2>
+          <!-- <h2 class="title">Nos prix</h2> -->
         </div>
         <!-- Section Title End -->
       </div>
