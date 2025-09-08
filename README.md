@@ -148,18 +148,6 @@ Toutes les commandes sont exécutées depuis la racine du projet :
 
 ## 📝 Configuration
 
-### Dépendances Principales
-
-```json
-{
-  "astro": "^5.12.0",
-  "@astrojs/tailwind": "^6.0.2",
-  "@tailwindcss/typography": "^0.5.16",
-  "tailwindcss": "^3.4.17",
-  "cloudinary": "^2.7.0"
-}
-```
-
 ### Configuration Tailwind
 
 - Animations personnalisées (fade-in, scroll, etc.)
@@ -177,27 +165,5 @@ Le site est prêt pour le déploiement sur n'importe quel hébergeur statique :
 - **Hébergement traditionnel**
 
 ## 📊 État du Projet
-
-### ✅ Terminé
-
-- [x] Structure Astro configurée
-- [x] Page d'accueil complète avec toutes les sections
-- [x] Composants réutilisables
-- [x] Design responsive avec navigation mobile
-- [x] Animations et interactions
-- [x] Optimisations de performance
-- [x] Intégration Cloudinary pour la galerie
-- [x] Navigation sticky avec menu burger
-- [x] Informations de contact réelles
-- [x] Liens vers Planity et réseaux sociaux
-
-### 🔄 En cours
-
-- [ ] Pages secondaires (À propos, Services, Contact)
-- [ ] Formulaire de contact fonctionnel
-- [ ] Tests utilisateurs complets
-- [ ] Optimisations SEO avancées
-
----
 
 **🎯 Projet en développement actif - Version 0.0.3**

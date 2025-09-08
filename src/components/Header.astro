@@ -75,6 +75,15 @@ import Navbar from "../components/Navbar.astro";
       </div>
     </div>
     <!-- Hero Scroll Down Arrow End -->
+
+    <!-- Address Info Start -->
+    <div
+      class="address-info absolute bottom-10 right-10 md:bottom-10 md:right-10 sm:bottom-5 sm:right-5 text-white text-right md:text-lg sm:text-base text-sm flex items-center gap-2 md:gap-3"
+    >
+      <i class="fa-solid fa-location-dot hidden sm:inline-block"></i>
+      <p class="opacity-80 font-light">18 rue des Bourdonnais, 75001, Paris</p>
+    </div>
+    <!-- Address Info End -->
   </div>
 </section>
 <!-- Hero Section End -->
@@ -195,6 +204,11 @@ import Navbar from "../components/Navbar.astro";
     .hero {
       padding-top: 50px;
     }
+  }
+
+  .address-info {
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+    transition: opacity 0.3s ease;
   }
 </style>
 
