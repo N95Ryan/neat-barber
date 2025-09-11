@@ -35,22 +35,28 @@ import Navbar from "../components/Navbar.astro";
               sent unique.
               <br />
               Bien plus qu'une coupe, une expérience. <br />
+              <br />
               NEAT, c'est toi en mieux !
             </p>
 
-            <div class="mt-8 flex flex-wrap gap-4">
-              <a
-                href="#prices"
-                class="btn-primary px-8 py-4 rounded-lg font-medium"
-              >
-                Découvrir nos tarifs
-              </a>
-              <a
-                href="#about"
-                class="btn-outline px-8 py-4 rounded-lg font-medium"
-              >
-                En savoir plus
-              </a>
+            <div
+              class="mt-8 flex flex-col lg:flex-row lg:items-center lg:justify-between w-full gap-6"
+            >
+              <!-- Boutons à gauche -->
+              <div class="flex flex-wrap gap-4">
+                <a
+                  href="#prices"
+                  class="btn-primary px-8 py-4 rounded-lg font-medium"
+                >
+                  Découvrir nos tarifs
+                </a>
+                <a
+                  href="#about"
+                  class="btn-outline px-8 py-4 rounded-lg font-medium"
+                >
+                  En savoir plus
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -61,6 +67,15 @@ import Navbar from "../components/Navbar.astro";
         <!-- Hero Image Start -->
         <div class="hero-image wow fadeInUp" data-wow-delay="0.75s">
           <figure class="hover-anime rounded-2xl overflow-hidden shadow-2xl">
+            <!-- Adresse à droite -->
+            <div
+              class="text-white flex items-center gap-2 md:gap-3 lg:flex-shrink-0"
+            >
+              <i class="fa-solid fa-location-dot"></i>
+              <p class="opacity-80 font-light">
+                18 rue des Bourdonnais, 75001, Paris
+              </p>
+            </div>
           </figure>
         </div>
         <!-- Hero Image End -->
@@ -76,15 +91,6 @@ import Navbar from "../components/Navbar.astro";
       </div>
     </div>
     <!-- Hero Scroll Down Arrow End -->
-
-    <!-- Address Info Start -->
-    <div
-      class="address-info absolute bottom-10 right-10 md:bottom-10 md:right-10 sm:bottom-5 sm:right-5 text-white text-right md:text-lg sm:text-base text-sm flex items-center gap-2 md:gap-3"
-    >
-      <i class="fa-solid fa-location-dot hidden sm:inline-block"></i>
-      <p class="opacity-80 font-light">18 rue des Bourdonnais, 75001, Paris</p>
-    </div>
-    <!-- Address Info End -->
   </div>
 </section>
 <!-- Hero Section End -->
