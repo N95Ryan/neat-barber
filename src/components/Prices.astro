@@ -33,11 +33,6 @@ const services = [
     description: "Coupe, barbe & soin (shampoing, serviette chaude, soin visage).",
     price: "60€"
   },
-  // {
-  //   name: "Soignée NEAT",
-  //   description: "Coupe & Soins (shampoing serviette chaude/froide, exfoliant visage).",
-  //   price: "50€"
-  // }
 ];
 
 const delays = [0.50, 0.74, 1.0, 1.25, 1.50, 1.75, 2.00];
@@ -60,16 +55,17 @@ const delays = [0.50, 0.74, 1.0, 1.25, 1.50, 1.75, 2.00];
       {services.map((service, index) => (
         <div class="col-lg-4 col-md-6">
           <!-- Pricing Item Start -->
-          <div class="pricing-item wow" data-wow-delay={`${delays[index]}s`}>
-            <div class="pricing-info">
-              <h3>{service.name}</h3>
-              <p>{service.description}</p>
+          <a href="/booking" class="d-block text-decoration-none">
+            <div class="pricing-item wow rounded-5" data-wow-delay={`${delays[index]}s`}>
+              <div class="pricing-info">
+                <h3>{service.name}</h3>
+                <p>{service.description}</p>
+              </div>
+              <div class="pricing-price">
+                <p>{service.price}</p>
+              </div>
             </div>
-
-            <div class="pricing-price">
-              <p>{service.price}</p>
-            </div>
-          </div>
+          </a>
           <!-- Pricing Item End -->
         </div>
       ))}
