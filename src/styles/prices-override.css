@@ -29,13 +29,50 @@
 }
 
 .pricing-item {
-  background: rgba(255, 255, 255, 0.9);
+  background: #fff;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-bottom: 30px;
+  transition: all 0.3s ease;
+  border-radius: 28px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.pricing-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.pricing-item .pricing-info {
+  padding: 25px 20px 15px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .pricing-item .pricing-info h3 {
-  color: var(--primary-color);
+  color: #000;
+  margin-bottom: 15px;
 }
 
 .pricing-item .pricing-info p {
-  color: var(--text-color);
+  color: #000;
+  flex-grow: 1;
+}
+
+.pricing-price {
+  padding: 15px 20px;
+  background-color: rgba(0, 0, 0, 0.05);
+  text-align: center;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.pricing-price p {
+  margin: 0;
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: var(--primary-color);
 }
