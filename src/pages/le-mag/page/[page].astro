@@ -1,0 +1,179 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import BlogNavbar from "../../../components/BlogNavbar.astro";
+import Footer from "../../../components/Footer.astro";
+import BlogHeader from "../../../components/BlogHeader.astro";
+import BlogCard from "../../../components/BlogCard.astro";
+import { getPaginatedPosts, getAllPosts } from "../../../data/blog-posts";
+
+// Fonction pour générer les pages statiques
+export async function getStaticPaths() {
+  const allPosts = getAllPosts();
+  const postsPerPage = 6;
+  const totalPages = Math.ceil(allPosts.length / postsPerPage);
+
+  return Array.from({ length: totalPages }, (_, i) => ({
+    params: { page: (i + 1).toString() },
+  }));
+}
+
+// Récupérer le numéro de page depuis l'URL
+const { page } = Astro.params;
+const currentPage = parseInt(page || "1");
+
+// Nombre d'articles par page
+const postsPerPage = 6;
+
+// Récupérer les articles pour la page courante
+const { posts, pagination } = getPaginatedPosts(currentPage, postsPerPage);
+
+// Rediriger vers la première page si la page demandée n'existe pas
+if (currentPage > pagination.totalPages) {
+  return Astro.redirect("/le-mag");
+}
+---
+
+<Layout title={`Le Mag - Page ${currentPage} - NEAT Barber Paris`}>
+  <!-- Navbar pour les pages blog -->
+  <BlogNavbar />
+
+  <!-- Blog Header Section -->
+  <BlogHeader title="LE MAG" subtitle="Découvrez nos articles et conseils" />
+
+  <!-- Blog Posts Section -->
+  <section class="blog-posts">
+    <div class="container">
+      <div class="row">
+        {
+          posts.map((post) => (
+            <div class="col-lg-4 col-md-6 mb-4">
+              <BlogCard
+                title={post.title}
+                excerpt={post.excerpt}
+                image={post.image}
+                slug={post.slug}
+                category={post.category}
+                date={post.date}
+              />
+            </div>
+          ))
+        }
+      </div>
+
+      <!-- Pagination -->
+      <div class="row mt-5">
+        <div class="col-12">
+          <nav aria-label="Pagination du blog">
+            <ul class="pagination justify-content-center">
+              {
+                pagination.hasPrevPage && (
+                  <li class="page-item">
+                    <a
+                      class="page-link"
+                      href={
+                        currentPage === 2
+                          ? "/le-mag"
+                          : `/le-mag/page/${currentPage - 1}`
+                      }
+                    >
+                      Précédent
+                    </a>
+                  </li>
+                )
+              }
+
+              <li class="page-item">
+                <a class="page-link" href="/le-mag">1</a>
+              </li>
+
+              {
+                Array.from(
+                  { length: pagination.totalPages - 1 },
+                  (_, i) => i + 2
+                ).map((pageNum) => (
+                  <li
+                    class={`page-item ${pageNum === currentPage ? "active" : ""}`}
+                  >
+                    <a class="page-link" href={`/le-mag/page/${pageNum}`}>
+                      {pageNum}
+                    </a>
+                  </li>
+                ))
+              }
+
+              {
+                pagination.hasNextPage && (
+                  <li class="page-item">
+                    <a
+                      class="page-link"
+                      href={`/le-mag/page/${currentPage + 1}`}
+                    >
+                      Suivant
+                    </a>
+                  </li>
+                )
+              }
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>
+
+<style>
+  /* Styles pour la section blog */
+  .blog-posts {
+    padding: 80px 0;
+    background-color: #f8f9fa;
+  }
+
+  /* Styles pour la pagination */
+  .pagination {
+    gap: 5px;
+  }
+
+  .page-item .page-link {
+    color: #4a5d4a;
+    border: 1px solid #4a5d4a;
+    border-radius: 5px;
+    padding: 8px 16px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+  }
+
+  .page-item.active .page-link {
+    background-color: #4a5d4a;
+    border-color: #4a5d4a;
+    color: #ffffff;
+  }
+
+  .page-item .page-link:hover {
+    background-color: rgba(74, 93, 74, 0.1);
+  }
+
+  .page-item.active .page-link:hover {
+    background-color: #4a5d4a;
+  }
+
+  /* Responsive */
+  @media (max-width: 991px) {
+    .blog-posts {
+      padding: 60px 0;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .blog-posts {
+      padding: 50px 0;
+    }
+  }
+
+  @media (max-width: 575px) {
+    .blog-posts {
+      padding: 40px 0;
+    }
+  }
+</style>
