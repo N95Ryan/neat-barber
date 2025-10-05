@@ -1,0 +1,138 @@
+---
+import Layout from "../layouts/Layout.astro";
+import BlogNavbar from "../components/BlogNavbar.astro";
+import Footer from "../components/Footer.astro";
+import BlogHeader from "../components/BlogHeader.astro";
+import BlogCard from "../components/BlogCard.astro";
+import { getPaginatedPosts } from "../data/blog-posts";
+
+// Pagination
+const page = 1;
+const postsPerPage = 6;
+const { posts, pagination } = getPaginatedPosts(page, postsPerPage);
+---
+
+<Layout title="Le Mag - NEAT Barber Paris">
+  <!-- Navbar pour les pages blog -->
+  <BlogNavbar />
+
+  <!-- Blog Header Section -->
+  <BlogHeader title="LE MAG" subtitle="Découvrez nos articles et conseils" />
+
+  <!-- Blog Posts Section -->
+  <section class="blog-posts">
+    <div class="container">
+      <div class="row">
+        {
+          posts.map((post) => (
+            <div class="col-lg-4 col-md-6 mb-4">
+              <BlogCard
+                title={post.title}
+                excerpt={post.excerpt}
+                image={post.image}
+                slug={post.slug}
+                category={post.category}
+                date={post.date}
+              />
+            </div>
+          ))
+        }
+      </div>
+
+      <!-- Pagination -->
+      <div class="row mt-5">
+        <div class="col-12">
+          <nav aria-label="Pagination du blog">
+            <ul class="pagination justify-content-center">
+              <li
+                class={`page-item ${pagination.currentPage === 1 ? "active" : ""}`}
+              >
+                <a class="page-link" href="/le-mag">1</a>
+              </li>
+              {
+                pagination.totalPages > 1 && (
+                  <li
+                    class={`page-item ${pagination.currentPage === 2 ? "active" : ""}`}
+                  >
+                    <a class="page-link" href="/le-mag/page/2">
+                      2
+                    </a>
+                  </li>
+                )
+              }
+              {
+                pagination.hasNextPage && (
+                  <li class="page-item">
+                    <a
+                      class="page-link"
+                      href={`/le-mag/page/${pagination.currentPage + 1}`}
+                    >
+                      Suivant
+                    </a>
+                  </li>
+                )
+              }
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>
+
+<style>
+  /* Styles pour la section blog */
+  .blog-posts {
+    padding: 80px 0;
+    background-color: #f8f9fa;
+  }
+
+  /* Styles pour la pagination */
+  .pagination {
+    gap: 5px;
+  }
+
+  .page-item .page-link {
+    color: #4a5d4a;
+    border: 1px solid #4a5d4a;
+    border-radius: 5px;
+    padding: 8px 16px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+  }
+
+  .page-item.active .page-link {
+    background-color: #4a5d4a;
+    border-color: #4a5d4a;
+    color: #ffffff;
+  }
+
+  .page-item .page-link:hover {
+    background-color: rgba(74, 93, 74, 0.1);
+  }
+
+  .page-item.active .page-link:hover {
+    background-color: #4a5d4a;
+  }
+
+  /* Responsive */
+  @media (max-width: 991px) {
+    .blog-posts {
+      padding: 60px 0;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .blog-posts {
+      padding: 50px 0;
+    }
+  }
+
+  @media (max-width: 575px) {
+    .blog-posts {
+      padding: 40px 0;
+    }
+  }
+</style>
