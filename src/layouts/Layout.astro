@@ -1,4 +1,6 @@
 ---
+import { ViewTransitions } from "astro:transitions";
+
 export interface Props {
   title: string;
   description?: string;
@@ -62,6 +64,12 @@ const {
 
     <!-- Blog CSS -->
     <link href="/src/styles/blog-override.css" rel="stylesheet" />
+
+    <!-- View Transitions CSS -->
+    <link href="/src/styles/transitions.css" rel="stylesheet" />
+
+    <!-- Astro View Transitions -->
+    <ViewTransitions />
   </head>
   <body class="tt-magic-cursor">
     <!-- Preloader Start -->
@@ -72,6 +80,9 @@ const {
       </div>
     </div>
     <!-- Preloader End -->
+
+    <!-- Transition Progress Indicator -->
+    <div id="transition-progress" class="transition-progress"></div>
 
     <!-- Magic Cursor Start -->
     <div id="magic-cursor">
@@ -97,5 +108,131 @@ const {
     <script is:inline src="/js/ScrollTrigger.min.js"></script>
     <script is:inline src="/js/wow.js"></script>
     <script is:inline src="/js/function.js"></script>
+
+    <!-- View Transitions Management Script -->
+    <script>
+      // Vérifier le support de prefers-reduced-motion
+      const prefersReducedMotion = () =>
+        window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      // Gestion des transitions de page
+      document.addEventListener("astro:before-preparation", () => {
+        // Sauvegarder la position de scroll actuelle
+        sessionStorage.setItem("lastScrollPosition", window.scrollY.toString());
+
+        // Ajouter une classe de transition au body
+        document.body.classList.add("astro-transition");
+
+        // Afficher le progress indicator
+        const progressBar = document.getElementById("transition-progress");
+        if (progressBar && !prefersReducedMotion()) {
+          progressBar.classList.add("active");
+        }
+      });
+
+      document.addEventListener("astro:after-swap", () => {
+        // Fermer le menu mobile s'il est ouvert
+        const mobileMenu = document.getElementById("mobileMenuOverlay");
+        const burgerBtn = document.getElementById("burgerMenuBtn");
+        if (mobileMenu?.classList.contains("active")) {
+          mobileMenu.classList.remove("active");
+          burgerBtn?.classList.remove("active");
+          document.body.style.overflow = "";
+        }
+
+        // Réinitialiser la position de scroll
+        window.scrollTo(0, 0);
+
+        // Nettoyer les animations WOW.js
+        if (window.WOW) {
+          new (window as any).WOW().init();
+        } else {
+          console.error("WOW.js n'est pas chargé");
+        }
+      });
+
+      document.addEventListener("astro:page-load", () => {
+        // Masquer le progress indicator
+        const progressBar = document.getElementById("transition-progress");
+        if (progressBar) {
+          progressBar.classList.remove("active");
+        }
+
+        // Retirer la classe de transition
+        document.body.classList.remove("astro-transition");
+
+        // Réinitialiser les listeners du navbar
+        initializeNavbarListeners();
+
+        // Réinitialiser les animations globales
+        if ((window as any).WOW) {
+          new (window as any).WOW().init();
+        }
+
+        // Disparaître le preloader progressivement
+        const preloader = document.querySelector(".preloader");
+        if (preloader && !preloader.classList.contains("hidden")) {
+          preloader.classList.add("fade-out");
+          setTimeout(() => {
+            preloader?.classList.add("hidden");
+          }, 500);
+        }
+      });
+
+      // Initialiser les event listeners du navbar
+      function initializeNavbarListeners() {
+        const burgerBtn = document.getElementById("burgerMenuBtn");
+        const closeBtn = document.getElementById("closeMenuBtn");
+        const mobileMenu = document.getElementById("mobileMenuOverlay");
+        const body = document.body;
+
+        function openMenu() {
+          burgerBtn?.classList.add("active");
+          mobileMenu?.classList.add("active");
+          body.style.overflow = "hidden";
+        }
+
+        function closeMenu() {
+          burgerBtn?.classList.remove("active");
+          mobileMenu?.classList.remove("active");
+          body.style.overflow = "";
+        }
+
+        // Nettoyer les anciens listeners
+        burgerBtn?.replaceWith(burgerBtn.cloneNode(true));
+        closeBtn?.replaceWith(closeBtn.cloneNode(true));
+
+        // Réajouter les listeners
+        const newBurgerBtn = document.getElementById("burgerMenuBtn");
+        const newCloseBtn = document.getElementById("closeMenuBtn");
+        const newMobileMenu = document.getElementById("mobileMenuOverlay");
+
+        newBurgerBtn?.addEventListener("click", openMenu);
+        newCloseBtn?.addEventListener("click", closeMenu);
+
+        newMobileMenu?.addEventListener("click", (e) => {
+          if (e.target === newMobileMenu) {
+            closeMenu();
+          }
+        });
+
+        document.addEventListener("keydown", (e) => {
+          if (
+            e.key === "Escape" &&
+            newMobileMenu?.classList.contains("active")
+          ) {
+            closeMenu();
+          }
+        });
+
+        const mobileLinks = document.querySelectorAll(".mobile-menu-link");
+        mobileLinks.forEach((link) => {
+          link.addEventListener("click", closeMenu);
+        });
+      }
+
+      // Initialiser au chargement de la page
+      initializeNavbarListeners();
+    </script>
   </body>
 </html>

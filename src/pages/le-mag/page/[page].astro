@@ -41,12 +41,15 @@ if (currentPage > pagination.totalPages) {
   <BlogHeader title="LE MAG" subtitle="Découvrez nos articles et conseils" />
 
   <!-- Blog Posts Section -->
-  <section class="blog-posts">
+  <section class="blog-posts" data-astro-transition-scope="blog-content">
     <div class="container">
       <div class="row">
         {
           posts.map((post) => (
-            <div class="col-lg-4 col-md-6 mb-4">
+            <div
+              class="col-lg-4 col-md-6 mb-4"
+              data-astro-transition-scope="list-item"
+            >
               <BlogCard
                 title={post.title}
                 excerpt={post.excerpt}
@@ -61,7 +64,7 @@ if (currentPage > pagination.totalPages) {
       </div>
 
       <!-- Pagination -->
-      <div class="row mt-5">
+      <div class="row mt-5" data-astro-transition-scope="pagination">
         <div class="col-12">
           <nav aria-label="Pagination du blog">
             <ul class="pagination justify-content-center">
