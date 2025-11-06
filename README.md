@@ -22,7 +22,7 @@ Créer une présence en ligne attrayante qui:
 - **Adapté aux mobiles** - Fonctionne parfaitement sur tous les appareils
 - **Galerie photos** - Showcase des réalisations du salon
 - **Blog intégré** - Partager des conseils et actualités
-- **Réservation en ligne** - Intégration Planity pour les prises de rendez-vous
+- **Réservation en ligne** - Intégration de Planity pour les prises de rendez-vous
 
 ---
 

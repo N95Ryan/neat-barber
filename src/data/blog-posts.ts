@@ -8,6 +8,9 @@ export interface BlogPost {
   date: string;
 }
 
+const mockupImage =
+  "https://res.cloudinary.com/drhqmgbm0/image/upload/w_500,h_300,c_fill,q_80/v1762468629/DSC06124_z4bryh.jpg";
+
 export const blogPosts: BlogPost[] = [
   {
     id: 1,
@@ -15,7 +18,7 @@ export const blogPosts: BlogPost[] = [
     slug: "pourquoi-nous-utilisons-les-produits-reuzel",
     excerpt: "Découvrez pourquoi nous avons choisi les produits Reuzel pour nos services de coiffure et de barbier.",
     category: "LE MAG",
-    image: "/images/post-1.jpg",
+    image: mockupImage,
     date: "15 septembre 2025"
   },
   {
@@ -24,7 +27,7 @@ export const blogPosts: BlogPost[] = [
     slug: "barbe-et-coupe-art-equilibre",
     excerpt: "Comment trouver le parfait équilibre entre votre coupe de cheveux et votre barbe pour un look harmonieux.",
     category: "LE MAG",
-    image: "/images/post-2.jpg",
+    image: mockupImage,
     date: "10 septembre 2025"
   },
   {
@@ -33,7 +36,7 @@ export const blogPosts: BlogPost[] = [
     slug: "pourquoi-neat-est-un-veritable-lieu-de-vie",
     excerpt: "NEAT n'est pas qu'un simple salon de coiffure, c'est un véritable lieu de vie et d'échange.",
     category: "LE MAG",
-    image: "/images/post-3.jpg",
+    image: mockupImage,
     date: "5 septembre 2025"
   },
   {
@@ -42,7 +45,7 @@ export const blogPosts: BlogPost[] = [
     slug: "quest-ce-quun-concept-store",
     excerpt: "Découvrez ce qui fait de NEAT un véritable concept store et pourquoi cela fait toute la différence.",
     category: "LE MAG",
-    image: "/images/post-4.jpg",
+    image: mockupImage,
     date: "28 août 2025"
   },
   {
@@ -51,7 +54,7 @@ export const blogPosts: BlogPost[] = [
     slug: "quel-budget-pour-ses-cheveux",
     excerpt: "Comment déterminer le budget idéal pour prendre soin de vos cheveux et obtenir les meilleurs résultats.",
     category: "LE MAG",
-    image: "/images/post-5.jpg",
+    image: mockupImage,
     date: "20 août 2025"
   },
   {
@@ -60,7 +63,7 @@ export const blogPosts: BlogPost[] = [
     slug: "coupes-cheveux-masculines-tendance-2025",
     excerpt: "Découvrez les coupes de cheveux qui seront tendance en 2025 et comment les adopter dès maintenant.",
     category: "LE MAG",
-    image: "/images/post-6.jpg",
+    image: mockupImage,
     date: "15 août 2025"
   },
   {
@@ -69,7 +72,7 @@ export const blogPosts: BlogPost[] = [
     slug: "trouver-meilleur-barbier-paris",
     excerpt: "Comment choisir le barbier qui saura répondre parfaitement à vos attentes et à vos besoins.",
     category: "LE MAG",
-    image: "/images/post-1.jpg",
+    image: mockupImage,
     date: "10 août 2025"
   },
   {
@@ -78,7 +81,7 @@ export const blogPosts: BlogPost[] = [
     slug: "indications-donner-barbier-resultat-escompte",
     excerpt: "Les conseils pour communiquer efficacement avec votre barbier et obtenir exactement la coupe que vous désirez.",
     category: "LE MAG",
-    image: "/images/post-2.jpg",
+    image: mockupImage,
     date: "5 août 2025"
   },
   {
@@ -87,7 +90,7 @@ export const blogPosts: BlogPost[] = [
     slug: "importance-coupe-reflete-personnalite",
     excerpt: "Pourquoi il est essentiel de choisir une coupe de cheveux qui s'accorde avec votre personnalité et votre style de vie.",
     category: "LE MAG",
-    image: "/images/post-3.jpg",
+    image: mockupImage,
     date: "1 août 2025"
   },
   {
@@ -96,7 +99,7 @@ export const blogPosts: BlogPost[] = [
     slug: "coupe-culture-neat-nouveau-repere-hommes-parisiens",
     excerpt: "Comment NEAT est devenu bien plus qu'un simple salon de coiffure pour devenir un véritable repère culturel à Paris.",
     category: "LE MAG",
-    image: "/images/post-4.jpg",
+    image: mockupImage,
     date: "25 juillet 2025"
   }
 ];
