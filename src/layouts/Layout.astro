@@ -111,19 +111,19 @@ const {
 
     <!-- View Transitions Management Script -->
     <script>
-      // Vérifier le support de prefers-reduced-motion
+      // Check support for prefers-reduced-motion
       const prefersReducedMotion = () =>
         window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-      // Gestion des transitions de page
+      // Manage page transitions
       document.addEventListener("astro:before-preparation", () => {
-        // Sauvegarder la position de scroll actuelle
+        // Save current scroll position
         sessionStorage.setItem("lastScrollPosition", window.scrollY.toString());
 
-        // Ajouter une classe de transition au body
+        // Add transition class to body
         document.body.classList.add("astro-transition");
 
-        // Afficher le progress indicator
+        // Show progress indicator
         const progressBar = document.getElementById("transition-progress");
         if (progressBar && !prefersReducedMotion()) {
           progressBar.classList.add("active");
@@ -131,7 +131,7 @@ const {
       });
 
       document.addEventListener("astro:after-swap", () => {
-        // Fermer le menu mobile s'il est ouvert
+        // Close mobile menu if open
         const mobileMenu = document.getElementById("mobileMenuOverlay");
         const burgerBtn = document.getElementById("burgerMenuBtn");
         if (mobileMenu?.classList.contains("active")) {
@@ -140,36 +140,36 @@ const {
           document.body.style.overflow = "";
         }
 
-        // Réinitialiser la position de scroll
+        // Reset scroll position
         window.scrollTo(0, 0);
 
-        // Nettoyer les animations WOW.js
+        // Clean WOW.js animations
         if (window.WOW) {
           new (window as any).WOW().init();
         } else {
-          console.error("WOW.js n'est pas chargé");
+          console.error("WOW.js is not loaded");
         }
       });
 
       document.addEventListener("astro:page-load", () => {
-        // Masquer le progress indicator
+        // Hide progress indicator
         const progressBar = document.getElementById("transition-progress");
         if (progressBar) {
           progressBar.classList.remove("active");
         }
 
-        // Retirer la classe de transition
+        // Remove transition class
         document.body.classList.remove("astro-transition");
 
-        // Réinitialiser les listeners du navbar
+        // Reset navbar listeners
         initializeNavbarListeners();
 
-        // Réinitialiser les animations globales
+        // Reset global animations
         if ((window as any).WOW) {
           new (window as any).WOW().init();
         }
 
-        // Disparaître le preloader progressivement
+        // Fade out preloader progressively
         const preloader = document.querySelector(".preloader");
         if (preloader && !preloader.classList.contains("hidden")) {
           preloader.classList.add("fade-out");
@@ -179,7 +179,7 @@ const {
         }
       });
 
-      // Initialiser les event listeners du navbar
+      // Initialize navbar event listeners
       function initializeNavbarListeners() {
         const burgerBtn = document.getElementById("burgerMenuBtn");
         const closeBtn = document.getElementById("closeMenuBtn");
@@ -198,11 +198,11 @@ const {
           body.style.overflow = "";
         }
 
-        // Nettoyer les anciens listeners
+        // Clean old listeners
         burgerBtn?.replaceWith(burgerBtn.cloneNode(true));
         closeBtn?.replaceWith(closeBtn.cloneNode(true));
 
-        // Réajouter les listeners
+        // Re-add listeners
         const newBurgerBtn = document.getElementById("burgerMenuBtn");
         const newCloseBtn = document.getElementById("closeMenuBtn");
         const newMobileMenu = document.getElementById("mobileMenuOverlay");
@@ -231,7 +231,7 @@ const {
         });
       }
 
-      // Initialiser au chargement de la page
+      // Initialize on page load
       initializeNavbarListeners();
     </script>
   </body>

@@ -15,10 +15,10 @@ export default defineConfig({
       external: ['@astrojs/tailwind']
     },
     build: {
-      // Optimiser les performances de build
+      // Optimize build performance
       rollupOptions: {
         output: {
-          // Minimiser le split des chunks pour les transitions fluides
+          // Minimize chunk splitting for smooth transitions
           manualChunks: {
             'transitions-core': [
               './src/scripts/transitions-manager.ts'
@@ -26,12 +26,12 @@ export default defineConfig({
           }
         }
       },
-      // Réduire la taille des bundles
+      // Reduce bundle size
       minify: 'terser',
       cssMinify: true,
     },
     define: {
-      // Variables d'environnement pour les optimisations
+      // Environment variables for optimizations
       'process.env.VIEW_TRANSITIONS': true,
       'process.env.OPTIMIZE_IMAGES': true
     }
@@ -41,7 +41,7 @@ export default defineConfig({
   // OPTIMISATIONS DE RENDU
   // ============================================
   
-  // Précharger les ressources critiques
+  // Preload critical resources
   prefetch: {
     prefetchAll: true,
     preloadAll: true
@@ -52,13 +52,13 @@ export default defineConfig({
   // ============================================
   
   style: {
-    // Inliner le CSS critique
+    // Inline critical CSS
     postcss: {
       plugins: [
         {
           postcssPlugin: 'inline-critical-css',
           Once(root) {
-            // Le plugin sera traité par Astro automatiquement
+            // The plugin will be automatically handled by Astro
           }
         }
       ]
@@ -70,15 +70,8 @@ export default defineConfig({
   // ============================================
   
   image: {
-    // Optimiser les images par défaut
-    domains: ['images.unsplash.com', 'res.cloudinary.com'],
-    // Permettre l'optimisation des images distantes
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: '**'
-      }
-    ]
+    // Optimize images by default
+    domains: ['images.unsplash.com', 'res.cloudinary.com']
   },
 
   // ============================================
@@ -86,7 +79,7 @@ export default defineConfig({
   // ============================================
   
   server: {
-    // Configuration du serveur de développement
+    // Development server configuration
     port: 3000,
     host: true,
     headers: {
@@ -99,13 +92,13 @@ export default defineConfig({
   // ============================================
   
   build: {
-    // Augmenter le format de chunk pour éviter les splitting inutiles
+    // Increase chunk format to avoid unnecessary splitting
     inlineStylesheets: 'auto',
-    // Améliorer la compression
+    // Improve compression
     assets: 'assets',
-    // Réduire la génération de source maps en production
+    // Reduce source maps generation in production
     sourcemap: false,
-    // Optimiser le format de la sortie
+    // Optimize output format
     format: 'directory'
   },
 
@@ -114,9 +107,9 @@ export default defineConfig({
   // ============================================
   
   typescript: {
-    // Vérifier les types TypeScript
+    // Check TypeScript types
     typeCheck: 'build',
-    // Ignorer les erreurs de build TypeScript mineurs
+    // Ignore minor TypeScript build errors
     strict: true
   },
 
@@ -127,7 +120,7 @@ export default defineConfig({
   i18n: {
     defaultLocale: 'fr',
     locales: ['fr', 'en'],
-    fallback: 'fr'
+    fallback: { en: 'fr' }
   },
 
   // ============================================
@@ -143,9 +136,6 @@ export default defineConfig({
   // AUTRES OPTIMISATIONS
   // ============================================
   
-  // Truequer les métadonnées de page
+  // Tweak page metadata
   trailingSlash: 'ignore',
-  
-  // Transformer le contenu HTML
-  integrations: [tailwind()]
 });

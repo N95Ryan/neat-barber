@@ -792,43 +792,43 @@
     function openMenu() {
       burgerBtn?.classList.add("active");
       mobileMenu?.classList.add("active");
-      body.style.overflow = "hidden"; // Empêcher le scroll
+      body.style.overflow = "hidden"; // Prevent scroll
     }
 
     function closeMenu() {
       burgerBtn?.classList.remove("active");
       mobileMenu?.classList.remove("active");
-      body.style.overflow = ""; // Restaurer le scroll
+      body.style.overflow = ""; // Restore scroll
     }
 
-    // Événements
+    // Events
     burgerBtn?.addEventListener("click", openMenu);
     closeBtn?.addEventListener("click", closeMenu);
 
-    // Fermer le menu en cliquant sur l'overlay
+    // Close menu by clicking on overlay
     mobileMenu?.addEventListener("click", (e) => {
       if (e.target === mobileMenu) {
         closeMenu();
       }
     });
 
-    // Fermer le menu avec la touche Escape
+    // Close menu with Escape key
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape" && mobileMenu?.classList.contains("active")) {
         closeMenu();
       }
     });
 
-    // Fermer le menu lors du clic sur un lien
+    // Close menu when clicking on a link
     const mobileLinks = document.querySelectorAll(".mobile-menu-link");
     mobileLinks.forEach((link) => {
       link.addEventListener("click", closeMenu);
     });
 
-    // Gestion du redimensionnement de la fenêtre
+    // Handle window resize
     window.addEventListener("resize", () => {
       if (window.innerWidth > 768) {
-        // Fermer le menu si on passe en desktop
+        // Close menu if switching to desktop
         if (mobileMenu?.classList.contains("active")) {
           closeMenu();
         }

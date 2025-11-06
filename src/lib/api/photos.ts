@@ -10,7 +10,7 @@ cloudinary.config({
 
 export const GET: APIRoute = async () => {
     try {
-        // Récupérer toutes les images disponibles (temporairement)
+        // Get all available images (temporarily)
         const result = await cloudinary.api.resources({
             type: 'upload',
             max_results: 100,
@@ -18,10 +18,10 @@ export const GET: APIRoute = async () => {
             sort_direction: 'desc'
         });
 
-        // Filtrer les images de démonstration et transformer les résultats
+        // Filter demo images and transform results
         const images = result.resources
             .filter((resource: any) => {
-                // Exclure les images de démonstration Cloudinary
+                // Exclude Cloudinary demo images
                 const publicId = resource.public_id.toLowerCase();
                 return !publicId.includes('sample') && 
                        !publicId.includes('cld-') && 
@@ -59,16 +59,16 @@ export const GET: APIRoute = async () => {
             status: 200,
             headers: {
                 'Content-Type': 'application/json',
-                'Cache-Control': 'public, max-age=300' // Cache de 5 minutes
+                'Cache-Control': 'public, max-age=300' // Cache for 5 minutes
             }
         });
 
     } catch (error) {
-        console.error('Erreur lors de la récupération des images Cloudinary:', error);
+        console.error('Error retrieving Cloudinary images:', error);
         
         return new Response(JSON.stringify({
             success: false,
-            error: 'Erreur lors de la récupération des images',
+            error: 'Error retrieving images',
             images: [],
             count: 0
         }), {

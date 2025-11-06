@@ -101,18 +101,18 @@ export const blogPosts: BlogPost[] = [
   }
 ];
 
-// Fonction pour récupérer tous les articles
+// Function to get all posts
 export function getAllPosts() {
   return blogPosts;
 }
 
-// Fonction pour récupérer un article par son slug
+// Function to get a post by its slug
 export function getPostBySlug(slug: string | undefined) {
   if (!slug) return undefined;
   return blogPosts.find(post => post.slug === slug);
 }
 
-// Fonction pour paginer les articles
+// Function to paginate posts
 export function getPaginatedPosts(page: number, postsPerPage: number) {
   const start = (page - 1) * postsPerPage;
   const end = start + postsPerPage;

@@ -1,7 +1,7 @@
 /**
  * NEAT Barber - Transitions Manager
- * Gestion avancée des transitions View Transitions d'Astro
- * Préservation d'état, performance, et accessibilité
+ * Advanced management of Astro View Transitions
+ * State preservation, performance, and accessibility
  */
 
 interface ScrollPosition {
@@ -30,28 +30,28 @@ class TransitionsManager {
   }
 
   /**
-   * Initialiser le gestionnaire de transitions
+   * Initialize the transitions manager
    */
   private initialize(): void {
-    // Vérifier les préférences utilisateur
+    // Check user preferences
     this.updatePreferenceReducedMotion();
 
-    // Attacher les event listeners
+    // Attach event listeners
     this.attachEventListeners();
 
-    // Charger les états sauvegardés
+    // Load saved states
     this.loadStoredStates();
   }
 
   /**
-   * Vérifier la préférence prefers-reduced-motion
+   * Check the prefers-reduced-motion preference
    */
   private updatePreferenceReducedMotion(): void {
     this.prefersReducedMotion = window.matchMedia(
       '(prefers-reduced-motion: reduce)'
     ).matches;
 
-    // Écouter les changements de préférence
+    // Listen for preference changes
     window
       .matchMedia('(prefers-reduced-motion: reduce)')
       .addEventListener('change', (e) => {
@@ -60,113 +60,113 @@ class TransitionsManager {
   }
 
   /**
-   * Attacher les event listeners aux transitions
+   * Attach event listeners to transitions
    */
   private attachEventListeners(): void {
-    // Avant la préparation de la transition
+    // Before transition preparation
     document.addEventListener('astro:before-preparation', (e: any) => {
       this.handleBeforePreparation(e);
     });
 
-    // Après le swap du DOM
+    // After DOM swap
     document.addEventListener('astro:after-swap', (e: any) => {
       this.handleAfterSwap(e);
     });
 
-    // Après le chargement de la page
+    // After page load
     document.addEventListener('astro:page-load', (e: any) => {
       this.handlePageLoad(e);
     });
 
-    // Avant que la transition ne commence
+    // Before transition starts
     document.addEventListener('astro:before-swap', (e: any) => {
       this.handleBeforeSwap(e);
     });
   }
 
   /**
-   * Avant la préparation de la transition
+   * Before transition preparation
    */
   private handleBeforePreparation(event: any): void {
     const startTime = performance.now();
     this.transitionStartTime = startTime;
 
-    // Sauvegarder la position de scroll
+    // Save scroll position
     this.saveScrollPosition();
 
-    // Sauvegarder les états de formulaires
+    // Save form states
     this.saveFormStates();
 
-    // Ajouter des classes CSS pour les animations
+    // Add CSS classes for animations
     document.documentElement.classList.add('astro-transition');
     document.body.classList.add('transitioning');
 
-    // Enregistrer le début de la transition pour les métriques
+    // Record transition start for metrics
     this.performanceMetrics.set('transitionStart', startTime);
   }
 
   /**
-   * Avant le swap du DOM
+   * Before DOM swap
    */
   private handleBeforeSwap(event: any): void {
-    // Ajouter les data attributes pour les animations contextuelles
+    // Add data attributes for contextual animations
     this.updateTransitionScopes();
 
-    // Mesurer le temps avant swap
+    // Measure time before swap
     const beforeSwapTime = performance.now();
     this.performanceMetrics.set('beforeSwapTime', beforeSwapTime);
   }
 
   /**
-   * Après le swap du DOM
+   * After DOM swap
    */
   private handleAfterSwap(event: any): void {
-    // Mesurer le temps du swap
+    // Measure swap time
     const afterSwapTime = performance.now();
     const swapDuration =
       afterSwapTime - (this.performanceMetrics.get('beforeSwapTime') || 0);
     this.performanceMetrics.set('swapDuration', swapDuration);
 
-    // Fermer les éléments interactifs ouverts
+    // Close open interactive elements
     this.closeOpenElements();
 
-    // Réinitialiser la position de scroll
+    // Reset scroll position
     window.scrollTo(0, 0);
 
-    // Nettoyer les anciens listeners
+    // Clean old listeners
     this.cleanupOldListeners();
 
-    // Réinitialiser les animations WOW.js
+    // Reset WOW.js animations
     if (window.WOW) {
       new (window.WOW as any)().init();
     }
   }
 
   /**
-   * Après le chargement complet de la page
+   * After page load completion
    */
   private handlePageLoad(event: any): void {
     const transitionEndTime = performance.now();
     const totalDuration = transitionEndTime - this.transitionStartTime;
 
-    // Enregistrer les métriques de performance
+    // Record performance metrics
     this.recordPerformanceMetrics(totalDuration);
 
-    // Retirer les classes CSS de transition
+    // Remove transition CSS classes
     document.documentElement.classList.remove('astro-transition');
     document.body.classList.remove('transitioning');
 
-    // Réinitialiser les listeners
+    // Reset event listeners
     this.reinitializeEventListeners();
 
-    // Afficher les métriques en développement
+    // Display metrics in development
     if (process.env.NODE_ENV === 'development') {
       this.logPerformanceMetrics();
     }
   }
 
   /**
-   * Sauvegarder la position de scroll actuelle
+   * Save current scroll position
    */
   private saveScrollPosition(): void {
     const path = window.location.pathname;
@@ -178,7 +178,7 @@ class TransitionsManager {
 
     this.scrollPositions.set(path, scrollPosition);
 
-    // Nettoyer les anciennes positions si nécessaire
+    // Clean old positions if necessary
     if (this.scrollPositions.size > this.maxStoredPositions) {
       const oldestEntry = Array.from(this.scrollPositions.values()).reduce(
         (oldest, current) =>
@@ -187,19 +187,19 @@ class TransitionsManager {
       this.scrollPositions.delete(oldestEntry.path);
     }
 
-    // Sauvegarder dans sessionStorage pour les rechargements
+    // Save to sessionStorage for page reloads
     try {
       sessionStorage.setItem(
         'scrollPositions',
         JSON.stringify(Array.from(this.scrollPositions.entries()))
       );
     } catch (e) {
-      console.warn('Impossible de sauvegarder les positions de scroll', e);
+      console.warn('Unable to save scroll positions', e);
     }
   }
 
   /**
-   * Sauvegarder les états des formulaires
+   * Save form states
    */
   private saveFormStates(): void {
     const forms = document.querySelectorAll('form');
@@ -219,7 +219,7 @@ class TransitionsManager {
       }
     });
 
-    // Nettoyer les anciens états si nécessaire
+    // Clean old states if necessary
     if (this.formStates.size > this.maxStoredForms) {
       const oldestEntry = Array.from(this.formStates.values()).reduce(
         (oldest, current) =>
@@ -233,7 +233,7 @@ class TransitionsManager {
   }
 
   /**
-   * Charger les états sauvegardés
+   * Load saved states
    */
   private loadStoredStates(): void {
     try {
@@ -242,15 +242,15 @@ class TransitionsManager {
         this.scrollPositions = new Map(JSON.parse(scrollData));
       }
     } catch (e) {
-      console.warn('Impossible de charger les positions de scroll', e);
+      console.warn('Unable to load scroll positions', e);
     }
   }
 
   /**
-   * Fermer les éléments interactifs ouverts
+   * Close open interactive elements
    */
   private closeOpenElements(): void {
-    // Fermer les menus mobiles
+    // Close mobile menus
     const mobileMenu = document.getElementById('mobileMenuOverlay');
     const burgerBtn = document.getElementById('burgerMenuBtn');
 
@@ -260,7 +260,7 @@ class TransitionsManager {
       document.body.style.overflow = '';
     }
 
-    // Fermer les modales (si présentes)
+    // Close modals (if present)
     const modales = document.querySelectorAll('[role="dialog"]');
     modales.forEach((modal) => {
       if (modal.hasAttribute('open')) {
@@ -268,7 +268,7 @@ class TransitionsManager {
       }
     });
 
-    // Réinitialiser les dropdowns
+    // Reset dropdowns
     const dropdowns = document.querySelectorAll('.dropdown-menu');
     dropdowns.forEach((dropdown) => {
       dropdown.classList.remove('show');
@@ -276,44 +276,44 @@ class TransitionsManager {
   }
 
   /**
-   * Mettre à jour les data attributes pour les animations contextuelles
+   * Update data attributes for contextual animations
    */
   private updateTransitionScopes(): void {
-    // Identifier le type de page et ajouter les scopes appropriés
+    // Identify page type and add appropriate scopes
     const articleContent = document.querySelector('[data-astro-transition-scope*="article"]');
     const pagination = document.querySelector('[data-astro-transition-scope*="pagination"]');
     const blogNav = document.querySelector('[data-astro-transition-scope*="blog-nav"]');
 
-    // Les data attributes sont déjà définis dans les fichiers Astro
-    // Cette fonction peut être utilisée pour des ajustements dynamiques
+    // Data attributes are already defined in Astro files
+    // This function can be used for dynamic adjustments
   }
 
   /**
-   * Nettoyer les anciens listeners
+   * Clean old listeners
    */
   private cleanupOldListeners(): void {
-    // Les event listeners sont automatiquement nettoyés lors du swap du DOM
-    // Cette fonction peut être utilisée pour des nettoyages spécifiques
+    // Event listeners are automatically cleaned during DOM swap
+    // This function can be used for specific cleanups
   }
 
   /**
-   * Réinitialiser les event listeners après la transition
+   * Reinitialize event listeners after transition
    */
   private reinitializeEventListeners(): void {
-    // Réinitialiser les listeners du navbar
+    // Reset navbar listeners
     this.reinitializeNavbarListeners();
 
-    // Réinitialiser les listeners des formulaires
+    // Reset form listeners
     this.reinitializeFormListeners();
 
-    // Réinitialiser les scripts d'animation globaux
+    // Reset global animation scripts
     if ((window as any).initAnimations) {
       (window as any).initAnimations();
     }
   }
 
   /**
-   * Réinitialiser les listeners du navbar
+   * Reset navbar listeners
    */
   private reinitializeNavbarListeners(): void {
     const burgerBtn = document.getElementById('burgerMenuBtn');
@@ -322,7 +322,7 @@ class TransitionsManager {
 
     if (!burgerBtn || !closeBtn || !mobileMenu) return;
 
-    // Cloner les éléments pour supprimer les anciens listeners
+    // Clone elements to remove old listeners
     const newBurgerBtn = burgerBtn.cloneNode(true) as HTMLElement;
     const newCloseBtn = closeBtn.cloneNode(true) as HTMLElement;
     const newMobileMenu = mobileMenu.cloneNode(true) as HTMLElement;
@@ -331,7 +331,7 @@ class TransitionsManager {
     closeBtn.replaceWith(newCloseBtn);
     mobileMenu.replaceWith(newMobileMenu);
 
-    // Ajouter les nouveaux listeners
+    // Add new listeners
     const body = document.body;
 
     function openMenu(): void {
@@ -362,7 +362,7 @@ class TransitionsManager {
   }
 
   /**
-   * Réinitialiser les listeners des formulaires
+   * Reset form listeners
    */
   private reinitializeFormListeners(): void {
     const forms = document.querySelectorAll('form');
@@ -374,12 +374,12 @@ class TransitionsManager {
   }
 
   /**
-   * Enregistrer les métriques de performance
+   * Record performance metrics
    */
   private recordPerformanceMetrics(totalDuration: number): void {
     this.performanceMetrics.set('totalDuration', totalDuration);
 
-    // Vérifier les Core Web Vitals
+    // Check Core Web Vitals
     if ('PerformanceObserver' in window) {
       try {
         const observer = new PerformanceObserver((list) => {
@@ -392,13 +392,13 @@ class TransitionsManager {
 
         observer.observe({ entryTypes: ['first-input'] });
       } catch (e) {
-        console.warn('Performance observer non supporté', e);
+        console.warn('Performance observer not supported', e);
       }
     }
   }
 
   /**
-   * Afficher les métriques de performance (développement uniquement)
+   * Display performance metrics (development only)
    */
   private logPerformanceMetrics(): void {
     console.group('📊 Transition Performance Metrics');
@@ -409,7 +409,7 @@ class TransitionsManager {
   }
 
   /**
-   * Obtenir les métriques publiquement
+   * Get metrics publicly
    */
   public getMetrics(): Record<string, number> {
     const result: Record<string, number> = {};
@@ -420,14 +420,14 @@ class TransitionsManager {
   }
 
   /**
-   * Vérifier si les animations réduites sont activées
+   * Check if reduced animations are enabled
    */
   public getPreferReducedMotion(): boolean {
     return this.prefersReducedMotion;
   }
 }
 
-// Initialiser le gestionnaire au chargement du document
+// Initialize the manager on document load
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', () => {
     (window as any).transitionsManager = new TransitionsManager();

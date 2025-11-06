@@ -6,7 +6,7 @@ import BlogHeader from "../../../components/BlogHeader.astro";
 import BlogCard from "../../../components/BlogCard.astro";
 import { getPaginatedPosts, getAllPosts } from "../../../data/blog-posts";
 
-// Fonction pour générer les pages statiques
+// Function to generate static pages
 export async function getStaticPaths() {
   const allPosts = getAllPosts();
   const postsPerPage = 6;
@@ -17,24 +17,24 @@ export async function getStaticPaths() {
   }));
 }
 
-// Récupérer le numéro de page depuis l'URL
+// Get page number from URL
 const { page } = Astro.params;
 const currentPage = parseInt(page || "1");
 
-// Nombre d'articles par page
+// Number of posts per page
 const postsPerPage = 6;
 
-// Récupérer les articles pour la page courante
+// Get posts for current page
 const { posts, pagination } = getPaginatedPosts(currentPage, postsPerPage);
 
-// Rediriger vers la première page si la page demandée n'existe pas
+// Redirect to first page if requested page doesn't exist
 if (currentPage > pagination.totalPages) {
   return Astro.redirect("/le-mag");
 }
 ---
 
 <Layout title={`Le Mag - Page ${currentPage} - NEAT Barber Paris`}>
-  <!-- Navbar pour les pages blog -->
+  <!-- Navbar for blog pages -->
   <BlogNavbar />
 
   <!-- Blog Header Section -->
@@ -63,7 +63,7 @@ if (currentPage > pagination.totalPages) {
         }
       </div>
 
-      <!-- Pagination -->
+      <!-- Pagination links -->
       <div class="row mt-5" data-astro-transition-scope="pagination">
         <div class="col-12">
           <nav aria-label="Pagination du blog">
@@ -79,7 +79,7 @@ if (currentPage > pagination.totalPages) {
                           : `/le-mag/page/${currentPage - 1}`
                       }
                     >
-                      Précédent
+                      Previous
                     </a>
                   </li>
                 )
@@ -111,7 +111,7 @@ if (currentPage > pagination.totalPages) {
                       class="page-link"
                       href={`/le-mag/page/${currentPage + 1}`}
                     >
-                      Suivant
+                      Next
                     </a>
                   </li>
                 )
@@ -127,13 +127,13 @@ if (currentPage > pagination.totalPages) {
 </Layout>
 
 <style>
-  /* Styles pour la section blog */
+  /* Blog section styles */
   .blog-posts {
     padding: 80px 0;
     background-color: #f8f9fa;
   }
 
-  /* Styles pour la pagination */
+  /* Pagination styles */
   .pagination {
     gap: 5px;
   }
@@ -161,7 +161,7 @@ if (currentPage > pagination.totalPages) {
     background-color: #4a5d4a;
   }
 
-  /* Responsive */
+  /* Responsive design */
   @media (max-width: 991px) {
     .blog-posts {
       padding: 60px 0;
