@@ -1,169 +1,75 @@
 # Neat Barber Paris - Site Web
 
-Site web moderne pour le salon de coiffure Neat Barber Paris, développé avec **Astro** et **Tailwind CSS**.
+Site web professionnel pour le salon de coiffure **Neat Barber Paris**. Une plateforme moderne, rapide et facile à utiliser pour présenter le salon, les services et faciliter les réservations.
 
-## 🚀 Structure du Projet
+---
 
-```text
-/
-├── public/
-│   ├── css/          # Styles Bootstrap + Personnalisés
-│   ├── js/           # Scripts JavaScript (jQuery, GSAP, etc.)
-│   └── images/       # Images et assets
-├── src/
-│   ├── components/   # Composants réutilisables
-│   │   ├── Header.astro
-│   │   ├── Footer.astro
-│   │   ├── Navbar.astro
-│   │   ├── About.astro
-│   │   ├── Services.astro
-│   │   ├── SliderServices.astro
-│   │   ├── Facts.astro
-│   │   ├── PhotoGallery.astro
-│   │   ├── Pricing.astro
-│   │   ├── GiftCards.astro
-│   │   ├── Testimonials.astro
-│   │   └── LatestPosts.astro
-│   ├── sections/     # Sections de page
-│   │   ├── About.astro
-│   │   ├── ProServices.astro
-│   │   ├── WhyChooseUs.astro
-│   │   └── SliderServices.astro
-│   ├── layouts/
-│   │   └── Layout.astro
-│   ├── pages/
-│   │   ├── index.astro
-│   │   └── api/
-│   │       └── photos.ts
-│   ├── lib/
-│   │   └── cloudinary.ts
-│   └── styles/
-│       └── global.css
-├── astro.config.mjs
-├── tailwind.config.js
-└── package.json
+## 📋 Vue d'ensemble
+
+### 🎯 Objectif
+
+Créer une présence en ligne attrayante qui:
+
+- Présente le salon et ses services
+- Améliore la visibilité en ligne (SEO)
+- Facilite les réservations via Planity
+- Renforce la confiance des clients
+
+### ✨ Points forts
+
+- **Beau design moderne** - Élégant et professionnel
+- **Rapide à charger** - Optimisé pour une bonne expérience utilisateur
+- **Adapté aux mobiles** - Fonctionne parfaitement sur tous les appareils
+- **Galerie photos** - Showcase des réalisations du salon
+- **Blog intégré** - Partager des conseils et actualités
+- **Réservation en ligne** - Intégration Planity pour les prises de rendez-vous
+
+---
+
+## 🚀 Démarrage
+
+### Installation (première fois)
+
+```bash
+yarn install
 ```
 
-## 🧞 Commandes
+### Développement local
 
-Toutes les commandes sont exécutées depuis la racine du projet :
+```bash
+yarn dev
+```
 
-| Commande            | Action                                                 |
-| :------------------ | :----------------------------------------------------- |
-| `npm install`       | Installe les dépendances                               |
-| `npm run dev`       | Lance le serveur de développement sur `localhost:4321` |
-| `npm run build`     | Construit le site pour la production dans `./dist/`    |
-| `npm run preview`   | Prévisualise le build localement avant le déploiement  |
-| `npm run astro ...` | Exécute les commandes CLI Astro                        |
+Le site s'ouvre sur `http://localhost:4321`
 
-## 🎨 Fonctionnalités Implémentées
+### Préparation pour la production
 
-### ✅ Design et Interface
+```bash
+yarn build
+```
 
-- **Design moderne et responsive** avec Bootstrap 5
-- **Animations fluides** avec GSAP et WOW.js
-- **Curseur magique personnalisé** avec MagicCursor
-- **Sliders interactifs** avec Swiper.js
-- **Effets de parallaxe** et scroll smooth
-- **Preloader animé** au chargement
-- **Navigation mobile** avec menu burger et overlay
+---
 
-### ✅ Technologies Utilisées
+## 📝 Sections du site
 
-#### Framework Principal
+- **Accueil** - Présentation du salon avec visuels
+- **Services** - Catalogue des prestations et tarifs
+- **Galerie** - Photos des réalisations
+- **Blog** - Articles et conseils
+- **Avis clients** - Témoignages et notes
+- **Cartes cadeaux** - Offres disponibles
+- **Contact & réservation** - Via Planity
 
-- **Astro 5.12.0** - Framework web moderne pour des sites statiques performants
-- **Tailwind CSS 3.4.17** - Framework CSS utilitaire avec animations personnalisées
+---
 
-#### CSS & Styling
+## 🌐 Déploiement
 
-- **Bootstrap 5** - Framework CSS responsive
-- **Animate.css** - Bibliothèque d'animations CSS
-- **Font Awesome** - Icônes vectorielles
-- **Google Fonts** - Polices web (DM Sans, Hanken Grotesk)
+Le site est prêt à être publié sur:
 
-#### JavaScript & Interactions
+- Netlify, Vercel, GitHub Pages ou tout hébergeur classique
 
-- **jQuery 3.7.1** - Bibliothèque JavaScript
-- **GSAP** - Animations avancées
-- **Swiper.js** - Carousels et sliders
-- **WOW.js** - Animations au scroll
-- **MagicCursor** - Curseur personnalisé
-- **SmoothScroll** - Défilement fluide
-
-#### Intégrations
-
-- **Cloudinary** - Gestion des images et galerie photos
-- **Planity** - Système de réservation en ligne
-
-### ✅ Sections Implémentées
-
-#### Page d'Accueil
-
-- **Hero Section** - Section d'accueil avec titre et image
-- **Slider Services** - Carousel des services proposés
-- **About Section** - Présentation du salon
-- **Pro Services** - Services détaillés
-- **Why Choose Us** - Avantages concurrentiels
-- **Pricing** - Tarifs des prestations
-- **Facts** - Statistiques et chiffres clés
-- **Photo Gallery** - Galerie photos du salon
-- **Gift Cards** - Cartes cadeaux
-- **Testimonials** - Avis clients
-- **Latest Posts** - Articles de blog récents
-
-#### Composants
-
-- **Header** - Navigation responsive avec menu mobile
-- **Navbar** - Navigation sticky avec bouton CTA centré
-- **Footer** - Informations de contact et liens
-- **Layout** - Structure globale avec preloader et scripts
-
-### ✅ Navigation et Responsive
-
-- **Menu burger mobile** avec overlay plein écran
-- **Navigation sticky** avec effet de scroll
-- **Bouton CTA centré** dans la navbar
-- **Transitions fluides** et animations
-- **Support clavier** (Escape pour fermer le menu)
-- **Design adaptatif** pour tous les écrans
-
-### ✅ Optimisations
-
-#### Performance
-
-- **Images optimisées** pour le web (WebP)
-- **CSS et JS minifiés** (Bootstrap, jQuery, etc.)
-- **Chargement asynchrone** des scripts
-- **Preloader** pour une meilleure UX
-- **Lazy loading** des images
-
-#### SEO & Accessibilité
-
-- **Balises meta** optimisées
-- **Structure sémantique** correcte
-- **Images avec alt** pour l'accessibilité
-- **Navigation au clavier** possible
-- **Contraste des couleurs** suffisant
-
-## 📝 Configuration
-
-### Configuration Tailwind
-
-- Animations personnalisées (fade-in, scroll, etc.)
-- Plugin typography pour un meilleur rendu du texte
-- Configuration responsive complète
-- Palette de couleurs vert-gris (#4a5d4a, #6b7a6b)
-
-## 🚀 Déploiement
-
-Le site est prêt pour le déploiement sur n'importe quel hébergeur statique :
-
-- **Netlify**
-- **Vercel**
-- **GitHub Pages**
-- **Hébergement traditionnel**
+---
 
 ## 📊 État du Projet
 
-**🎯 Projet en développement actif - Version 0.0.3**
+**Version 0.0.3** - En développement actif
