@@ -1,0 +1,346 @@
+/* ============================================
+   ASTRO VIEW TRANSITIONS - ANIMATIONS OPTIMISÉES
+   ============================================ */
+
+/* Respecter les préférences de l'utilisateur pour les animations réduites */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* Désactiver les animations de page */
+  html.astro-transition {
+    animation: none;
+  }
+
+  .transition-progress {
+    display: none !important;
+  }
+
+  /* Désactiver les transitions personnalisées */
+  [data-astro-transition-scope] {
+    animation: none !important;
+  }
+}
+
+/* ============================================
+   PROGRESS INDICATOR - INDICATEUR DE TRANSITION
+   ============================================ */
+
+.transition-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    #4a5d4a 0%,
+    #6b7a6b 50%,
+    #4a5d4a 100%
+  );
+  background-size: 200% 100%;
+  width: 0%;
+  opacity: 0;
+  z-index: 9999;
+  pointer-events: none;
+  transition: opacity 0.3s ease-out;
+  box-shadow: 0 0 10px rgba(74, 93, 74, 0.5);
+}
+
+.transition-progress.active {
+  opacity: 1;
+  animation: progressBar 1.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes progressBar {
+  0% {
+    width: 0%;
+    background-position: 0% 0%;
+  }
+  50% {
+    width: 70%;
+    background-position: 100% 0%;
+  }
+  100% {
+    width: 100%;
+    background-position: 100% 0%;
+  }
+}
+
+/* ============================================
+   TRANSITION D'ÉTAT DU BODY
+   ============================================ */
+
+body {
+  transition: opacity 0.2s ease-out;
+}
+
+body.astro-transition {
+  opacity: 0.95;
+}
+
+/* ============================================
+   ANIMATIONS DE TRANSITION PRINCIPALES
+   ============================================ */
+
+/* Fade In/Out - Animation par défaut, fluide et douce */
+::view-transition-old(root) {
+  animation: fadeOutTransition 180ms cubic-bezier(0.4, 0, 1, 1);
+}
+
+::view-transition-new(root) {
+  animation: fadeInTransition 180ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+@keyframes fadeOutTransition {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+@keyframes fadeInTransition {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================================
+   ANIMATIONS PAR CONTEXTE DE PAGE
+   ============================================ */
+
+/* Blog Navigation - Transition slide douce */
+[data-astro-transition-scope~="blog-nav"] {
+  view-transition-name: blog-nav;
+}
+
+::view-transition-old(blog-nav) {
+  animation: slideOutLeft 200ms cubic-bezier(0.4, 0, 1, 1);
+}
+
+::view-transition-new(blog-nav) {
+  animation: slideInRight 200ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+@keyframes slideOutLeft {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Article Content - Transition zoom subtile */
+[data-astro-transition-scope~="article-content"] {
+  view-transition-name: article-content;
+}
+
+::view-transition-old(article-content) {
+  animation: zoomOutArticle 200ms cubic-bezier(0.4, 0, 1, 1);
+}
+
+::view-transition-new(article-content) {
+  animation: zoomInArticle 200ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+@keyframes zoomOutArticle {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+}
+
+@keyframes zoomInArticle {
+  from {
+    opacity: 0;
+    transform: scale(1.02);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Pagination - Transition subtile sans déplacement */
+[data-astro-transition-scope~="pagination"] {
+  view-transition-name: pagination;
+}
+
+::view-transition-old(pagination) {
+  animation: fadeOutPagination 150ms cubic-bezier(0.4, 0, 1, 1);
+}
+
+::view-transition-new(pagination) {
+  animation: fadeInPagination 150ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+@keyframes fadeOutPagination {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeInPagination {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ============================================
+   OPTIMISATIONS DE PERFORMANCE
+   ============================================ */
+
+/* Désactiver les animations GPU sur les anciens appareils */
+@media (max-width: 768px) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 150ms;
+  }
+}
+
+/* Optimisation pour très petit écran */
+@media (max-width: 480px) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 120ms;
+  }
+
+  .transition-progress {
+    height: 2px;
+  }
+}
+
+/* ============================================
+   TRANSITION DU PRELOADER
+   ============================================ */
+
+.preloader {
+  transition: all 0.3s ease-out;
+  opacity: 1;
+}
+
+.preloader.fade-out {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.preloader.hidden {
+  display: none;
+}
+
+/* ============================================
+   OPTIMISATION DE L'ACCESSIBILITÉ
+   ============================================ */
+
+/* Support du contraste élevé */
+@media (prefers-contrast: more) {
+  .transition-progress {
+    box-shadow: 0 0 15px rgba(74, 93, 74, 0.8);
+    background: linear-gradient(90deg, #2a342a 0%, #4a5d4a 50%, #2a342a 100%);
+  }
+}
+
+/* Support du dark mode (si applicable) */
+@media (prefers-color-scheme: dark) {
+  .transition-progress {
+    background: linear-gradient(
+      90deg,
+      #6b7a6b 0%,
+      #8a9a8a 50%,
+      #6b7a6b 100%
+    );
+    box-shadow: 0 0 10px rgba(107, 122, 107, 0.7);
+  }
+}
+
+/* ============================================
+   ÉTATS DE TRANSITION AVANCÉS
+   ============================================ */
+
+/* État loading pendant transition */
+html.astro-transition {
+  scroll-behavior: auto;
+}
+
+/* Empêcher le layout shift pendant les transitions */
+html.astro-transition body {
+  overflow-y: scroll;
+}
+
+/* Animations en cascade pour listes (optionnel) */
+[data-astro-transition-scope~="list-item"] {
+  animation: listItemTransition 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes listItemTransition {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================================
+   OPTIMISATION POUR LES NAVIGATEURS
+   ============================================ */
+
+/* Fallback pour les navigateurs sans support View Transitions */
+@supports not (view-transition-name: root) {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    animation: legacyFade 300ms ease-out;
+  }
+}
+
+@keyframes legacyFade {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0.98;
+  }
+}

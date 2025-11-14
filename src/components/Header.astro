@@ -220,11 +220,11 @@ import Navbar from "../components/Navbar.astro";
 </style>
 
 <script>
-  // Gestion du header sticky avec effet de scroll
+  // Handle sticky header with scroll effect
   (function () {
     const header = document.querySelector(".main-header");
 
-    // Vérifier immédiatement la position de scroll
+    // Check scroll position immediately
     function checkScroll() {
       const scrollTop =
         window.pageYOffset || document.documentElement.scrollTop;
@@ -236,13 +236,13 @@ import Navbar from "../components/Navbar.astro";
       }
     }
 
-    // Exécuter immédiatement
+    // Execute immediately
     checkScroll();
 
-    // Écouter les événements de scroll
+    // Listen to scroll events
     window.addEventListener("scroll", checkScroll, { passive: true });
 
-    // S'assurer que le header est visible au chargement
+    // Ensure header is visible on load
     if (document.readyState === "loading") {
       document.addEventListener("DOMContentLoaded", checkScroll);
     } else {

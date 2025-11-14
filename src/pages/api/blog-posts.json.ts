@@ -6,10 +6,10 @@ export const GET: APIRoute = async ({ url }) => {
     const page = parseInt(url.searchParams.get('page') || '1');
     const postsPerPage = parseInt(url.searchParams.get('limit') || '6');
     
-    // Validation des paramètres
+    // Validate parameters
     if (page < 1 || postsPerPage < 1) {
       return new Response(JSON.stringify({ 
-        error: 'Paramètres invalides' 
+        error: 'Invalid parameters' 
       }), {
         status: 400,
         headers: {
@@ -27,13 +27,13 @@ export const GET: APIRoute = async ({ url }) => {
       status: 200,
       headers: {
         'Content-Type': 'application/json',
-        'Cache-Control': 'public, max-age=300' // Cache de 5 minutes
+        'Cache-Control': 'public, max-age=300' // Cache for 5 minutes
       }
     });
   } catch (error) {
-    console.error('Erreur API blog-posts:', error);
+    console.error('Blog-posts API error:', error);
     return new Response(JSON.stringify({ 
-      error: 'Erreur serveur' 
+      error: 'Server error' 
     }), {
       status: 500,
       headers: {

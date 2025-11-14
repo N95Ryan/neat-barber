@@ -28,7 +28,7 @@ if (!post) {
   <BlogNavbar />
 
   <!-- Article Header -->
-  <section class="article-header">
+  <section class="article-header" data-astro-transition-scope="blog-nav">
     <div class="container">
       <div class="row">
         <div class="col-12">
@@ -43,7 +43,10 @@ if (!post) {
   </section>
 
   <!-- Article Content -->
-  <article class="article-content">
+  <article
+    class="article-content"
+    data-astro-transition-scope="article-content"
+  >
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-lg-8">
@@ -162,7 +165,10 @@ if (!post) {
   </article>
 
   <!-- Related Articles -->
-  <section class="related-articles">
+  <section
+    class="related-articles"
+    data-astro-transition-scope="related-content"
+  >
     <div class="container">
       <div class="row">
         <div class="col-12">
@@ -170,7 +176,10 @@ if (!post) {
         </div>
       </div>
       <div class="row">
-        <div class="col-lg-4 col-md-6 mb-4">
+        <div
+          class="col-lg-4 col-md-6 mb-4"
+          data-astro-transition-scope="list-item"
+        >
           <div class="related-card">
             <div class="related-image">
               <img
@@ -191,7 +200,10 @@ if (!post) {
             </div>
           </div>
         </div>
-        <div class="col-lg-4 col-md-6 mb-4">
+        <div
+          class="col-lg-4 col-md-6 mb-4"
+          data-astro-transition-scope="list-item"
+        >
           <div class="related-card">
             <div class="related-image">
               <img
@@ -212,7 +224,10 @@ if (!post) {
             </div>
           </div>
         </div>
-        <div class="col-lg-4 col-md-6 mb-4">
+        <div
+          class="col-lg-4 col-md-6 mb-4"
+          data-astro-transition-scope="list-item"
+        >
           <div class="related-card">
             <div class="related-image">
               <img
