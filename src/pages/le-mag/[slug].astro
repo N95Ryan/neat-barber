@@ -1,12 +1,11 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import BlogNavbar from "../../components/BlogNavbar.astro";
+import BlogNavbar from "../../components/Le Mag/BlogNavbar.astro";
 import Footer from "../../components/Footer.astro";
 import { getPostBySlug, getAllPosts } from "../../data/blog-posts";
 
 const mockupImage =
   "https://res.cloudinary.com/drhqmgbm0/image/upload/w_500,h_300,c_fill,q_80/v1762468629/DSC06124_z4bryh.jpg";
-
 export async function getStaticPaths() {
   const posts = getAllPosts();
   return posts.map((post) => ({
@@ -76,7 +75,7 @@ if (!post) {
             <!-- Contenu de l'article - pour l'instant, on utilise l'excerpt comme contenu -->
             <p class="article-excerpt">{post.excerpt}</p>
 
-            <!-- Contenu complet simulé -->
+            <!-- Simulated full content -->
             <div class="article-text">
               <p>
                 Chez NEAT Barber Paris, nous croyons fermement que chaque détail

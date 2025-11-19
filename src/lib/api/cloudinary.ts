@@ -7,7 +7,7 @@ const config = {
     api_secret: import.meta.env.CLOUDINARY_API_SECRET,
 };
 
-// Vérifier que toutes les variables d'environnement sont définies
+// Check that all environment variables are defined
 const missingVars = Object.entries(config)
     .filter(([key, value]) => !value)
     .map(([key]) => key);
@@ -18,7 +18,7 @@ if (missingVars.length > 0) {
 
 cloudinary.config(config);
 
-// Types pour les images Cloudinary
+// Types for Cloudinary images
 export interface CloudinaryImage {
     id: string;
     url: string;
@@ -30,7 +30,7 @@ export interface CloudinaryImage {
     created_at: string;
 }
 
-// Fonction pour récupérer les images du dossier clients/neat-barber
+// Function to get images from clients/neat-barber folder
 export async function getCloudinaryImages(): Promise<CloudinaryImage[]> {
     try {
         const result = await cloudinary.api.resources({
@@ -69,7 +69,7 @@ export async function getCloudinaryImages(): Promise<CloudinaryImage[]> {
     }
 }
 
-// Fonction pour obtenir une URL optimisée d'image
+// Function to get an optimized image URL
 export function getOptimizedImageUrl(publicId: string, options: {
     width?: number;
     height?: number;

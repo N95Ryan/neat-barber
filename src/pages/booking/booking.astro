@@ -1,6 +1,6 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import Navbar from "../components/Navbar.astro";
+import Layout from "../../layouts/Layout.astro";
+import Navbar from "../../components/Navbar.astro";
 ---
 
 <Layout title="Réservation - Neat Barber Paris">
@@ -33,7 +33,7 @@ import Navbar from "../components/Navbar.astro";
     </div>
   </section>
 
-  <!-- Scripts Planity injectés après le DOM -->
+  <!-- Planity scripts injected after DOM -->
   <script is:inline>
     document.addEventListener("DOMContentLoaded", function () {
       const container = document.getElementById("planity-container");
@@ -65,7 +65,7 @@ import Navbar from "../components/Navbar.astro";
     });
   </script>
 
-  <!-- Fallback si le widget ne charge pas -->
+  <!-- Fallback if widget doesn't load -->
   <noscript>
     <div
       style="text-align:center; padding:40px; background:white; border-radius:16px; margin:40px 0;"
@@ -76,7 +76,7 @@ import Navbar from "../components/Navbar.astro";
         cliquez <a
           href="https://neatparis.fr/prise-de-rdv-1/"
           target="_blank"
-          style="color:#4a5d4a;font-weight:bold;">ici</a
+          style="color:#4a5d4a;font-weight:bold;">here</a
         >
       </p>
     </div>
@@ -125,7 +125,7 @@ import Navbar from "../components/Navbar.astro";
 </style>
 
 <script>
-  // Gestion du header sticky avec effet de scroll
+  // Header sticky with scroll effect management
   (function () {
     const header = document.querySelector(".main-header");
     function checkScroll() {

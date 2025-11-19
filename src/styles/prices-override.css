@@ -1,12 +1,12 @@
-/* Styles personnalisés pour le composant Prices */
+/* Custom styles for Prices component */
 .pricing {
-  background: url('/images/4_q3efgd.webp') center/cover no-repeat;
+  background: url("/images/4_q3efgd.webp") center/cover no-repeat;
   position: relative;
   padding: 100px 0 70px;
 }
 
 .pricing::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
