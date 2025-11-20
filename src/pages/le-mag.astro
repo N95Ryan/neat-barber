@@ -1,9 +1,9 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import BlogNavbar from "../components/BlogNavbar.astro";
+import BlogNavbar from "../components/Le Mag/BlogNavbar.astro";
 import Footer from "../components/Footer.astro";
-import BlogHeader from "../components/BlogHeader.astro";
-import BlogCard from "../components/BlogCard.astro";
+import BlogHeader from "../components/Le Mag/BlogHeader.astro";
+import BlogCard from "../components/Le Mag/BlogCard.astro";
 import { getPaginatedPosts } from "../data/blog-posts";
 
 // Pagination
@@ -13,7 +13,7 @@ const { posts, pagination } = getPaginatedPosts(page, postsPerPage);
 ---
 
 <Layout title="Le Mag - NEAT Barber Paris">
-  <!-- Navbar pour les pages blog -->
+  <!-- Navbar for blog pages -->
   <BlogNavbar />
 
   <!-- Blog Header Section -->
@@ -42,7 +42,7 @@ const { posts, pagination } = getPaginatedPosts(page, postsPerPage);
       <!-- Pagination -->
       <div class="row mt-5">
         <div class="col-12">
-          <nav aria-label="Pagination du blog">
+          <nav aria-label="Blog pagination">
             <ul class="pagination justify-content-center">
               <li
                 class={`page-item ${pagination.currentPage === 1 ? "active" : ""}`}
@@ -83,13 +83,13 @@ const { posts, pagination } = getPaginatedPosts(page, postsPerPage);
 </Layout>
 
 <style>
-  /* Styles pour la section blog */
+  /* Styles for blog section */
   .blog-posts {
     padding: 80px 0;
     background-color: #f8f9fa;
   }
 
-  /* Styles pour la pagination */
+  /* Styles for pagination */
   .pagination {
     gap: 5px;
   }

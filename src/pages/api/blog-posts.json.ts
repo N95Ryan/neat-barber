@@ -6,7 +6,7 @@ export const GET: APIRoute = async ({ url }) => {
     const page = parseInt(url.searchParams.get('page') || '1');
     const postsPerPage = parseInt(url.searchParams.get('limit') || '6');
     
-    // Validation des paramètres
+    // Parameter validation
     if (page < 1 || postsPerPage < 1) {
       return new Response(JSON.stringify({ 
         error: 'Paramètres invalides' 

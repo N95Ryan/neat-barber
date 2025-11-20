@@ -1,5 +1,5 @@
 ---
-import Navbar from "../components/Navbar.astro";
+import Navbar from "./Navbar.astro";
 ---
 
 <header class="main-header">
@@ -42,7 +42,7 @@ import Navbar from "../components/Navbar.astro";
             <div
               class="mt-8 flex flex-col lg:flex-row lg:items-center lg:justify-between w-full gap-6"
             >
-              <!-- Boutons à gauche -->
+              <!-- Buttons on the left -->
               <div class="flex flex-wrap gap-4">
                 <a
                   href="#prices"
@@ -67,7 +67,7 @@ import Navbar from "../components/Navbar.astro";
         <!-- Hero Image Start -->
         <div class="hero-image wow fadeInUp" data-wow-delay="0.75s">
           <figure class="hover-anime rounded-2xl overflow-hidden shadow-2xl">
-            <!-- Adresse à droite -->
+            <!-- Address on the right -->
             <div
               class="text-white flex items-center gap-2 md:gap-3 lg:flex-shrink-0"
             >
@@ -220,11 +220,11 @@ import Navbar from "../components/Navbar.astro";
 </style>
 
 <script>
-  // Gestion du header sticky avec effet de scroll
+  // Sticky header management with scroll effect
   (function () {
     const header = document.querySelector(".main-header");
 
-    // Vérifier immédiatement la position de scroll
+    // Check scroll position immediately
     function checkScroll() {
       const scrollTop =
         window.pageYOffset || document.documentElement.scrollTop;
@@ -236,13 +236,13 @@ import Navbar from "../components/Navbar.astro";
       }
     }
 
-    // Exécuter immédiatement
+    // Execute immediately
     checkScroll();
 
-    // Écouter les événements de scroll
+    // Listen to scroll events
     window.addEventListener("scroll", checkScroll, { passive: true });
 
-    // S'assurer que le header est visible au chargement
+    // Ensure header is visible on load
     if (document.readyState === "loading") {
       document.addEventListener("DOMContentLoaded", checkScroll);
     } else {

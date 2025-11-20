@@ -10,7 +10,7 @@ cloudinary.config({
 
 export const GET: APIRoute = async () => {
     try {
-        // Récupérer toutes les images disponibles (temporairement)
+        // Get all available images (temporarily)
         const result = await cloudinary.api.resources({
             type: 'upload',
             max_results: 100,
@@ -18,10 +18,10 @@ export const GET: APIRoute = async () => {
             sort_direction: 'desc'
         });
 
-        // Filtrer les images de démonstration et transformer les résultats
+        // Filter demo images and transform results
         const images = result.resources
             .filter((resource: any) => {
-                // Exclure les images de démonstration Cloudinary
+                // Exclude Cloudinary demo images
                 const publicId = resource.public_id.toLowerCase();
                 return !publicId.includes('sample') && 
                        !publicId.includes('cld-') && 

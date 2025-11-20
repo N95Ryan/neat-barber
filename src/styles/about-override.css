@@ -1,4 +1,4 @@
-/* Override des filtres pour les images dans le composant About */
+/* Override filters for images in About component */
 .about-img img {
   filter: none !important;
 }
@@ -7,12 +7,12 @@
   filter: none !important;
 }
 
-/* Configuration pour aligner les images au bas */
+/* Configuration to align images at the bottom */
 .about-us-section .flex-col.lg\:flex-row {
   align-items: stretch !important;
 }
 
-/* Structure de base */
+/* Base structure */
 .about-image {
   display: flex;
   flex-direction: column;
@@ -22,46 +22,46 @@
   display: flex;
 }
 
-/* Configuration de la disposition en ligne */
+/* Inline layout configuration */
 .about-image .flex-col.sm\:flex-row {
   display: flex;
-  align-items: flex-start; /* Aligne les éléments par le haut */
+  align-items: flex-start; /* Align elements at the top */
   margin-bottom: 0;
 }
 
-/* Configuration de l'image de gauche - garder sa taille d'origine */
+/* Left image configuration - keep original size */
 .about-img.right-shape img {
   width: 100%;
-  height: auto; /* Garde les proportions d'origine */
+  height: auto; /* Keep original proportions */
   object-fit: cover;
 }
 
-/* Configuration du bloc de droite */
+/* Right block configuration */
 .about-year-image {
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between; /* Distribue l'espace entre les éléments */
+  justify-content: space-between; /* Distribute space between elements */
 }
 
-/* Configuration du bloc de date - aligné en haut */
+/* Date block configuration - aligned at top */
 .about-year-image > div:first-child {
-  flex-shrink: 0; /* Empêche le bloc de se rétrécir */
-  margin-top: 0; /* Assure qu'il est bien en haut */
+  flex-shrink: 0; /* Prevent block from shrinking */
+  margin-top: 0; /* Ensure it's at the top */
 }
 
-/* Configuration de l'image de droite */
+/* Right image configuration */
 .about-year-image .about-img.left-shape {
-  flex-grow: 0; /* Ne force pas l'expansion */
+  flex-grow: 0; /* Don't force expansion */
   display: flex;
   flex-direction: column;
-  justify-content: flex-end; /* Aligne au bas */
-  margin-top: auto; /* Pousse vers le bas */
+  justify-content: flex-end; /* Align at bottom */
+  margin-top: auto; /* Push to bottom */
 }
 
-/* Ajustement de la hauteur de l'image de droite pour s'aligner avec celle de gauche */
+/* Adjust right image height to align with left image */
 .about-img.left-shape img {
   object-fit: cover;
   object-position: center;
-  height: auto; /* La hauteur sera déterminée par le conteneur */
+  height: auto; /* Height will be determined by container */
 }
