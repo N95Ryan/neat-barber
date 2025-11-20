@@ -1,12 +1,12 @@
 ---
 import Layout from "../../../layouts/Layout.astro";
-import BlogNavbar from "../../../components/BlogNavbar.astro";
+import BlogNavbar from "../../../components/Le Mag/BlogNavbar.astro";
 import Footer from "../../../components/Footer.astro";
-import BlogHeader from "../../../components/BlogHeader.astro";
-import BlogCard from "../../../components/BlogCard.astro";
+import BlogHeader from "../../../components/Le Mag/BlogHeader.astro";
+import BlogCard from "../../../components/Le Mag/BlogCard.astro";
 import { getPaginatedPosts, getAllPosts } from "../../../data/blog-posts";
 
-// Fonction pour générer les pages statiques
+// Function to generate static pages
 export async function getStaticPaths() {
   const allPosts = getAllPosts();
   const postsPerPage = 6;
@@ -17,17 +17,17 @@ export async function getStaticPaths() {
   }));
 }
 
-// Récupérer le numéro de page depuis l'URL
+// Get page number from URL
 const { page } = Astro.params;
 const currentPage = parseInt(page || "1");
 
 // Nombre d'articles par page
 const postsPerPage = 6;
 
-// Récupérer les articles pour la page courante
+// Get posts for current page
 const { posts, pagination } = getPaginatedPosts(currentPage, postsPerPage);
 
-// Rediriger vers la première page si la page demandée n'existe pas
+// Redirect to first page if requested page doesn't exist
 if (currentPage > pagination.totalPages) {
   return Astro.redirect("/le-mag");
 }

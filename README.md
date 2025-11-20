@@ -1,6 +1,6 @@
 # Neat Barber Paris - Site Web
 
-Site web professionnel pour le salon de coiffure **Neat Barber Paris**. Une plateforme moderne, rapide et facile à utiliser pour présenter le salon, les services et faciliter les réservations.
+Site web professionnel pour le salon de coiffure **Neat Barber - Paris**. Une plateforme moderne, rapide et facile à utiliser pour présenter le salon, les services et faciliter les réservations.
 
 ---
 
@@ -8,7 +8,7 @@ Site web professionnel pour le salon de coiffure **Neat Barber Paris**. Une plat
 
 ### 🎯 Objectif
 
-Créer une présence en ligne attrayante qui:
+Créer une présence en ligne attrayante qui :
 
 - Présente le salon et ses services
 - Améliore la visibilité en ligne (SEO)
@@ -17,36 +17,12 @@ Créer une présence en ligne attrayante qui:
 
 ### ✨ Points forts
 
-- **Beau design moderne** - Élégant et professionnel
+- **Design moderne** - Élégant et professionnel
 - **Rapide à charger** - Optimisé pour une bonne expérience utilisateur
 - **Adapté aux mobiles** - Fonctionne parfaitement sur tous les appareils
 - **Galerie photos** - Showcase des réalisations du salon
 - **Blog intégré** - Partager des conseils et actualités
 - **Réservation en ligne** - Intégration de Planity pour les prises de rendez-vous
-
----
-
-## 🚀 Démarrage
-
-### Installation (première fois)
-
-```bash
-yarn install
-```
-
-### Développement local
-
-```bash
-yarn dev
-```
-
-Le site s'ouvre sur `http://localhost:4321`
-
-### Préparation pour la production
-
-```bash
-yarn build
-```
 
 ---
 
@@ -64,12 +40,6 @@ yarn build
 
 ## 🌐 Déploiement
 
-Le site est prêt à être publié sur:
-
-- Netlify, Vercel, GitHub Pages ou tout hébergeur classique
+Le site est publié sur Vercel.
 
 ---
-
-## 📊 État du Projet
-
-**Version 0.0.3** - En développement actif

@@ -6,7 +6,7 @@ interface Service {
   description?: string;
 }
 
-// Services par défaut avec icônes cohérentes (garder les originales + compléter)
+// Default services with consistent icons (keep originals + complete)
 const defaultServices: Service[] = [
   {
     name: "Coupe classique",
@@ -149,7 +149,7 @@ const { services = defaultServices, speed = 30, className = "" } = Astro.props;
     will-change: transform;
   }
 
-  /* Suppression de la pause au survol pour un défilement continu */
+  /* Remove hover pause for continuous scrolling */
   /* .services-ticker:hover .animate-scroll {
     animation-play-state: paused;
   } */
