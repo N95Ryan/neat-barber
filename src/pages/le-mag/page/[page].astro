@@ -21,7 +21,7 @@ export async function getStaticPaths() {
 const { page } = Astro.params;
 const currentPage = parseInt(page || "1");
 
-// Nombre d'articles par page
+// Number of articles per page
 const postsPerPage = 6;
 
 // Get posts for current page
@@ -34,7 +34,7 @@ if (currentPage > pagination.totalPages) {
 ---
 
 <Layout title={`Le Mag - Page ${currentPage} - NEAT Barber Paris`}>
-  <!-- Navbar pour les pages blog -->
+  <!-- Blog pages navbar -->
   <BlogNavbar />
 
   <!-- Blog Header Section -->
@@ -124,13 +124,11 @@ if (currentPage > pagination.totalPages) {
 </Layout>
 
 <style>
-  /* Styles pour la section blog */
   .blog-posts {
     padding: 80px 0;
     background-color: #f8f9fa;
   }
 
-  /* Styles pour la pagination */
   .pagination {
     gap: 5px;
   }

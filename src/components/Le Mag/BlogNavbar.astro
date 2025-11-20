@@ -158,8 +158,6 @@
     height: 100%;
     width: 100%;
   }
-
-  /* Structure de la navbar */
   .navbar-brand {
     flex: 0 0 auto;
   }
@@ -278,8 +276,6 @@
   .nav-link.active {
     color: #6b7a6b !important;
   }
-
-  /* Bouton burger mobile */
   .burger-menu-btn {
     display: none;
     flex-direction: column;
@@ -562,7 +558,7 @@
       display: none !important;
     }
 
-    /* Masquer le logo */
+    /* Hide logo */
     .navbar-brand {
       display: none !important;
     }
@@ -572,7 +568,7 @@
       display: none !important;
     }
 
-    /* Afficher le bouton burger */
+    /* Show burger button */
     .burger-menu-btn {
       display: flex !important;
       order: 1;
@@ -645,7 +641,7 @@
 </style>
 
 <script>
-  // Gestion du menu burger mobile
+  // Mobile burger menu management
   (function () {
     const burgerBtn = document.getElementById("burgerMenuBtn");
     const closeBtn = document.getElementById("closeMenuBtn");
@@ -661,28 +657,28 @@
     function closeMenu() {
       burgerBtn?.classList.remove("active");
       mobileMenu?.classList.remove("active");
-      body.style.overflow = ""; // Restaurer le scroll
+      body.style.overflow = ""; // Restore scrolling
     }
 
     // Events
     burgerBtn?.addEventListener("click", openMenu);
     closeBtn?.addEventListener("click", closeMenu);
 
-    // Fermer le menu en cliquant sur l'overlay
+    // Close menu when clicking on overlay
     mobileMenu?.addEventListener("click", (e) => {
       if (e.target === mobileMenu) {
         closeMenu();
       }
     });
 
-    // Fermer le menu avec la touche Escape
+    // Close menu with Escape key
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape" && mobileMenu?.classList.contains("active")) {
         closeMenu();
       }
     });
 
-    // Fermer le menu lors du clic sur un lien
+    // Close menu when clicking on a link
     const mobileLinks = document.querySelectorAll(".mobile-menu-link");
     mobileLinks.forEach((link) => {
       link.addEventListener("click", closeMenu);
@@ -691,7 +687,7 @@
     // Handle window resize
     window.addEventListener("resize", () => {
       if (window.innerWidth > 768) {
-        // Fermer le menu si on passe en desktop
+        // Close menu if switching to desktop
         if (mobileMenu?.classList.contains("active")) {
           closeMenu();
         }
