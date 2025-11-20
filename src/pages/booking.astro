@@ -2,26 +2,24 @@
 import Layout from "../layouts/Layout.astro";
 import Navbar from "../components/Navbar.astro";
 
-// Récupération de la clé Planity depuis les variables d'environnement
-const planityKey = import.meta.env.PLANITY_KEY;
+const planityKey = import.meta.env.PUBLIC_PLANITY_KEY;
 
-// Validation de la clé Planity
+// Planity public key check
 if (!planityKey) {
   console.warn(
-    "⚠️ PLANITY_KEY n'est pas définie dans les variables d'environnement"
+    "⚠️ PUBLIC_PLANITY_KEY is not defined in the public environment variables"
   );
 }
 ---
 
 <Layout title="Réservation - Neat Barber Paris">
-  <!-- Header fixe avec Navbar -->
   <header class="main-header">
     <Navbar />
   </header>
 
-  <!-- Section Booking avec background et widget Planity -->
+  <!-- Booking section with background and Planity widget -->
   <section class="booking-section relative">
-    <!-- Background avec overlay -->
+    <!-- Background with overlay -->
     <div
       class="absolute inset-0 bg-hero-pattern bg-cover bg-center bg-no-repeat"
     >
@@ -31,7 +29,7 @@ if (!planityKey) {
       </div>
     </div>
 
-    <!-- Conteneur du widget Planity -->
+    <!-- Planity widget container -->
     <div class="container relative z-10">
       <div class="row justify-content-center">
         <div class="col-lg-10 col-md-12">
@@ -43,38 +41,38 @@ if (!planityKey) {
     </div>
   </section>
 
-  <!-- Planity scripts injected after DOM -->
+  <!-- Planity scripts injected after DOM content is loaded -->
   <script define:vars={{ planityKey: planityKey }}>
     document.addEventListener("DOMContentLoaded", function () {
       const container = document.getElementById("planity-container");
 
       if (!container) {
-        console.error("Le conteneur Planity n'a pas été trouvé");
+        console.error("Planity container not found");
         return;
       }
 
-      // Validation de la clé Planity
+      // Planity key validation
       if (
         !planityKey ||
         planityKey === "undefined" ||
         planityKey.trim() === ""
       ) {
         console.error(
-          "❌ La clé Planity n'est pas configurée. Veuillez définir PLANITY_KEY dans votre fichier .env"
+          "❌ Planity key is not configured. Please define PLANITY_KEY in your .env file"
         );
         container.innerHTML =
-          '<div style="text-align:center; padding:40px; background:white; border-radius:16px;"><h3 style="color:#dc3545;">Erreur de configuration</h3><p>Le widget de réservation n\'est pas configuré correctement. Veuillez contacter l\'administrateur.</p></div>';
+          '<div style="text-align:center; padding:40px; background:white; border-radius:16px;"><h3 style="color:#dc3545;">Configuration error</h3><p>The booking widget is not configured correctly. Please contact the administrator.</p></div>';
         return;
       }
 
-      // Configuration du widget
+      // Widget configuration
       window.planity = {
         key: planityKey,
         primaryColor: "#000000",
         container,
       };
 
-      // Scripts externes Planity
+      // External Planity scripts
       const polyfills = document.createElement("script");
       polyfills.src =
         "https://d2skjte8udjqxw.cloudfront.net/widget/production/2/polyfills.latest.js";
@@ -89,7 +87,7 @@ if (!planityKey) {
     });
   </script>
 
-  <!-- Fallback if widget doesn't load -->
+  <!-- Fallback if widget fails to load -->
   <noscript>
     <div
       style="text-align:center; padding:40px; background:white; border-radius:16px; margin:40px 0;"
