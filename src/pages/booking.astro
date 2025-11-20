@@ -1,6 +1,16 @@
 ---
-import Layout from "../../layouts/Layout.astro";
-import Navbar from "../../components/Navbar.astro";
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/Navbar.astro";
+
+// Récupération de la clé Planity depuis les variables d'environnement
+const planityKey = import.meta.env.PLANITY_KEY;
+
+// Validation de la clé Planity
+if (!planityKey) {
+  console.warn(
+    "⚠️ PLANITY_KEY n'est pas définie dans les variables d'environnement"
+  );
+}
 ---
 
 <Layout title="Réservation - Neat Barber Paris">
@@ -34,7 +44,7 @@ import Navbar from "../../components/Navbar.astro";
   </section>
 
   <!-- Planity scripts injected after DOM -->
-  <script is:inline>
+  <script define:vars={{ planityKey: planityKey }}>
     document.addEventListener("DOMContentLoaded", function () {
       const container = document.getElementById("planity-container");
 
@@ -43,9 +53,23 @@ import Navbar from "../../components/Navbar.astro";
         return;
       }
 
+      // Validation de la clé Planity
+      if (
+        !planityKey ||
+        planityKey === "undefined" ||
+        planityKey.trim() === ""
+      ) {
+        console.error(
+          "❌ La clé Planity n'est pas configurée. Veuillez définir PLANITY_KEY dans votre fichier .env"
+        );
+        container.innerHTML =
+          '<div style="text-align:center; padding:40px; background:white; border-radius:16px;"><h3 style="color:#dc3545;">Erreur de configuration</h3><p>Le widget de réservation n\'est pas configuré correctement. Veuillez contacter l\'administrateur.</p></div>';
+        return;
+      }
+
       // Configuration du widget
       window.planity = {
-        key: "-NvNYgniXfZWyI50hdFe",
+        key: planityKey,
         primaryColor: "#000000",
         container,
       };
