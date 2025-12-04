@@ -1,6 +1,6 @@
 import { v2 as cloudinary } from "cloudinary";
 
-// Configuration Cloudinary avec validation
+// Cloudinary configuration with validation
 const config = {
     cloud_name: import.meta.env.CLOUDINARY_CLOUD_NAME,
     api_key: import.meta.env.CLOUDINARY_API_KEY,

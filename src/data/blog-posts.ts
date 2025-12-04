@@ -115,7 +115,7 @@ export function getPostBySlug(slug: string | undefined) {
   return blogPosts.find(post => post.slug === slug);
 }
 
-// Fonction pour paginer les articles
+// Function to paginate posts
 export function getPaginatedPosts(page: number, postsPerPage: number) {
   const start = (page - 1) * postsPerPage;
   const end = start + postsPerPage;
