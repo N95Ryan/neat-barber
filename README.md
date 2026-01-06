@@ -1,45 +1,45 @@
-# Neat Barber Paris - Site Web
+# Neat Barber Paris - Website
 
-Site web professionnel pour le salon de coiffure **Neat Barber - Paris**. Une plateforme moderne, rapide et facile à utiliser pour présenter le salon, les services et faciliter les réservations.
-
----
-
-## 📋 Vue d'ensemble
-
-### 🎯 Objectif
-
-Créer une présence en ligne attrayante qui :
-
-- Présente le salon et ses services
-- Améliore la visibilité en ligne (SEO)
-- Facilite les réservations via Planity
-- Renforce la confiance des clients
-
-### ✨ Points forts
-
-- **Design moderne** - Élégant et professionnel
-- **Rapide à charger** - Optimisé pour une bonne expérience utilisateur
-- **Adapté aux mobiles** - Fonctionne parfaitement sur tous les appareils
-- **Galerie photos** - Showcase des réalisations du salon
-- **Blog intégré** - Partager des conseils et actualités
-- **Réservation en ligne** - Intégration de Planity pour les prises de rendez-vous
+Professional website for **Neat Barber - Paris** barbershop. A modern, fast, and user-friendly platform to showcase the salon, services, and facilitate bookings.
 
 ---
 
-## 📝 Sections du site
+## 📋 Overview
 
-- **Accueil** - Présentation du salon avec visuels
-- **Services** - Catalogue des prestations et tarifs
-- **Galerie** - Photos des réalisations
-- **Blog** - Articles et conseils
-- **Avis clients** - Témoignages et notes
-- **Cartes cadeaux** - Offres disponibles
-- **Contact & réservation** - Via Planity
+### 🎯 Objective
+
+Create an attractive online presence that:
+
+- Showcases the salon and its services
+- Improves online visibility (SEO)
+- Facilitates bookings via Planity
+- Builds customer trust
+
+### ✨ Key Features
+
+- **Modern Design** - Elegant and professional
+- **Fast Loading** - Optimized for a great user experience
+- **Mobile Responsive** - Works perfectly on all devices
+- **Photo Gallery** - Showcase of the salon's work
+- **Integrated Blog** - Share tips and news
+- **Online Booking** - Planity integration for appointments
 
 ---
 
-## 🌐 Déploiement
+## 📝 Site Sections
 
-Le site est publié sur Vercel.
+- **Home** - Salon presentation with visuals
+- **Services** - Catalog of services and pricing
+- **Gallery** - Photos of achievements
+- **Blog** - Articles and tips
+- **Client Reviews** - Testimonials and ratings
+- **Gift Cards** - Available offers
+- **Contact & Booking** - Via Planity
+
+---
+
+## 🌐 Deployment
+
+The site is published on Vercel.
 
 ---
