@@ -2,32 +2,39 @@
 interface Props {
   title: string;
   excerpt: string;
-  image: string;
+  image?: string;
+  featuredImage?: string;
   slug: string;
-  category: string;
   date: string;
 }
 
-const { title, excerpt, image, slug, category, date } = Astro.props;
+const { title, excerpt, image, featuredImage, slug, date } = Astro.props;
+
+// Use featuredImage if available, otherwise fallback to image or placeholder
+const imageUrl =
+  featuredImage ||
+  image ||
+  "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=500&h=300&fit=crop";
 ---
 
 <div class="blog-card">
-  <div class="blog-image">
-    <img
-      src={image}
-      alt={title}
-      class="img-fluid"
-      loading="lazy"
-      onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-    />
-    <div class="image-placeholder" style="display: none;">
-      <i class="fas fa-image"></i>
-      <span>Image non disponible</span>f &
+  <a href={`/le-mag/${slug}`} class="blog-image-link">
+    <div class="blog-image">
+      <img
+        src={imageUrl}
+        alt={title}
+        class="img-fluid"
+        loading="lazy"
+        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+      />
+      <div class="image-placeholder" style="display: none;">
+        <i class="fas fa-image"></i>
+        <span>Image non disponible</span>
+      </div>
+      <div class="blog-date">{date}</div>
     </div>
-    <div class="blog-date">{date}</div>
-  </div>
+  </a>
   <div class="blog-content">
-    <div class="blog-category">{category}</div>
     <h3 class="blog-title">
       <a href={`/le-mag/${slug}`}>{title}</a>
     </h3>
@@ -55,6 +62,12 @@ const { title, excerpt, image, slug, category, date } = Astro.props;
   .blog-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+  }
+
+  .blog-image-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
   }
 
   .blog-image {
@@ -118,19 +131,6 @@ const { title, excerpt, image, slug, category, date } = Astro.props;
     flex-grow: 1;
     display: flex;
     flex-direction: column;
-  }
-
-  .blog-category {
-    display: inline-block;
-    background-color: #4a5d4a;
-    color: #ffffff;
-    font-size: 0.75rem;
-    font-weight: 600;
-    padding: 5px 12px;
-    border-radius: 20px;
-    margin-bottom: 15px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
   }
 
   .blog-title {
@@ -206,11 +206,6 @@ const { title, excerpt, image, slug, category, date } = Astro.props;
   @media (max-width: 575px) {
     .blog-image {
       height: 180px;
-    }
-
-    .blog-category {
-      font-size: 0.7rem;
-      padding: 4px 10px;
     }
 
     .blog-date {

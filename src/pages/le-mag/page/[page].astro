@@ -4,33 +4,59 @@ import BlogNavbar from "../../../components/Le Mag/BlogNavbar.astro";
 import Footer from "../../../components/Footer.astro";
 import BlogHeader from "../../../components/Le Mag/BlogHeader.astro";
 import BlogCard from "../../../components/Le Mag/BlogCard.astro";
-import { getPaginatedPosts, getAllPosts } from "../../../data/blog-posts";
+import { fetchGraphQL, GET_LATEST_POSTS } from "../../../lib/graphql";
+import type { Post } from "../../../types/wordpress";
+import {
+  formatDateToFrench,
+  stripHtml,
+  truncateText,
+} from "../../../lib/utils/date";
 
 // Function to generate static pages
 export async function getStaticPaths() {
-  const allPosts = getAllPosts();
-  const postsPerPage = 6;
-  const totalPages = Math.ceil(allPosts.length / postsPerPage);
+  try {
+    // Fetch all posts from WordPress
+    const data = await fetchGraphQL<{ posts: { nodes: Post[] } }>(
+      GET_LATEST_POSTS,
+      { first: 100 }
+    );
+    const allPosts = data.posts.nodes;
+    const postsPerPage = 6;
+    const totalPages = Math.ceil(allPosts.length / postsPerPage);
 
-  return Array.from({ length: totalPages }, (_, i) => ({
-    params: { page: (i + 1).toString() },
-  }));
+    // Generate a path for each page
+    return Array.from({ length: totalPages }, (_, i) => {
+      const pageNum = i + 1;
+      const start = i * postsPerPage;
+      const end = start + postsPerPage;
+      const pagePosts = allPosts.slice(start, end);
+
+      return {
+        params: { page: pageNum.toString() },
+        props: {
+          posts: pagePosts,
+          currentPage: pageNum,
+          totalPages,
+          hasNextPage: pageNum < totalPages,
+          hasPrevPage: pageNum > 1,
+        },
+      };
+    });
+  } catch (error) {
+    console.error("Error in getStaticPaths:", error);
+    return [];
+  }
 }
 
-// Get page number from URL
-const { page } = Astro.params;
-const currentPage = parseInt(page || "1");
-
-// Number of articles per page
-const postsPerPage = 6;
-
-// Get posts for current page
-const { posts, pagination } = getPaginatedPosts(currentPage, postsPerPage);
-
-// Redirect to first page if requested page doesn't exist
-if (currentPage > pagination.totalPages) {
-  return Astro.redirect("/le-mag");
-}
+// Get props from getStaticPaths
+const { posts, currentPage, totalPages, hasNextPage, hasPrevPage } =
+  Astro.props as {
+    posts: Post[];
+    currentPage: number;
+    totalPages: number;
+    hasNextPage: boolean;
+    hasPrevPage: boolean;
+  };
 ---
 
 <Layout title={`Le Mag - Page ${currentPage} - NEAT Barber Paris`}>
@@ -49,11 +75,10 @@ if (currentPage > pagination.totalPages) {
             <div class="col-lg-4 col-md-6 mb-4">
               <BlogCard
                 title={post.title}
-                excerpt={post.excerpt}
-                image={post.image}
+                excerpt={truncateText(stripHtml(post.excerpt), 150)}
+                featuredImage={post.featuredImage?.node.sourceUrl}
                 slug={post.slug}
-                category={post.category}
-                date={post.date}
+                date={formatDateToFrench(post.date)}
               />
             </div>
           ))
@@ -66,7 +91,7 @@ if (currentPage > pagination.totalPages) {
           <nav aria-label="Pagination du blog">
             <ul class="pagination justify-content-center">
               {
-                pagination.hasPrevPage && (
+                hasPrevPage && (
                   <li class="page-item">
                     <a
                       class="page-link"
@@ -87,22 +112,21 @@ if (currentPage > pagination.totalPages) {
               </li>
 
               {
-                Array.from(
-                  { length: pagination.totalPages - 1 },
-                  (_, i) => i + 2
-                ).map((pageNum) => (
-                  <li
-                    class={`page-item ${pageNum === currentPage ? "active" : ""}`}
-                  >
-                    <a class="page-link" href={`/le-mag/page/${pageNum}`}>
-                      {pageNum}
-                    </a>
-                  </li>
-                ))
+                Array.from({ length: totalPages - 1 }, (_, i) => i + 2).map(
+                  (pageNum) => (
+                    <li
+                      class={`page-item ${pageNum === currentPage ? "active" : ""}`}
+                    >
+                      <a class="page-link" href={`/le-mag/page/${pageNum}`}>
+                        {pageNum}
+                      </a>
+                    </li>
+                  )
+                )
               }
 
               {
-                pagination.hasNextPage && (
+                hasNextPage && (
                   <li class="page-item">
                     <a
                       class="page-link"

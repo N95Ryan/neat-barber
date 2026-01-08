@@ -55,5 +55,10 @@ out/
 .cache/
 
 # TODOLIST
-GUIDE-CREER-ARTICLES-WORDPRESS.md
-TODO-WORDPRESS-INTEGRATION.md
+SPRINT_LE_MAG.md
+
+# Tests
+coverage/
+test-results/
+playwright-report/
+.lighthouseci/

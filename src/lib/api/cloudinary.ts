@@ -13,7 +13,7 @@ const missingVars = Object.entries(config)
     .map(([key]) => key);
 
 if (missingVars.length > 0) {
-    console.warn(`⚠️ Variables Cloudinary manquantes: ${missingVars.join(', ')}`);
+    console.warn(`⚠️ Missing Cloudinary variables: ${missingVars.join(', ')}`);
 }
 
 cloudinary.config(config);
@@ -64,7 +64,7 @@ export async function getCloudinaryImages(): Promise<CloudinaryImage[]> {
             created_at: resource.created_at
         }));
     } catch (error) {
-        console.error('Erreur lors de la récupération des images Cloudinary:', error);
+        console.error('Error fetching Cloudinary images:', error);
         return [];
     }
 }
