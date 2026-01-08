@@ -2,24 +2,62 @@
 import Layout from "../../layouts/Layout.astro";
 import BlogNavbar from "../../components/Le Mag/BlogNavbar.astro";
 import Footer from "../../components/Footer.astro";
-import { getPostBySlug, getAllPosts } from "../../data/blog-posts";
+import {
+  fetchGraphQL,
+  GET_ALL_SLUGS,
+  GET_POST_BY_SLUG,
+} from "../../lib/graphql";
+import type { SlugsResponse, PostResponse, Post } from "../../types/wordpress";
+import { formatDateToFrench } from "../../lib/utils/date";
 
-const mockupImage =
-  "https://res.cloudinary.com/drhqmgbm0/image/upload/w_500,h_300,c_fill,q_80/v1762468629/DSC06124_z4bryh.jpg";
+// Generate static paths for all posts
 export async function getStaticPaths() {
-  const posts = getAllPosts();
-  return posts.map((post) => ({
-    params: { slug: post.slug },
-    props: { post },
-  }));
+  try {
+    // Fetch all slugs from WordPress
+    const data = await fetchGraphQL<SlugsResponse>(GET_ALL_SLUGS);
+    const slugs = data.posts.nodes.map((node) => node.slug);
+
+    // For each slug, fetch the complete post data
+    const paths = await Promise.all(
+      slugs.map(async (slug) => {
+        try {
+          const postData = await fetchGraphQL<PostResponse>(GET_POST_BY_SLUG, {
+            slug,
+          });
+          return {
+            params: { slug },
+            props: { post: postData.post },
+          };
+        } catch (error) {
+          console.error(`Error fetching post with slug "${slug}":`, error);
+          return null;
+        }
+      })
+    );
+
+    // Filter out failed requests
+    return paths.filter((path) => path !== null);
+  } catch (error) {
+    console.error("Error in getStaticPaths:", error);
+    return [];
+  }
 }
 
-const { post } = Astro.props;
+const { post } = Astro.props as { post: Post | null };
 
 // Si l'article n'existe pas, rediriger vers la page 404
 if (!post) {
   return Astro.redirect("/404");
 }
+
+// Format the date
+const formattedDate = formatDateToFrench(post.date);
+
+// Get featured image or use placeholder
+const featuredImageUrl =
+  post.featuredImage?.node.sourceUrl ||
+  "https://res.cloudinary.com/drhqmgbm0/image/upload/w_500,h_300,c_fill,q_80/v1762468629/DSC06124_z4bryh.jpg";
+const featuredImageAlt = post.featuredImage?.node.altText || post.title;
 ---
 
 <Layout title={`${post.title} - NEAT Barber Paris`}>
@@ -47,8 +85,8 @@ if (!post) {
         <div class="col-lg-8">
           <!-- Article Meta -->
           <div class="article-meta">
-            <span class="article-category">{post.category}</span>
-            <span class="article-date">{post.date}</span>
+            <span class="article-category">LE MAG</span>
+            <span class="article-date">{formattedDate}</span>
           </div>
 
           <!-- Article Title -->
@@ -57,8 +95,8 @@ if (!post) {
           <!-- Article Image -->
           <div class="article-image">
             <img
-              src={post.image}
-              alt={post.title}
+              src={featuredImageUrl}
+              alt={featuredImageAlt}
               class="img-fluid"
               loading="eager"
               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
@@ -71,53 +109,15 @@ if (!post) {
 
           <!-- Article Body -->
           <div class="article-body">
-            <!-- Article content - for now, we use the excerpt as content -->
-            <p class="article-excerpt">{post.excerpt}</p>
+            <!-- Article excerpt -->
+            {
+              post.excerpt && (
+                <div class="article-excerpt" set:html={post.excerpt} />
+              )
+            }
 
-            <!-- Simulated full content -->
-            <div class="article-text">
-              <p>
-                Chez NEAT Barber Paris, nous croyons fermement que chaque détail
-                compte dans l'art de la coiffure et du barbier. Notre approche
-                unique combine tradition et modernité pour offrir une expérience
-                exceptionnelle à nos clients.
-              </p>
-
-              <p>
-                Dans cet article, nous partageons avec vous notre expertise et
-                nos conseils pour vous aider à comprendre l'importance de chaque
-                choix que vous faites concernant votre style et votre apparence.
-              </p>
-
-              <h3>Notre philosophie</h3>
-              <p>
-                NEAT n'est pas seulement un salon de coiffure, c'est un
-                véritable concept store où se rencontrent l'art de la coiffure,
-                la culture et le lifestyle masculin. Chaque visite chez nous est
-                une expérience complète qui va bien au-delà d'une simple coupe
-                de cheveux.
-              </p>
-
-              <h3>Nos conseils d'experts</h3>
-              <p>
-                Nos barbiers et coiffeurs sont des artisans passionnés qui
-                mettent leur savoir-faire au service de votre style. Ils vous
-                accompagnent dans vos choix et vous conseillent pour trouver le
-                look qui vous correspond parfaitement.
-              </p>
-
-              <blockquote>
-                "Chez NEAT, nous ne faisons pas que couper les cheveux, nous
-                créons des expériences uniques qui reflètent votre personnalité
-                et votre style de vie."
-              </blockquote>
-
-              <p>
-                Que vous soyez à la recherche d'une coupe classique ou d'un
-                style plus moderne, notre équipe saura vous conseiller et vous
-                accompagner pour obtenir le résultat parfait.
-              </p>
-            </div>
+            <!-- Article full content from WordPress -->
+            <div class="article-text" set:html={post.content} />
           </div>
 
           <!-- Article Footer -->
@@ -160,6 +160,7 @@ if (!post) {
   </article>
 
   <!-- Related Articles -->
+  <!-- TODO: Dynamiser les articles similaires dans une prochaine itération -->
   <section class="related-articles">
     <div class="container">
       <div class="row">
@@ -172,7 +173,7 @@ if (!post) {
           <div class="related-card">
             <div class="related-image">
               <img
-                src={mockupImage}
+                src="https://res.cloudinary.com/drhqmgbm0/image/upload/w_500,h_300,c_fill,q_80/v1762468629/DSC06124_z4bryh.jpg"
                 alt="Article similaire"
                 class="img-fluid"
               />
@@ -193,7 +194,7 @@ if (!post) {
           <div class="related-card">
             <div class="related-image">
               <img
-                src={mockupImage}
+                src="https://res.cloudinary.com/drhqmgbm0/image/upload/w_500,h_300,c_fill,q_80/v1762468629/DSC06124_z4bryh.jpg"
                 alt="Article similaire"
                 class="img-fluid"
               />
@@ -214,7 +215,7 @@ if (!post) {
           <div class="related-card">
             <div class="related-image">
               <img
-                src={mockupImage}
+                src="https://res.cloudinary.com/drhqmgbm0/image/upload/w_500,h_300,c_fill,q_80/v1762468629/DSC06124_z4bryh.jpg"
                 alt="Article similaire"
                 class="img-fluid"
               />

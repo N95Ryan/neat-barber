@@ -4,12 +4,28 @@ import BlogNavbar from "../components/Le Mag/BlogNavbar.astro";
 import Footer from "../components/Footer.astro";
 import BlogHeader from "../components/Le Mag/BlogHeader.astro";
 import BlogCard from "../components/Le Mag/BlogCard.astro";
-import { getPaginatedPosts } from "../data/blog-posts";
+import { fetchGraphQL, GET_LATEST_POSTS } from "../lib/graphql";
+import type { Post } from "../types/wordpress";
+import { formatDateToFrench, stripHtml, truncateText } from "../lib/utils/date";
 
-// Pagination
-const page = 1;
+// Get the first 6 posts (page 1)
 const postsPerPage = 6;
-const { posts, pagination } = getPaginatedPosts(page, postsPerPage);
+let posts: Post[] = [];
+let totalPages = 1;
+let hasNextPage = false;
+
+try {
+  const data = await fetchGraphQL<{ posts: { nodes: Post[] } }>(
+    GET_LATEST_POSTS,
+    { first: 100 }
+  );
+  const allPosts = data.posts.nodes;
+  totalPages = Math.ceil(allPosts.length / postsPerPage);
+  posts = allPosts.slice(0, postsPerPage);
+  hasNextPage = totalPages > 1;
+} catch (error) {
+  console.error("Error fetching posts:", error);
+}
 ---
 
 <Layout title="Le Mag - NEAT Barber Paris">
@@ -28,11 +44,10 @@ const { posts, pagination } = getPaginatedPosts(page, postsPerPage);
             <div class="col-lg-4 col-md-6 mb-4">
               <BlogCard
                 title={post.title}
-                excerpt={post.excerpt}
-                image={post.image}
+                excerpt={stripHtml(post.excerpt)}
+                featuredImage={post.featuredImage?.node.sourceUrl}
                 slug={post.slug}
-                category={post.category}
-                date={post.date}
+                date={formatDateToFrench(post.date)}
               />
             </div>
           ))
@@ -44,29 +59,24 @@ const { posts, pagination } = getPaginatedPosts(page, postsPerPage);
         <div class="col-12">
           <nav aria-label="Blog pagination">
             <ul class="pagination justify-content-center">
-              <li
-                class={`page-item ${pagination.currentPage === 1 ? "active" : ""}`}
-              >
+              <li class="page-item active">
                 <a class="page-link" href="/le-mag">1</a>
               </li>
               {
-                pagination.totalPages > 1 && (
-                  <li
-                    class={`page-item ${pagination.currentPage === 2 ? "active" : ""}`}
-                  >
-                    <a class="page-link" href="/le-mag/page/2">
-                      2
-                    </a>
-                  </li>
+                Array.from({ length: totalPages - 1 }, (_, i) => i + 2).map(
+                  (pageNum) => (
+                    <li class="page-item">
+                      <a class="page-link" href={`/le-mag/page/${pageNum}`}>
+                        {pageNum}
+                      </a>
+                    </li>
+                  )
                 )
               }
               {
-                pagination.hasNextPage && (
+                hasNextPage && (
                   <li class="page-item">
-                    <a
-                      class="page-link"
-                      href={`/le-mag/page/${pagination.currentPage + 1}`}
-                    >
+                    <a class="page-link" href="/le-mag/page/2">
                       Suivant
                     </a>
                   </li>

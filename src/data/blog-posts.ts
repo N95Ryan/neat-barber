@@ -9,7 +9,7 @@ export interface BlogPost {
 }
 
 const mockupImage =
-  "https://res.cloudinary.com/drhqmgbm0/image/upload/w_500,h_300,c_fill,q_80/v1762468629/DSC06124_z4bryh.jpg";
+  "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=500&h=300&fit=crop";
 
 export const blogPosts: BlogPost[] = [
   {
