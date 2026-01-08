@@ -22,14 +22,14 @@ import Navbar from "./Navbar.astro";
         <!-- Hero Left Content Start -->
         <div class="hero-content text-white">
           <div class="section-title">
-            <h3 class="wow fadeInUp text-neutral-300">
+            <h3 class="hero-subtitle text-neutral-300">
               Bienvenue chez Neat Barber Shop - Paris
             </h3>
-            <h1 class="text-anime text-white">
+            <h1 class="hero-title text-white">
               Une expérience capillaire unique, moderne et raffinée.
             </h1>
           </div>
-          <div class="hero-content-body wow fadeInUp" data-wow-delay="0.5s">
+          <div class="hero-body">
             <p class="text-neutral-200 text-lg">
               NEAT, c'est une ambiance élégante et apaisante où chaque client se
               sent unique.
@@ -65,18 +65,16 @@ import Navbar from "./Navbar.astro";
 
       <div class="col-lg-6">
         <!-- Hero Image Start -->
-        <div class="hero-image wow fadeInUp" data-wow-delay="0.75s">
-          <figure class="hover-anime rounded-2xl overflow-hidden shadow-2xl">
-            <!-- Address on the right -->
-            <div
-              class="text-white flex items-center gap-2 md:gap-3 lg:flex-shrink-0"
-            >
-              <i class="fa-solid fa-location-dot"></i>
-              <p class="opacity-80 font-light">
-                18 rue des Bourdonnais, 75001, Paris
-              </p>
-            </div>
-          </figure>
+        <div class="hero-right">
+          <!-- Address positioned at top right -->
+          <div
+            class="address-info text-white flex items-center gap-2 md:gap-3 justify-end mb-4"
+          >
+            <i class="fa-solid fa-location-dot text-xl"></i>
+            <p class="opacity-90 font-light text-base md:text-lg">
+              18 rue des Bourdonnais, 75001, Paris
+            </p>
+          </div>
         </div>
         <!-- Hero Image End -->
       </div>
@@ -215,6 +213,38 @@ import Navbar from "./Navbar.astro";
   .address-info {
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
     transition: opacity 0.3s ease;
+  }
+
+  /* Hero animations - immediate on load */
+  .hero-subtitle {
+    animation: fadeInUp 0.8s ease-out forwards;
+    opacity: 0;
+  }
+
+  .hero-title {
+    animation: fadeInUp 0.8s ease-out 0.2s forwards;
+    opacity: 0;
+  }
+
+  .hero-body {
+    animation: fadeInUp 0.8s ease-out 0.5s forwards;
+    opacity: 0;
+  }
+
+  .hero-right {
+    animation: fadeInUp 0.8s ease-out 0.75s forwards;
+    opacity: 0;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 </style>
 

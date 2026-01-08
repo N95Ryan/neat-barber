@@ -46,17 +46,12 @@ const {
       rel="stylesheet"
     />
 
-    <!-- Bootstrap CSS -->
+    <!-- Bootstrap CSS (Grid only) -->
     <link href="/css/bootstrap.min.css" rel="stylesheet" media="screen" />
 
-    <!-- SlickNav CSS -->
-    <link href="/css/slicknav.min.css" rel="stylesheet" />
-
-    <!-- Swiper CSS -->
+    <!-- Swiper CSS (Testimonials carousel) -->
     <link rel="stylesheet" href="/css/swiper-bundle.min.css" />
 
-    <!-- Font Awesome CSS -->
-    <link href="/css/all.min.css" rel="stylesheet" media="screen" />
     <!-- Font Awesome CDN -->
     <link
       rel="stylesheet"
@@ -66,19 +61,19 @@ const {
       referrerpolicy="no-referrer"
     />
 
-    <!-- Animated CSS -->
-    <link href="/css/animate.css" rel="stylesheet" />
+    <!-- Custom CSS Optimized (1900 lines, -40% du poids) -->
+    <link href="/css/custom.clean.css" rel="stylesheet" media="screen" />
 
-    <!-- Magnific CSS -->
-    <link href="/css/magnific-popup.css" rel="stylesheet" />
+    <!-- Modern Animations CSS -->
+    <link href="/src/styles/animations.css" rel="stylesheet" />
 
-    <!-- Custom CSS -->
-    <link href="/css/custom.css" rel="stylesheet" media="screen" />
+    <!-- Mobile Menu CSS -->
+    <link href="/src/styles/mobile-menu.css" rel="stylesheet" />
 
     <!-- Blog CSS -->
     <link href="/src/styles/blog-override.css" rel="stylesheet" />
   </head>
-  <body class="tt-magic-cursor">
+  <body>
     <!-- Google Tag Manager (noscript) -->
     <noscript
       ><iframe
@@ -98,29 +93,307 @@ const {
     </div>
     <!-- Preloader End -->
 
-    <!-- Magic Cursor Start -->
-    <div id="magic-cursor">
-      <div id="ball"></div>
-    </div>
-    <!-- Magic Cursor End -->
-
     <slot />
 
-    <!-- Scripts -->
-    <script is:inline src="/js/jquery-3.7.1.min.js"></script>
-    <script is:inline src="/js/bootstrap.min.js"></script>
-    <script is:inline src="/js/validator.min.js"></script>
-    <script is:inline src="/js/jquery.slicknav.js"></script>
+    <!-- Swiper JS (only for testimonials carousel) -->
     <script is:inline src="/js/swiper-bundle.min.js"></script>
-    <script is:inline src="/js/jquery.waypoints.min.js"></script>
-    <script is:inline src="/js/jquery.counterup.min.js"></script>
-    <script is:inline src="/js/jquery.magnific-popup.min.js"></script>
-    <script is:inline src="/js/SmoothScroll.js"></script>
-    <script is:inline src="/js/gsap.min.js"></script>
-    <script is:inline src="/js/magiccursor.js"></script>
-    <script is:inline src="/js/splitType.js"></script>
-    <script is:inline src="/js/ScrollTrigger.min.js"></script>
-    <script is:inline src="/js/wow.js"></script>
-    <script is:inline src="/js/function.js"></script>
+
+    <!-- Initialize Swiper for testimonials -->
+    <script is:inline>
+      document.addEventListener("DOMContentLoaded", function () {
+        const testimonialCarousel = document.querySelector(
+          ".testimonial-carousel .swiper"
+        );
+        if (testimonialCarousel) {
+          new Swiper(".testimonial-carousel .swiper", {
+            slidesPerView: 1,
+            speed: 1000,
+            spaceBetween: 30,
+            loop: true,
+            autoplay: {
+              delay: 5000,
+            },
+            pagination: {
+              el: ".swiper-pagination",
+              clickable: true,
+            },
+            breakpoints: {
+              768: {
+                slidesPerView: 2,
+                spaceBetween: 20,
+              },
+              991: {
+                slidesPerView: 2,
+              },
+            },
+          });
+        }
+      });
+    </script>
+
+    <!-- Main Scripts - Inline dans Astro -->
+    <script>
+      // Preloader
+      window.addEventListener("load", () => {
+        const preloader = document.querySelector<HTMLElement>(".preloader");
+        if (preloader) {
+          preloader.style.opacity = "0";
+          preloader.style.transition = "opacity 0.6s ease";
+          setTimeout(() => {
+            preloader.style.display = "none";
+          }, 600);
+        }
+      });
+
+      // Sticky Header
+      function initStickyHeader() {
+        const header =
+          document.querySelector<HTMLElement>("header.main-header");
+        const headerSticky = document.querySelector<HTMLElement>(
+          "header .header-sticky"
+        );
+
+        if (!header || !headerSticky) return;
+
+        function setHeaderHeight() {
+          if (header && headerSticky) {
+            header.style.height = `${headerSticky.offsetHeight}px`;
+          }
+        }
+
+        function handleScroll() {
+          if (!headerSticky) return;
+          const scrollTop =
+            window.pageYOffset || document.documentElement.scrollTop;
+          const headerHeight = headerSticky.offsetHeight;
+
+          if (scrollTop > headerHeight + 100) {
+            headerSticky.classList.add("hide");
+          } else {
+            headerSticky.classList.remove("hide");
+          }
+
+          if (scrollTop > 800) {
+            headerSticky.classList.add("active");
+          } else {
+            headerSticky.classList.remove("active");
+          }
+        }
+
+        setHeaderHeight();
+        window.addEventListener("scroll", handleScroll, { passive: true });
+        window.addEventListener("resize", setHeaderHeight, { passive: true });
+      }
+
+      // Counter Animation
+      function initCounters() {
+        const counters = document.querySelectorAll<HTMLElement>(".counter");
+        if (counters.length === 0) return;
+
+        function animateCounter(
+          element: HTMLElement,
+          target: number,
+          duration = 2000
+        ) {
+          let current = 0;
+          const increment = target / (duration / 16);
+          const step = () => {
+            current += increment;
+            if (current < target) {
+              element.textContent = Math.floor(current).toString();
+              requestAnimationFrame(step);
+            } else {
+              element.textContent = target.toString();
+            }
+          };
+          step();
+        }
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                const counter = entry.target as HTMLElement;
+                const target = parseInt(
+                  counter.getAttribute("data-target") ||
+                    counter.textContent ||
+                    "0"
+                );
+                if (!counter.classList.contains("animated")) {
+                  counter.classList.add("animated");
+                  animateCounter(counter, target);
+                }
+              }
+            });
+          },
+          { threshold: 0.5 }
+        );
+
+        counters.forEach((counter) => {
+          if (!counter.hasAttribute("data-target")) {
+            counter.setAttribute("data-target", counter.textContent || "0");
+          }
+          observer.observe(counter);
+        });
+      }
+
+      // Animations
+      function initAnimations() {
+        const elements = document.querySelectorAll<HTMLElement>(
+          ".wow, [data-animate]"
+        );
+        if (elements.length === 0) return;
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                const element = entry.target as HTMLElement;
+                const delay =
+                  element.getAttribute("data-wow-delay") ||
+                  element.getAttribute("data-delay") ||
+                  "0";
+                // Convert number to seconds if needed
+                const delayValue =
+                  typeof delay === "string" && !delay.includes("s")
+                    ? `${delay}s`
+                    : delay;
+                element.style.animationDelay = delayValue;
+                element.classList.add("animated");
+                observer.unobserve(element);
+              }
+            });
+          },
+          { threshold: 0.1, rootMargin: "0px 0px -50px 0px" }
+        );
+
+        elements.forEach((element) => {
+          // Only hide .wow elements, not [data-animate] elements
+          if (element.classList.contains("wow")) {
+            element.style.opacity = "0";
+          }
+          observer.observe(element);
+        });
+      }
+
+      // Text animations
+      function initTextAnimations() {
+        const textElements =
+          document.querySelectorAll<HTMLElement>(".text-anime");
+        if (textElements.length === 0) return;
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                const element = entry.target as HTMLElement;
+                element.classList.add("animate-text");
+                observer.unobserve(element);
+              }
+            });
+          },
+          { threshold: 0.1 }
+        );
+
+        textElements.forEach((element) => observer.observe(element));
+      }
+
+      // Reveal animations
+      function initRevealAnimations() {
+        const revealElements =
+          document.querySelectorAll<HTMLElement>(".reveal");
+        if (revealElements.length === 0) return;
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                const element = entry.target as HTMLElement;
+                element.classList.add("revealed");
+                observer.unobserve(element);
+              }
+            });
+          },
+          { threshold: 0.2 }
+        );
+
+        revealElements.forEach((element) => observer.observe(element));
+      }
+
+      // Mobile Menu
+      function initMobileMenu() {
+        const menu = document.querySelector<HTMLElement>("#menu");
+        const responsiveMenu =
+          document.querySelector<HTMLElement>(".responsive-menu");
+
+        if (!menu || !responsiveMenu) return;
+
+        const mobileMenuHTML = `
+          <button class="mobile-menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+            <span class="menu-icon">
+              <span class="menu-icon-bar"></span>
+              <span class="menu-icon-bar"></span>
+              <span class="menu-icon-bar"></span>
+            </span>
+          </button>
+          <nav class="mobile-menu-nav" aria-hidden="true">
+            ${menu.innerHTML}
+          </nav>
+        `;
+
+        responsiveMenu.innerHTML = mobileMenuHTML;
+
+        const toggleButton = responsiveMenu.querySelector<HTMLButtonElement>(
+          ".mobile-menu-toggle"
+        );
+        const nav =
+          responsiveMenu.querySelector<HTMLElement>(".mobile-menu-nav");
+
+        if (!toggleButton || !nav) return;
+
+        toggleButton.addEventListener("click", () => {
+          const isExpanded =
+            toggleButton.getAttribute("aria-expanded") === "true";
+          toggleButton.setAttribute("aria-expanded", String(!isExpanded));
+          toggleButton.classList.toggle("active");
+          nav.classList.toggle("active");
+          nav.setAttribute("aria-hidden", String(isExpanded));
+          document.body.style.overflow = isExpanded ? "" : "hidden";
+        });
+
+        const menuLinks = nav.querySelectorAll("a");
+        menuLinks.forEach((link) => {
+          link.addEventListener("click", () => {
+            toggleButton.setAttribute("aria-expanded", "false");
+            toggleButton.classList.remove("active");
+            nav.classList.remove("active");
+            nav.setAttribute("aria-hidden", "true");
+            document.body.style.overflow = "";
+          });
+        });
+
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "Escape" && nav.classList.contains("active")) {
+            toggleButton.click();
+          }
+        });
+      }
+
+      // Initialize all
+      function init() {
+        initStickyHeader();
+        initMobileMenu();
+        initCounters();
+        initAnimations();
+        initTextAnimations();
+        initRevealAnimations();
+      }
+
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", init);
+      } else {
+        init();
+      }
+    </script>
   </body>
 </html>
