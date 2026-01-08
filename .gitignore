@@ -56,3 +56,9 @@ out/
 
 # TODOLIST
 SPRINT_LE_MAG.md
+
+# Tests
+coverage/
+test-results/
+playwright-report/
+.lighthouseci/
