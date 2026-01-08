@@ -8,11 +8,11 @@ import { fetchGraphQL, GET_LATEST_POSTS } from "../lib/graphql";
 import type { Post } from "../types/wordpress";
 import { formatDateToFrench, stripHtml, truncateText } from "../lib/utils/date";
 
-// Get the first 6 posts (page 1)
-const postsPerPage = 6;
+// Fetch posts from WordPress
 let posts: Post[] = [];
-let totalPages = 1;
-let hasNextPage = false;
+let totalPosts = 0;
+let totalPages = 0;
+const postsPerPage = 6;
 
 try {
   const data = await fetchGraphQL<{ posts: { nodes: Post[] } }>(
@@ -20,12 +20,18 @@ try {
     { first: 100 }
   );
   const allPosts = data.posts.nodes;
-  totalPages = Math.ceil(allPosts.length / postsPerPage);
+  totalPosts = allPosts.length;
+  totalPages = Math.ceil(totalPosts / postsPerPage);
+
+  // Get first page posts
   posts = allPosts.slice(0, postsPerPage);
-  hasNextPage = totalPages > 1;
 } catch (error) {
   console.error("Error fetching posts:", error);
+  posts = [];
 }
+
+const currentPage = 1;
+const hasNextPage = totalPages > 1;
 ---
 
 <Layout title="Le Mag - NEAT Barber Paris">
@@ -57,7 +63,7 @@ try {
       <!-- Pagination -->
       <div class="row mt-5">
         <div class="col-12">
-          <nav aria-label="Blog pagination">
+          <nav aria-label="Pagination du blog">
             <ul class="pagination justify-content-center">
               <li class="page-item active">
                 <a class="page-link" href="/le-mag">1</a>
