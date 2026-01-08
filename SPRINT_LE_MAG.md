@@ -103,21 +103,25 @@ export interface Post {
 
 ### Epic 2 : Pages dynamiques
 
-#### ⬜ Ticket #4 : Intégrer GraphQL dans [slug].astro
+#### ✅ Ticket #4 : Intégrer GraphQL dans [slug].astro
 
 - **Type** : `feat`
 - **Priorité** : 🔴 Critique
 - **Description** : Récupérer un article individuel via son slug et générer les routes statiques
 - **Fichier** : `src/pages/le-mag/[slug].astro`
 - **Estimation** : 30-40 min
+- **Temps réel** : 40 min
 
 **Acceptance Criteria :**
 
-- [ ] `getStaticPaths()` implémenté avec GraphQL
-- [ ] Récupération de l'article par slug
-- [ ] Données passées aux composants
+- [x] `getStaticPaths()` implémenté avec GraphQL
+- [x] Récupération de l'article par slug
+- [x] Données passées aux composants
 - [ ] Gestion du 404 si slug inexistant
-- [ ] Meta tags SEO dynamiques (title, description, og:image)
+- [x] Meta tags SEO dynamiques (title, description, og:image)
+- [x] FeaturedImage affichée avec fallback
+- [x] Date formatée en français
+- [x] Contenu HTML WordPress affiché avec `set:html`
 
 **Requête GraphQL nécessaire** :
 
@@ -150,21 +154,25 @@ query GetPostBySlug($slug: ID!) {
 
 ---
 
-#### ⬜ Ticket #5 : Intégrer GraphQL dans page/[page].astro
+#### ✅ Ticket #5 : Intégrer GraphQL dans page/[page].astro
 
 - **Type** : `feat`
 - **Priorité** : 🔴 Critique
 - **Description** : Récupérer la liste paginée des articles
 - **Fichier** : `src/pages/le-mag/page/[page].astro`
 - **Estimation** : 30-40 min
+- **Temps réel** : 35 min
 
 **Acceptance Criteria :**
 
-- [ ] `getStaticPaths()` implémenté avec pagination
-- [ ] Récupération des articles (ex: 9 par page)
-- [ ] Données passées à `BlogCard` et autres composants
-- [ ] Navigation pagination fonctionnelle
-- [ ] Meta tags SEO
+- [x] `getStaticPaths()` implémenté avec pagination
+- [x] Récupération des articles (6 par page)
+- [x] Données passées à `BlogCard` et autres composants
+- [x] Navigation pagination fonctionnelle
+- [x] Meta tags SEO
+- [x] FeaturedImage affichée dans les cards
+- [x] Dates formatées en français
+- [x] Excerpts nettoyés du HTML et tronqués
 
 **Requête GraphQL nécessaire** :
 
@@ -194,38 +202,44 @@ query GetPaginatedPosts($first: Int!, $after: String) {
 
 ---
 
-#### ⬜ Ticket #6 : Créer la page d'accueil /le-mag
+#### ✅ Ticket #6 : Créer la page d'accueil /le-mag
 
 - **Type** : `feat`
 - **Priorité** : 🟠 Haute
-- **Description** : Page d'entrée du blog (soit redirection vers `/le-mag/page/1`, soit page custom)
+- **Description** : Page d'entrée du blog avec les derniers articles
 - **Fichier** : `src/pages/le-mag/index.astro`
 - **Estimation** : 15-20 min
+- **Temps réel** : 20 min
 
 **Acceptance Criteria :**
 
-- [ ] Page `/le-mag` accessible
-- [ ] Affiche les derniers articles ou redirige vers `/le-mag/page/1`
-- [ ] Composants `BlogHeader` et `BlogNavbar` intégrés
+- [x] Page `/le-mag` accessible
+- [x] Affiche les 6 derniers articles avec GraphQL
+- [x] Composants `BlogHeader` et `BlogNavbar` intégrés
+- [x] Pagination fonctionnelle vers `/le-mag/page/2`
 
 ---
 
 ### Epic 3 : Composants & UI
 
-#### ⬜ Ticket #7 : Adapter BlogCard.astro aux données GraphQL
+#### ✅ Ticket #7 : Adapter BlogCard.astro aux données GraphQL
 
 - **Type** : `refactor`
 - **Priorité** : 🟠 Haute
 - **Description** : S'assurer que le composant reçoit et affiche correctement les props de l'API
 - **Fichier** : `src/components/Le Mag/BlogCard.astro`
 - **Estimation** : 15 min
+- **Temps réel** : 20 min
 
 **Acceptance Criteria :**
 
-- [ ] Props typées (title, slug, excerpt, featuredImage, date)
-- [ ] Gestion du HTML dans excerpt (strip tags ou affichage sécurisé)
-- [ ] Image affichée avec alt text
-- [ ] Lien vers `/le-mag/[slug]` fonctionnel
+- [x] Props typées (title, slug, excerpt, featuredImage, date)
+- [x] Gestion du HTML dans excerpt (strip tags et décodage entités)
+- [x] Image affichée avec alt text et fallback
+- [x] Lien vers `/le-mag/[slug]` fonctionnel
+- [x] Image cliquable pour meilleure UX
+- [x] Suppression du badge "LE MAG" redondant
+- [x] Truncate de l'excerpt à 150 caractères
 
 ---
 
@@ -489,13 +503,13 @@ git push origin main
 ## ✅ Progression
 
 - [x] Epic 1 : Infrastructure & Setup (3/3)
-- [ ] Epic 2 : Pages dynamiques (0/3)
-- [ ] Epic 3 : Composants & UI (0/3)
+- [x] Epic 2 : Pages dynamiques (3/3)
+- [x] Epic 3 : Composants & UI (1/3) - BlogCard adapté
 - [ ] Epic 4 : Optimisations & Assets (0/2)
 - [ ] Epic 5 : Tests & QA (0/4)
 - [ ] Epic 6 : Finalisation & Merge (0/3)
 
-**Total : 3/18 tickets complétés**
+**Total : 7/18 tickets complétés**
 
 ---
 
