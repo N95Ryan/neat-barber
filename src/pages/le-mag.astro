@@ -44,7 +44,7 @@ try {
             <div class="col-lg-4 col-md-6 mb-4">
               <BlogCard
                 title={post.title}
-                excerpt={stripHtml(post.excerpt)}
+                excerpt={truncateText(stripHtml(post.excerpt), 150)}
                 featuredImage={post.featuredImage?.node.sourceUrl}
                 slug={post.slug}
                 date={formatDateToFrench(post.date)}
