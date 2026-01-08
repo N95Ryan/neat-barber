@@ -2,6 +2,9 @@
 import Layout from "../layouts/Layout.astro";
 import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
+
+// Impage import to ensure it is loaded in production
+const image404 = "/images/image-404.svg";
 ---
 
 <Layout
@@ -21,18 +24,16 @@ import Footer from "../components/Footer.astro";
         <div class="col-lg-6 order-lg-1 order-2">
           <div class="page-404-content">
             <div class="section-title">
-              <h3 class="wow fadeInUp">Oups !</h3>
-              <h2 class="text-anime-style-3" data-cursor="-opaque">
-                Page non trouvée
-              </h2>
+              <h3>Oups !</h3>
+              <h2>Page non trouvée</h2>
             </div>
             <div class="page-404-body">
-              <p class="wow fadeInUp" data-wow-delay="0.25s">
+              <p>
                 Désolé, la page que vous recherchez n'existe pas ou a été
                 déplacée. Retournez à l'accueil pour découvrir nos services de
                 barbier premium à Paris.
               </p>
-              <div class="page-404-btn wow fadeInUp" data-wow-delay="0.5s">
+              <div class="page-404-btn">
                 <a href="/" class="btn-default">Retour à l'accueil</a>
               </div>
             </div>
@@ -40,8 +41,8 @@ import Footer from "../components/Footer.astro";
         </div>
         <div class="col-lg-6 order-lg-2 order-1">
           <div class="page-404-image">
-            <figure class="image-anime reveal">
-              <img src="/images/image-404.svg" alt="404 - Page non trouvée" />
+            <figure>
+              <img src={image404} alt="404 - Page non trouvée" />
             </figure>
           </div>
         </div>
@@ -106,8 +107,8 @@ import Footer from "../components/Footer.astro";
   }
 
   .page-404-btn .btn-default:hover {
-    background-color: rgba(107, 122, 107, 0.7);
-    border-color: rgba(107, 122, 107, 0.7);
+    background-color: #333;
+    border-color: #333;
     color: #fff;
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
