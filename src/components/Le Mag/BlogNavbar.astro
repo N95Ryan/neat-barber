@@ -62,7 +62,7 @@
     </div>
 
     <!-- Bouton burger mobile -->
-    <button class="burger-menu-btn" id="burgerMenuBtn" aria-label="Menu">
+    <button class="burger-menu-btn" id="blogBurgerMenuBtn" aria-label="Menu">
       <span class="burger-line"></span>
       <span class="burger-line"></span>
       <span class="burger-line"></span>
@@ -71,42 +71,42 @@
 </nav>
 
 <!-- Menu mobile overlay -->
-<div class="mobile-menu-overlay" id="mobileMenuOverlay">
-  <div class="mobile-menu-content">
-    <div class="mobile-menu-header">
+<div class="blog-mobile-menu-overlay" id="blogMobileMenuOverlay">
+  <div class="blog-mobile-menu-content">
+    <div class="blog-mobile-menu-header">
       <h2
         style="color: white; font-size: 50px; font-weight; margin: 0; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif"
       >
         NEAT
       </h2>
       <button
-        class="close-menu-btn"
-        id="closeMenuBtn"
+        class="blog-close-menu-btn"
+        id="blogCloseMenuBtn"
         aria-label="Fermer le menu"
       >
-        <span class="close-line"></span>
-        <span class="close-line"></span>
+        <span class="blog-close-line"></span>
+        <span class="blog-close-line"></span>
       </button>
     </div>
 
-    <nav class="mobile-menu-nav">
-      <ul class="mobile-menu-list">
-        <li class="mobile-menu-item">
-          <a class="mobile-menu-link" href="/#prices"> TARIFS </a>
+    <nav class="blog-mobile-menu-nav">
+      <ul class="blog-mobile-menu-list">
+        <li class="blog-mobile-menu-item">
+          <a class="blog-mobile-menu-link" href="/#prices"> TARIFS </a>
         </li>
-        <li class="mobile-menu-item">
-          <a class="mobile-menu-link" href="/#gallery"> GALERIE </a>
+        <li class="blog-mobile-menu-item">
+          <a class="blog-mobile-menu-link" href="/#gallery"> GALERIE </a>
         </li>
-        <li class="mobile-menu-item">
-          <a class="mobile-menu-link active" href="/le-mag"> LE MAG </a>
+        <li class="blog-mobile-menu-item">
+          <a class="blog-mobile-menu-link active" href="/le-mag"> LE MAG </a>
         </li>
-        <li class="mobile-menu-item">
-          <a class="mobile-menu-link mobile-cta" href="/booking">
+        <li class="blog-mobile-menu-item">
+          <a class="blog-mobile-menu-link blog-mobile-cta" href="/booking">
             PRENDRE RENDEZ-VOUS
           </a>
         </li>
-        <li class="mobile-menu-item">
-          <div class="mobile-social-icons">
+        <li class="blog-mobile-menu-item">
+          <div class="blog-mobile-social-icons">
             <a
               href="https://www.instagram.com/neat_paris/"
               target="_blank"
@@ -134,7 +134,6 @@
     </nav>
   </div>
 </div>
-<div class="responsive-menu"></div>
 
 <style>
   .navbar {
@@ -312,7 +311,7 @@
   }
 
   /* Menu mobile overlay */
-  .mobile-menu-overlay {
+  .blog-mobile-menu-overlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -326,19 +325,19 @@
     transition: all 0.3s ease;
   }
 
-  .mobile-menu-overlay.active {
+  .blog-mobile-menu-overlay.active {
     opacity: 1;
     visibility: visible;
   }
 
-  .mobile-menu-content {
+  .blog-mobile-menu-content {
     display: flex;
     flex-direction: column;
     height: 100%;
     padding: 80px 20px 40px;
   }
 
-  .mobile-menu-header {
+  .blog-mobile-menu-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -346,7 +345,7 @@
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   }
 
-  .close-menu-btn {
+  .blog-close-menu-btn {
     width: 30px;
     height: 30px;
     background: none;
@@ -356,7 +355,7 @@
     padding: 0;
   }
 
-  .close-line {
+  .blog-close-line {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -366,33 +365,33 @@
     transform-origin: center;
   }
 
-  .close-line:nth-child(1) {
+  .blog-close-line:nth-child(1) {
     transform: translate(-50%, -50%) rotate(45deg);
   }
 
-  .close-line:nth-child(2) {
+  .blog-close-line:nth-child(2) {
     transform: translate(-50%, -50%) rotate(-45deg);
   }
 
-  .mobile-menu-nav {
+  .blog-mobile-menu-nav {
     flex: 1;
     display: flex;
     align-items: center;
     justify-content: center;
   }
 
-  .mobile-menu-list {
+  .blog-mobile-menu-list {
     list-style: none;
     padding: 0;
     margin: 0;
     width: 100%;
   }
 
-  .mobile-menu-item {
+  .blog-mobile-menu-item {
     margin-bottom: 20px;
   }
 
-  .mobile-menu-link {
+  .blog-mobile-menu-link {
     display: block;
     color: #ffffff;
     text-decoration: none;
@@ -404,13 +403,13 @@
     border-radius: 8px;
   }
 
-  .mobile-menu-link:hover,
-  .mobile-menu-link.active {
+  .blog-mobile-menu-link:hover,
+  .blog-mobile-menu-link.active {
     color: #6b7a6b;
     background-color: rgba(255, 255, 255, 0.05);
   }
 
-  .mobile-menu-link.mobile-cta {
+  .blog-mobile-menu-link.blog-mobile-cta {
     background: linear-gradient(135deg, #4a5d4a 0%, #6b7a6b 100%);
     color: #ffffff;
     padding: 15px 30px;
@@ -422,13 +421,13 @@
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  .mobile-menu-link.mobile-cta:hover {
+  .blog-mobile-menu-link.blog-mobile-cta:hover {
     background: linear-gradient(135deg, #3a4a3a 0%, #5a6a5a 100%);
     color: #ffffff;
   }
 
   /* Mobile social networks */
-  .mobile-social-icons {
+  .blog-mobile-social-icons {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -436,7 +435,7 @@
     margin-top: 30px;
   }
 
-  .mobile-social-icons a {
+  .blog-mobile-social-icons a {
     color: #ffffff;
     font-size: 22px;
     transition: all 0.3s ease;
@@ -449,7 +448,7 @@
     background-color: rgba(255, 255, 255, 0.1);
   }
 
-  .mobile-social-icons a:hover {
+  .blog-mobile-social-icons a:hover {
     color: #ffffff;
     transform: translateY(-2px);
     background-color: rgba(107, 122, 107, 0.7);
@@ -641,11 +640,11 @@
 </style>
 
 <script>
-  // Mobile burger menu management
+  // Mobile burger menu management for Blog Navbar
   (function () {
-    const burgerBtn = document.getElementById("burgerMenuBtn");
-    const closeBtn = document.getElementById("closeMenuBtn");
-    const mobileMenu = document.getElementById("mobileMenuOverlay");
+    const burgerBtn = document.getElementById("blogBurgerMenuBtn");
+    const closeBtn = document.getElementById("blogCloseMenuBtn");
+    const mobileMenu = document.getElementById("blogMobileMenuOverlay");
     const body = document.body;
 
     function openMenu() {
@@ -679,7 +678,9 @@
     });
 
     // Close menu when clicking on a link
-    const mobileLinks = document.querySelectorAll(".mobile-menu-link");
+    const mobileLinks = document.querySelectorAll(
+      "#blogMobileMenuOverlay .blog-mobile-menu-link"
+    );
     mobileLinks.forEach((link) => {
       link.addEventListener("click", closeMenu);
     });
