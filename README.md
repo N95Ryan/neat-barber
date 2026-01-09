@@ -1,6 +1,7 @@
 # 💈 Neat Barber Paris - Website
 
-Professional website for **Neat Barber - Paris** barbershop. A modern, fast, and user-friendly platform to showcase the salon, services, and facilitate bookings.
+Professional website for **Neat Barber - Paris** barbershop. <br/>
+A modern, fast, and user-friendly platform to showcase the salon, services, and facilitate bookings.
 
 ---
 
@@ -33,7 +34,6 @@ Create an attractive online presence that:
 - **Gallery** - Photos of achievements
 - **Blog** - Articles and tips
 - **Client Reviews** - Testimonials and ratings
-- **Gift Cards** - Available offers
 - **Contact & Booking** - Via Planity
 
 ---
