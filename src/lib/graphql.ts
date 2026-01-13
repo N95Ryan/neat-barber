@@ -159,3 +159,25 @@ export const GET_LATEST_POSTS = `
   }
 `;
 
+/**
+ * Query to fetch related posts (excluding current post)
+ */
+export const GET_RELATED_POSTS = `
+  query GetRelatedPosts($first: Int!, $notIn: [ID!]) {
+    posts(first: $first, where: { notIn: $notIn }) {
+      nodes {
+        id
+        title
+        slug
+        excerpt
+        date
+        featuredImage {
+          node {
+            sourceUrl
+            altText
+          }
+        }
+      }
+    }
+  }
+`;
