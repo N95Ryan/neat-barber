@@ -1,0 +1,71 @@
+---
+// Bouton de retour vers la page Le Mag
+---
+
+<div class="back-button-container">
+  <a href="/le-mag" class="btn-back">
+    <i class="fas fa-arrow-left"></i>
+    Retour au Mag
+  </a>
+</div>
+
+<style>
+  .back-button-container {
+    display: flex;
+    justify-content: center;
+    padding: 40px 0;
+  }
+
+  .btn-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: linear-gradient(135deg, #4a5d4a 0%, #6b7a6b 100%);
+    color: #ffffff;
+    padding: 14px 32px;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .btn-back:hover {
+    background: linear-gradient(135deg, #3a4a3a 0%, #5a6a5a 100%);
+    color: #e5e5e5;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .btn-back i {
+    font-size: 0.9rem;
+    transition: transform 0.3s ease;
+  }
+
+  .btn-back:hover i {
+    transform: translateX(-4px);
+  }
+
+  @media (max-width: 767px) {
+    .back-button-container {
+      padding: 30px 0;
+    }
+
+    .btn-back {
+      padding: 12px 24px;
+      font-size: 0.95rem;
+    }
+  }
+
+  @media (max-width: 575px) {
+    .back-button-container {
+      padding: 25px 0;
+    }
+
+    .btn-back {
+      padding: 10px 20px;
+      font-size: 0.9rem;
+    }
+  }
+</style>
