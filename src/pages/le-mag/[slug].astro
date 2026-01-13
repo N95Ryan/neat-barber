@@ -1,14 +1,18 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import BlogNavbar from "../../components/Le Mag/BlogNavbar.astro";
+import BlogImage from "../../components/Le Mag/BlogImage.astro";
+import BlogBackButton from "../../components/Le Mag/BlogBackButton.astro";
 import Footer from "../../components/Footer.astro";
 import {
   fetchGraphQL,
   GET_ALL_SLUGS,
   GET_POST_BY_SLUG,
+  GET_RELATED_POSTS,
 } from "../../lib/graphql";
 import type { SlugsResponse, PostResponse, Post } from "../../types/wordpress";
 import { formatDateToFrench } from "../../lib/utils/date";
+import { transformImagesToCloudinary } from "../../lib/utils/transformImages";
 
 // Generate static paths for all posts
 export async function getStaticPaths() {
@@ -24,9 +28,27 @@ export async function getStaticPaths() {
           const postData = await fetchGraphQL<PostResponse>(GET_POST_BY_SLUG, {
             slug,
           });
+
+          // Check if post exists
+          if (!postData.post) {
+            return null;
+          }
+
+          // Fetch related posts (3 latest posts excluding current one)
+          const relatedData = await fetchGraphQL<{ posts: { nodes: Post[] } }>(
+            GET_RELATED_POSTS,
+            {
+              first: 3,
+              notIn: [postData.post.id],
+            }
+          );
+
           return {
             params: { slug },
-            props: { post: postData.post },
+            props: {
+              post: postData.post,
+              relatedPosts: relatedData.posts.nodes,
+            },
           };
         } catch (error) {
           console.error(`Error fetching post with slug "${slug}":`, error);
@@ -43,9 +65,11 @@ export async function getStaticPaths() {
   }
 }
 
-const { post } = Astro.props as { post: Post | null };
+const { post, relatedPosts } = Astro.props as {
+  post: Post | null;
+  relatedPosts: Post[];
+};
 
-// Si l'article n'existe pas, rediriger vers la page 404
 if (!post) {
   return Astro.redirect("/404");
 }
@@ -58,6 +82,9 @@ const featuredImageUrl =
   post.featuredImage?.node.sourceUrl ||
   "https://res.cloudinary.com/drhqmgbm0/image/upload/w_500,h_300,c_fill,q_80/v1762468629/DSC06124_z4bryh.jpg";
 const featuredImageAlt = post.featuredImage?.node.altText || post.title;
+
+// Transform all images in content to use Cloudinary optimization
+const transformedContent = transformImagesToCloudinary(post.content);
 ---
 
 <Layout title={`${post.title} - NEAT Barber Paris`}>
@@ -93,148 +120,79 @@ const featuredImageAlt = post.featuredImage?.node.altText || post.title;
           <h1 class="article-title">{post.title}</h1>
 
           <!-- Article Image -->
-          <div class="article-image">
-            <img
-              src={featuredImageUrl}
-              alt={featuredImageAlt}
-              class="img-fluid"
-              loading="eager"
-              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-            />
-            <div class="image-placeholder" style="display: none;">
-              <i class="fas fa-image"></i>
-              <span>Image non disponible</span>
-            </div>
-          </div>
+          <BlogImage
+            src={featuredImageUrl}
+            alt={featuredImageAlt}
+            loading="eager"
+          />
 
           <!-- Article Body -->
           <div class="article-body">
-            <!-- Article excerpt -->
-            {
-              post.excerpt && (
-                <div class="article-excerpt" set:html={post.excerpt} />
-              )
-            }
-
-            <!-- Article full content from WordPress -->
-            <div class="article-text" set:html={post.content} />
+            <!-- Article full content from WordPress with optimized images -->
+            <div class="article-text" set:html={transformedContent} />
           </div>
 
           <!-- Article Footer -->
-          <div class="article-footer">
-            <div class="article-tags">
-              <span class="tag">Coiffure</span>
-              <span class="tag">Barbier</span>
-              <span class="tag">Style</span>
-              <span class="tag">Conseils</span>
-            </div>
-
-            <div class="article-share">
-              <span>Partager :</span>
-              <a
-                href="#"
-                class="share-btn facebook"
-                aria-label="Partager sur Facebook"
-              >
-                <i class="fab fa-facebook-f"></i>
-              </a>
-              <a
-                href="#"
-                class="share-btn twitter"
-                aria-label="Partager sur Twitter"
-              >
-                <i class="fab fa-twitter"></i>
-              </a>
-              <a
-                href="#"
-                class="share-btn linkedin"
-                aria-label="Partager sur LinkedIn"
-              >
-                <i class="fab fa-linkedin-in"></i>
-              </a>
-            </div>
-          </div>
         </div>
       </div>
     </div>
   </article>
 
   <!-- Related Articles -->
-  <!-- TODO: Dynamiser les articles similaires dans une prochaine itération -->
-  <section class="related-articles">
-    <div class="container">
-      <div class="row">
-        <div class="col-12">
-          <h2 class="section-title">Articles similaires</h2>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-lg-4 col-md-6 mb-4">
-          <div class="related-card">
-            <div class="related-image">
-              <img
-                src="https://res.cloudinary.com/drhqmgbm0/image/upload/w_500,h_300,c_fill,q_80/v1762468629/DSC06124_z4bryh.jpg"
-                alt="Article similaire"
-                class="img-fluid"
-              />
-            </div>
-            <div class="related-content">
-              <h4>Conseils pour entretenir votre barbe</h4>
-              <p>
-                Découvrez nos meilleurs conseils pour maintenir une barbe
-                parfaite au quotidien.
-              </p>
-              <a href="/le-mag/conseils-entretenir-barbe" class="read-more"
-                >Lire l'article</a
-              >
+  {
+    relatedPosts && relatedPosts.length > 0 && (
+      <section class="related-articles">
+        <div class="container">
+          <div class="row">
+            <div class="col-12">
+              <h2 class="section-title">Articles similaires</h2>
             </div>
           </div>
-        </div>
-        <div class="col-lg-4 col-md-6 mb-4">
-          <div class="related-card">
-            <div class="related-image">
-              <img
-                src="https://res.cloudinary.com/drhqmgbm0/image/upload/w_500,h_300,c_fill,q_80/v1762468629/DSC06124_z4bryh.jpg"
-                alt="Article similaire"
-                class="img-fluid"
-              />
-            </div>
-            <div class="related-content">
-              <h4>Les tendances coiffure 2025</h4>
-              <p>
-                Explorez les dernières tendances en matière de coiffure pour
-                cette nouvelle année.
-              </p>
-              <a href="/le-mag/tendances-coiffure-2025" class="read-more"
-                >Lire l'article</a
-              >
-            </div>
+          <div class="row">
+            {relatedPosts.map((relatedPost) => {
+              const relatedImageUrl =
+                relatedPost.featuredImage?.node.sourceUrl ||
+                "https://res.cloudinary.com/drhqmgbm0/image/upload/w_500,h_300,c_fill,q_80/v1762468629/DSC06124_z4bryh.jpg";
+              const relatedImageAlt =
+                relatedPost.featuredImage?.node.altText || relatedPost.title;
+
+              // Extract text from excerpt (remove HTML tags)
+              const excerptText = relatedPost.excerpt
+                ? relatedPost.excerpt
+                    .replace(/<[^>]*>/g, "")
+                    .substring(0, 120) + "..."
+                : "Découvrez cet article passionnant sur notre blog.";
+
+              return (
+                <div class="col-lg-4 col-md-6 mb-4">
+                  <div class="related-card">
+                    <div class="related-image">
+                      <img
+                        src={relatedImageUrl}
+                        alt={relatedImageAlt}
+                        class="img-fluid"
+                        loading="lazy"
+                      />
+                    </div>
+                    <div class="related-content">
+                      <h4>{relatedPost.title}</h4>
+                      <p>{excerptText}</p>
+                      <a href={`/le-mag/${relatedPost.slug}`} class="read-more">
+                        Lire l'article
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
-        <div class="col-lg-4 col-md-6 mb-4">
-          <div class="related-card">
-            <div class="related-image">
-              <img
-                src="https://res.cloudinary.com/drhqmgbm0/image/upload/w_500,h_300,c_fill,q_80/v1762468629/DSC06124_z4bryh.jpg"
-                alt="Article similaire"
-                class="img-fluid"
-              />
-            </div>
-            <div class="related-content">
-              <h4>L'art du rasage traditionnel</h4>
-              <p>
-                Plongez dans l'univers du rasage traditionnel et découvrez ses
-                secrets.
-              </p>
-              <a href="/le-mag/art-rasage-traditionnel" class="read-more"
-                >Lire l'article</a
-              >
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+      </section>
+    )
+  }
+
+  <!-- Back to Blog Button -->
+  <BlogBackButton />
 
   <Footer />
 </Layout>
@@ -305,60 +263,8 @@ const featuredImageAlt = post.featuredImage?.node.altText || post.title;
     line-height: 1.2;
   }
 
-  .article-image {
-    position: relative;
-    margin-bottom: 40px;
-    border-radius: 10px;
-    overflow: hidden;
-    background-color: #f8f9fa;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 400px;
-  }
-
-  .article-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-  }
-
-  .image-placeholder {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #f8f9fa;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    color: #6c757d;
-    font-size: 1rem;
-  }
-
-  .image-placeholder i {
-    font-size: 3rem;
-    margin-bottom: 10px;
-    opacity: 0.5;
-  }
-
   .article-body {
     margin-bottom: 50px;
-  }
-
-  .article-excerpt {
-    font-size: 1.2rem;
-    color: #4a5d4a;
-    font-weight: 500;
-    margin-bottom: 30px;
-    line-height: 1.6;
-    padding: 20px;
-    background-color: #f8f9fa;
-    border-left: 4px solid #4a5d4a;
-    border-radius: 0 5px 5px 0;
   }
 
   .article-text {
@@ -534,10 +440,6 @@ const featuredImageAlt = post.featuredImage?.node.altText || post.title;
     .article-title {
       font-size: 2.2rem;
     }
-
-    .article-image {
-      min-height: 350px;
-    }
   }
 
   @media (max-width: 767px) {
@@ -547,10 +449,6 @@ const featuredImageAlt = post.featuredImage?.node.altText || post.title;
 
     .article-title {
       font-size: 1.8rem;
-    }
-
-    .article-image {
-      min-height: 300px;
     }
 
     .article-text {
@@ -570,15 +468,6 @@ const featuredImageAlt = post.featuredImage?.node.altText || post.title;
   @media (max-width: 575px) {
     .article-title {
       font-size: 1.6rem;
-    }
-
-    .article-image {
-      min-height: 250px;
-    }
-
-    .article-excerpt {
-      font-size: 1.1rem;
-      padding: 15px;
     }
 
     .article-text h3 {

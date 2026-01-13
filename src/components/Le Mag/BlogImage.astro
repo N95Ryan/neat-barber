@@ -1,0 +1,104 @@
+---
+interface Props {
+  src: string;
+  alt: string;
+  loading?: "eager" | "lazy";
+}
+
+const { src, alt, loading = "lazy" } = Astro.props;
+
+// Transform Cloudinary URL to apply dimensions and optimization
+const transformCloudinaryUrl = (url: string): string => {
+  // Check if it's a Cloudinary URL
+  if (url.includes("cloudinary.com")) {
+    // Extract the base URL and path
+    const parts = url.split("/upload/");
+    if (parts.length === 2) {
+      // Apply transformations: width 872px, height 490.5px (rounded to 491), crop to fill, quality 80, format auto
+      return `${parts[0]}/upload/w_872,h_491,c_fill,q_80,f_auto/${parts[1]}`;
+    }
+  }
+  // If not Cloudinary or transformation failed, return original URL
+  return url;
+};
+
+const optimizedSrc = transformCloudinaryUrl(src);
+---
+
+<div class="blog-image-wrapper">
+  <img
+    src={optimizedSrc}
+    alt={alt}
+    class="blog-image"
+    loading={loading}
+    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+  />
+  <div class="image-placeholder" style="display: none;">
+    <i class="fas fa-image"></i>
+    <span>Image non disponible</span>
+  </div>
+</div>
+
+<style>
+  .blog-image-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 872px;
+    height: 490.5px;
+    margin: 0 auto 40px auto;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #f8f9fa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .blog-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .image-placeholder {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #f8f9fa;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #6c757d;
+    font-size: 1rem;
+  }
+
+  .image-placeholder i {
+    font-size: 3rem;
+    margin-bottom: 10px;
+    opacity: 0.5;
+  }
+
+  /* Responsive */
+  @media (max-width: 991px) {
+    .blog-image-wrapper {
+      height: 400px;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .blog-image-wrapper {
+      height: 350px;
+    }
+  }
+
+  @media (max-width: 575px) {
+    .blog-image-wrapper {
+      height: 280px;
+      margin-bottom: 30px;
+    }
+  }
+</style>
