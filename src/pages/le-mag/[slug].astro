@@ -1,6 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import BlogNavbar from "../../components/Le Mag/BlogNavbar.astro";
+import BlogImage from "../../components/Le Mag/BlogImage.astro";
 import Footer from "../../components/Footer.astro";
 import {
   fetchGraphQL,
@@ -9,6 +10,7 @@ import {
 } from "../../lib/graphql";
 import type { SlugsResponse, PostResponse, Post } from "../../types/wordpress";
 import { formatDateToFrench } from "../../lib/utils/date";
+import { transformImagesToCloudinary } from "../../lib/utils/transformImages";
 
 // Generate static paths for all posts
 export async function getStaticPaths() {
@@ -45,7 +47,6 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props as { post: Post | null };
 
-// Si l'article n'existe pas, rediriger vers la page 404
 if (!post) {
   return Astro.redirect("/404");
 }
@@ -58,6 +59,9 @@ const featuredImageUrl =
   post.featuredImage?.node.sourceUrl ||
   "https://res.cloudinary.com/drhqmgbm0/image/upload/w_500,h_300,c_fill,q_80/v1762468629/DSC06124_z4bryh.jpg";
 const featuredImageAlt = post.featuredImage?.node.altText || post.title;
+
+// Transform all images in content to use Cloudinary optimization
+const transformedContent = transformImagesToCloudinary(post.content);
 ---
 
 <Layout title={`${post.title} - NEAT Barber Paris`}>
@@ -93,31 +97,16 @@ const featuredImageAlt = post.featuredImage?.node.altText || post.title;
           <h1 class="article-title">{post.title}</h1>
 
           <!-- Article Image -->
-          <div class="article-image">
-            <img
-              src={featuredImageUrl}
-              alt={featuredImageAlt}
-              class="img-fluid"
-              loading="eager"
-              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-            />
-            <div class="image-placeholder" style="display: none;">
-              <i class="fas fa-image"></i>
-              <span>Image non disponible</span>
-            </div>
-          </div>
+          <BlogImage
+            src={featuredImageUrl}
+            alt={featuredImageAlt}
+            loading="eager"
+          />
 
           <!-- Article Body -->
           <div class="article-body">
-            <!-- Article excerpt -->
-            {
-              post.excerpt && (
-                <div class="article-excerpt" set:html={post.excerpt} />
-              )
-            }
-
-            <!-- Article full content from WordPress -->
-            <div class="article-text" set:html={post.content} />
+            <!-- Article full content from WordPress with optimized images -->
+            <div class="article-text" set:html={transformedContent} />
           </div>
 
           <!-- Article Footer -->
@@ -305,60 +294,8 @@ const featuredImageAlt = post.featuredImage?.node.altText || post.title;
     line-height: 1.2;
   }
 
-  .article-image {
-    position: relative;
-    margin-bottom: 40px;
-    border-radius: 10px;
-    overflow: hidden;
-    background-color: #f8f9fa;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 400px;
-  }
-
-  .article-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-  }
-
-  .image-placeholder {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #f8f9fa;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    color: #6c757d;
-    font-size: 1rem;
-  }
-
-  .image-placeholder i {
-    font-size: 3rem;
-    margin-bottom: 10px;
-    opacity: 0.5;
-  }
-
   .article-body {
     margin-bottom: 50px;
-  }
-
-  .article-excerpt {
-    font-size: 1.2rem;
-    color: #4a5d4a;
-    font-weight: 500;
-    margin-bottom: 30px;
-    line-height: 1.6;
-    padding: 20px;
-    background-color: #f8f9fa;
-    border-left: 4px solid #4a5d4a;
-    border-radius: 0 5px 5px 0;
   }
 
   .article-text {
@@ -534,10 +471,6 @@ const featuredImageAlt = post.featuredImage?.node.altText || post.title;
     .article-title {
       font-size: 2.2rem;
     }
-
-    .article-image {
-      min-height: 350px;
-    }
   }
 
   @media (max-width: 767px) {
@@ -547,10 +480,6 @@ const featuredImageAlt = post.featuredImage?.node.altText || post.title;
 
     .article-title {
       font-size: 1.8rem;
-    }
-
-    .article-image {
-      min-height: 300px;
     }
 
     .article-text {
@@ -570,15 +499,6 @@ const featuredImageAlt = post.featuredImage?.node.altText || post.title;
   @media (max-width: 575px) {
     .article-title {
       font-size: 1.6rem;
-    }
-
-    .article-image {
-      min-height: 250px;
-    }
-
-    .article-excerpt {
-      font-size: 1.1rem;
-      padding: 15px;
     }
 
     .article-text h3 {
