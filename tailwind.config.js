@@ -5,6 +5,8 @@ export default {
     extend: {
       animation: {
         'scroll': 'scroll linear infinite',
+        'scroll-slow': 'scroll 40s linear infinite',
+        'scroll-fast': 'scroll 20s linear infinite',
         'fade-in-up': 'fadeInUp 0.8s ease-out',
         'fade-in': 'fadeIn 0.6s ease-out',
         'fade-in-left': 'fadeInLeft 0.8s ease-out',
@@ -15,11 +17,11 @@ export default {
           '100%': { transform: 'translateX(-50%)' },
         },
         fadeInUp: {
-          '0%': { 
+          '0%': {
             opacity: '0',
             transform: 'translateY(30px)'
           },
-          '100%': { 
+          '100%': {
             opacity: '1',
             transform: 'translateY(0)'
           },
@@ -29,11 +31,11 @@ export default {
           '100%': { opacity: '1' },
         },
         fadeInLeft: {
-          '0%': { 
+          '0%': {
             opacity: '0',
             transform: 'translateX(-30px)'
           },
-          '100%': { 
+          '100%': {
             opacity: '1',
             transform: 'translateX(0)'
           },

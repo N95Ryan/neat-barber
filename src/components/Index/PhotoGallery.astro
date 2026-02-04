@@ -1,65 +1,153 @@
 ---
 // PhotoGallery component
 import { galleryImages } from "../../data/images";
+
+/**
+ * Optimise une URL Cloudinary avec les transformations standardisées
+ * Gère les URLs avec ou sans transformations existantes
+ */
+function optimizeCloudinaryUrl(url: string): string {
+  if (!url.includes("cloudinary.com")) return url;
+
+  // Extraire le chemin après /upload/
+  const parts = url.split("/upload/");
+  if (parts.length !== 2) return url;
+
+  const afterUpload = parts[1];
+
+  // Extraire la version (v suivi de chiffres) et le public_id
+  // Format possible: [transformations]/v[version]/[public_id] ou [transformations]/[public_id]
+  const versionMatch = afterUpload.match(/\/v(\d+)\/(.+)$/);
+
+  if (versionMatch) {
+    // URL avec version
+    const version = versionMatch[1];
+    const publicId = versionMatch[2];
+    return `${parts[0]}/upload/f_auto,q_auto,w_800,h_600,c_fill/v${version}/${publicId}`;
+  } else {
+    // URL sans version - extraire le public_id (dernière partie après le dernier slash)
+    const segments = afterUpload.split("/");
+    const publicId = segments[segments.length - 1];
+    return `${parts[0]}/upload/f_auto,q_auto,w_800,h_600,c_fill/${publicId}`;
+  }
+}
 ---
 
-<div class="photo-gallery">
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-md-12">
-        <!-- Section Title Start -->
-        <div class="section-title">
-          <h3>Découvrez nos locaux</h3>
-          <h2>Galerie Photos</h2>
-        </div>
-        <!-- Section Title End -->
-      </div>
+<div class="photo-gallery w-full py-12">
+  <div class="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
+    <!-- Section Title -->
+    <div class="text-center mb-12">
+      <h3 class="text-lg md:text-xl text-gray-600 mb-2">
+        Découvrez nos locaux
+      </h3>
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-black">
+        Galerie Photos
+      </h2>
     </div>
+  </div>
 
-    <div class="row">
-      <div class="col-md-12">
-        <div class="photo-gallery-ticker">
-          <!-- Photo Gallery Images Start -->
-          <div class="photo-gallery-content">
-            {
-              galleryImages.map((image) => (
-                <div class="photo-gallery-item h-full">
-                  <figure class="hover-anime aspect-[4/3] overflow-hidden">
-                    <img
-                      src={image.url}
-                      alt={image.alt}
-                      loading="lazy"
-                      width="800"
-                      height="600"
-                      class="object-cover w-full h-full"
-                    />
-                  </figure>
-                </div>
-              ))
-            }
-          </div>
+  <!-- Carrousel Container - Pleine largeur -->
+  <div class="w-full overflow-hidden">
+    <div class="photo-gallery-scroll">
+      <!-- Première série d'images -->
+      <div class="photo-gallery-track">
+        {
+          galleryImages.map((image) => (
+            <div class="shrink-0 w-64 md:w-80 lg:w-96">
+              <figure class="hover-anime aspect-[4/3] overflow-hidden rounded-lg">
+                <img
+                  src={optimizeCloudinaryUrl(image.url)}
+                  alt={image.alt}
+                  loading="lazy"
+                  width="800"
+                  height="600"
+                  class="object-cover w-full h-full rounded-lg"
+                />
+              </figure>
+            </div>
+          ))
+        }
+      </div>
 
-          <div class="photo-gallery-content">
-            {
-              galleryImages.map((image) => (
-                <div class="photo-gallery-item h-full">
-                  <figure class="hover-anime aspect-[4/3] overflow-hidden">
-                    <img
-                      src={image.url}
-                      alt={image.alt}
-                      loading="lazy"
-                      width="800"
-                      height="600"
-                      class="object-cover w-full h-full"
-                    />
-                  </figure>
-                </div>
-              ))
-            }
-          </div>
-          <!-- Photo Gallery Images End -->
-        </div>
+      <!-- Deuxième série d'images (duplication pour boucle infinie) -->
+      <div class="photo-gallery-track" aria-hidden="true">
+        {
+          galleryImages.map((image) => (
+            <div class="shrink-0 w-64 md:w-80 lg:w-96">
+              <figure class="hover-anime aspect-[4/3] overflow-hidden rounded-lg">
+                <img
+                  src={optimizeCloudinaryUrl(image.url)}
+                  alt={image.alt}
+                  loading="lazy"
+                  width="800"
+                  height="600"
+                  class="object-cover w-full h-full rounded-lg"
+                />
+              </figure>
+            </div>
+          ))
+        }
+      </div>
+
+      <!-- Troisième série d'images (pour transition encore plus fluide) -->
+      <div class="photo-gallery-track" aria-hidden="true">
+        {
+          galleryImages.map((image) => (
+            <div class="shrink-0 w-64 md:w-80 lg:w-96">
+              <figure class="hover-anime aspect-[4/3] overflow-hidden rounded-lg">
+                <img
+                  src={optimizeCloudinaryUrl(image.url)}
+                  alt={image.alt}
+                  loading="lazy"
+                  width="800"
+                  height="600"
+                  class="object-cover w-full h-full rounded-lg"
+                />
+              </figure>
+            </div>
+          ))
+        }
       </div>
     </div>
   </div>
 </div>
+
+<style>
+  @keyframes photoGalleryScroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(calc(-100% / 3));
+    }
+  }
+
+  .photo-gallery-scroll {
+    display: flex;
+    gap: 1rem;
+    animation: photoGalleryScroll 30s linear infinite;
+    will-change: transform;
+    width: fit-content;
+    /* Optimisations pour une transition fluide sans coupure */
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform-style: preserve-3d;
+  }
+
+  .photo-gallery-track {
+    display: flex;
+    gap: 1rem;
+    flex-shrink: 0;
+    /* Garantir que tous les tracks ont exactement la même structure */
+    min-width: 0;
+  }
+
+  @media (min-width: 768px) {
+    .photo-gallery-scroll {
+      gap: 1.5rem;
+    }
+    .photo-gallery-track {
+      gap: 1.5rem;
+    }
+  }
+</style>
