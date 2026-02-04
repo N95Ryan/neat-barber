@@ -29,10 +29,6 @@ export const galleryImages = [
         alt: "Salon Neat Barber - Équipement"
     },
     {
-        url: "https://res.cloudinary.com/drhqmgbm0/image/upload/v1768996214/5_iivyo3.jpg",
-        alt: "Salon Neat Barber - Fauteuils"
-    },
-    {
         url: "https://res.cloudinary.com/drhqmgbm0/image/upload/v1768996229/9_dr3ehx.jpg",
         alt: "Salon Neat Barber - Espace de travail"
     },

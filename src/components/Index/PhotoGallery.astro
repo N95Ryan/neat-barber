@@ -124,7 +124,8 @@ function optimizeCloudinaryUrl(url: string): string {
 
   .photo-gallery-scroll {
     display: flex;
-    animation: photoGalleryScroll 35s linear infinite;
+    gap: 1rem;
+    animation: photoGalleryScroll 30s linear infinite;
     will-change: transform;
     width: fit-content;
     /* Optimisations pour une transition fluide sans coupure */
@@ -142,6 +143,9 @@ function optimizeCloudinaryUrl(url: string): string {
   }
 
   @media (min-width: 768px) {
+    .photo-gallery-scroll {
+      gap: 1.5rem;
+    }
     .photo-gallery-track {
       gap: 1.5rem;
     }
