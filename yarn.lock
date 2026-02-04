@@ -618,10 +618,10 @@
     lighthouse "12.6.1"
     tree-kill "^1.2.1"
 
-"@lucide/astro@^0.468.0":
-  version "0.563.0"
-  resolved "https://registry.yarnpkg.com/@lucide/astro/-/astro-0.563.0.tgz#7dbbb9f874969cafa39cbb74800d01a2e7b32185"
-  integrity sha512-X9fNJvRR6pLJfkIEAFQkizWaNVvcduunJoFyR3fwPu30Y6jOu5S9k4k7HTSk3ZrEfqK2eFEqrBqqWH4fwSNKCg==
+"@lucide/astro@^0.562.0":
+  version "0.562.0"
+  resolved "https://registry.yarnpkg.com/@lucide/astro/-/astro-0.562.0.tgz#052b78a7f27371898827f1fbf0ddc702ccf7248e"
+  integrity sha512-Rdtykh/VmH3M7n4ckBWY2X7wTMyJX/At5MuJDZ+5M+QZNebxAa75TU7xmM0OVmQj60UsHvdmqRIRNTqEYIieKg==
 
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
