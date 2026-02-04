@@ -40,8 +40,4 @@ export const galleryImages = [
         url: "https://res.cloudinary.com/drhqmgbm0/image/upload/v1756349810/6_sa5zri.webp",
         alt: "Salon Neat Barber - Espace détente"
     },
-    // {
-    //     url: "https://res.cloudinary.com/drhqmgbm0/image/upload/v1756349809/7_uom9of.webp",
-    //     alt: "Salon Neat Barber - Vue complète"
-    // }
 ];
