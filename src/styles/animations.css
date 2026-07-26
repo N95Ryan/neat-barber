@@ -1,0 +1,92 @@
+/**
+ * Modern CSS Animations
+ * Replaces WOW.js, GSAP text-anime and reveal animations
+ */
+
+/* Fade In Animation (replaces WOW fadeInUp) */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.wow.animated,
+[data-animate].animated {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.fadeInUp.animated {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+/* Text Animation (replaces GSAP text-anime) */
+.text-anime {
+  opacity: 0;
+  transform: translateX(20px);
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.text-anime.animate-text {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Reveal Animation (replaces GSAP reveal) */
+.reveal {
+  position: relative;
+  overflow: hidden;
+  visibility: hidden;
+}
+
+.reveal.revealed {
+  visibility: visible;
+}
+
+.reveal.revealed img {
+  animation: revealImage 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+@keyframes revealImage {
+  from {
+    transform: scale(1.2);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Hover anime effect (keep existing functionality) */
+.hover-anime {
+  position: relative;
+  overflow: hidden;
+}
+
+.hover-anime:after {
+  position: absolute;
+  top: 0;
+  left: -75%;
+  z-index: 2;
+  display: block;
+  content: '';
+  width: 20%;
+  height: 100%;
+  background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,.1) 100%);
+  transform: skewX(-25deg);
+}
+
+.hover-anime:hover:after {
+  animation: shine .75s;
+}
+
+@keyframes shine {
+  100% {
+    left: 125%;
+  }
+}

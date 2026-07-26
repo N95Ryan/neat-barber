@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Animation reveal pour l'apparition */
+/* Reveal animation for appearance */
 .reveal {
   @apply opacity-0 translate-y-8 transition-all duration-500 ease-in-out overflow-visible relative;
 }
@@ -11,12 +11,12 @@
   @apply opacity-100 translate-y-0;
 }
 
-/* Animation pour le texte */
+/* Text animation */
 .text-anime {
   @apply relative inline-block;
 }
 
-/* Effet hover-anime pour les images */
+/* Hover-anime effect for images */
 .hover-anime {
   @apply transition-all duration-300 ease-in-out;
 }

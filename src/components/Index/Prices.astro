@@ -1,0 +1,71 @@
+---
+import '../../styles/prices-override.css';
+
+const services = [
+  {
+    name: "Barbe NEAT",
+    description: "Taille de barbe, contours & soins (serviette chaude & soin visage).",
+    price: "28€"
+  },
+  {
+    name: "Classic NEAT #1",
+    description: "Coupe classique.",
+    price: "35€"
+  },
+  {
+    name: "Classic NEAT #2",
+    description: "Coupe classique & shampoing pour un soin complet.",
+    price: "38€"
+  },
+  {
+    name: "Complète NEAT",
+    description: "Coupe & Barbe pour un style parfait.",
+    price: "55€"
+  },
+  {
+    name: "Complète NEAT",
+    description: "Coupe, barbe & shampoing pour un soin complet.",
+    price: "58€"
+  },
+  {
+    name: "Signature NEAT",
+    description: "Coupe, barbe & soin (shampoing, serviette chaude, soin visage).",
+    price: "65€"
+  },
+];
+---
+
+<div class="pricing">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <!-- Section Title Start -->
+        <div class="section-title text-center">
+          <h3 class="subtitle">Nos prestations</h3>
+          <h2 class="title">Tarifs</h2>
+        </div>
+        <!-- Section Title End -->
+      </div>
+    </div>
+
+    <div class="row">
+      {services.map((service, index) => (
+        <div class="col-lg-4 col-md-6">
+          <!-- Pricing Item Start -->
+          <a href="/booking" class="d-block text-decoration-none">
+            <div class="pricing-item rounded-5">
+              <div class="pricing-info">
+                <h3>{service.name}</h3>
+                <p>{service.description}</p>
+              </div>
+              <div class="pricing-price">
+                <p>{service.price}</p>
+              </div>
+            </div>
+          </a>
+          <!-- Pricing Item End -->
+        </div>
+      ))}
+    </div>
+  </div>
+</div>

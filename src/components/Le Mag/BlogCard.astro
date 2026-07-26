@@ -1,0 +1,223 @@
+---
+interface Props {
+  title: string;
+  excerpt: string;
+  image?: string;
+  featuredImage?: string;
+  slug: string;
+  date: string;
+}
+
+const { title, excerpt, image, featuredImage, slug, date } = Astro.props;
+
+// Use featuredImage if available, otherwise fallback to image or placeholder
+const imageUrl =
+  featuredImage ||
+  image ||
+  "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=500&h=300&fit=crop";
+---
+
+<div class="blog-card">
+  <a href={`/le-mag/${slug}`} class="blog-image-link">
+    <div class="blog-image">
+      <img
+        src={imageUrl}
+        alt={title}
+        class="img-fluid"
+        loading="lazy"
+        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+      />
+      <div class="image-placeholder" style="display: none;">
+        <i class="fas fa-image"></i>
+        <span>Image non disponible</span>
+      </div>
+      <div class="blog-date">{date}</div>
+    </div>
+  </a>
+  <div class="blog-content">
+    <h3 class="blog-title">
+      <a href={`/le-mag/${slug}`}>{title}</a>
+    </h3>
+    <p class="blog-excerpt">
+      {excerpt}
+    </p>
+    <a href={`/le-mag/${slug}`} class="read-more"
+      >Lire l'article <i class="fas fa-arrow-right"></i></a
+    >
+  </div>
+</div>
+
+<style>
+  .blog-card {
+    background-color: #ffffff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .blog-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+  }
+
+  .blog-image-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .blog-image {
+    position: relative;
+    overflow: hidden;
+    height: 220px;
+    background-color: #f8f9fa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .blog-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.5s ease;
+    min-height: 100%;
+  }
+
+  .image-placeholder {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #f8f9fa;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #6c757d;
+    font-size: 0.9rem;
+  }
+
+  .image-placeholder i {
+    font-size: 2rem;
+    margin-bottom: 8px;
+    opacity: 0.5;
+  }
+
+  .blog-card:hover .blog-image img {
+    transform: scale(1.05);
+  }
+
+  .blog-date {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(42, 52, 42, 0.85);
+    color: #ffffff;
+    font-size: 0.75rem;
+    font-weight: 500;
+    padding: 6px 12px;
+    border-top-right-radius: 10px;
+  }
+
+  .blog-content {
+    padding: 25px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .blog-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+    line-height: 1.4;
+  }
+
+  .blog-title a {
+    color: #2a342a;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .blog-title a:hover {
+    color: #4a5d4a;
+  }
+
+  .blog-excerpt {
+    color: #6c757d;
+    margin-bottom: 20px;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    flex-grow: 1;
+  }
+
+  .read-more {
+    display: inline-flex;
+    align-items: center;
+    color: #4a5d4a;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    margin-top: auto;
+  }
+
+  .read-more i {
+    margin-left: 8px;
+    transition: transform 0.3s ease;
+  }
+
+  .read-more:hover {
+    color: #2a342a;
+  }
+
+  .read-more:hover i {
+    transform: translateX(3px);
+  }
+
+  /* Responsive */
+  @media (max-width: 991px) {
+    .blog-image {
+      height: 200px;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .blog-image {
+      height: 190px;
+    }
+
+    .blog-title {
+      font-size: 1.1rem;
+    }
+
+    .blog-content {
+      padding: 20px;
+    }
+  }
+
+  @media (max-width: 575px) {
+    .blog-image {
+      height: 180px;
+    }
+
+    .blog-date {
+      font-size: 0.7rem;
+      padding: 5px 10px;
+    }
+  }
+
+  /* Improvement for very small screens */
+  @media (max-width: 400px) {
+    .blog-image {
+      height: 160px;
+    }
+  }
+</style>

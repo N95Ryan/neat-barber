@@ -1,8 +1,7 @@
 /*----------------------------------------------------------------------------------------
-* Author : Awaiken
-* Template Name : Glimy - Barbershop and Hair Salon HTML Template
-* File : CSS File
-* Version : 1.0
+* Version : 2.0 - Optimized & Cleaned
+* Sections Supprimées : Gift & Offers, About Page, Services Page, Service Single, Contact, Pricing Page, FAQs
+* Gain : ~1500 lignes supprimées (passages de 3382 → ~1900 lignes)
 *---------------------------------------------------------------------------------------- */
 /* INDEX
 ----------------------------------------------------------------------------------------
@@ -11,24 +10,17 @@
 03. Header css
 04. Hero css
 05. Feature Ticker css
-06. About us  css
+06. About us css
 07. Our Services css
 08. Why Choose us css
 09. Fun Facts Counter css
 10. Photo Gallery css
 11. Pricing css
-12. Gift & Offers css
 13. Testimonial css
 14. Latest Posts css
 15. Footer css
-16. About us Page css
-17. Services Page css
-18. Service Single css
-19. Contact us css
 20. Blog Archive css
 21. Blog Single css
-22. Pricing Page css
-23. FAQs Page css
 24. Page Not Found css
 25. Responsive css
 -------------------------------------------------------------------------------------- */
@@ -54,7 +46,6 @@
 	--ticker-gap			: 40px;
 	--photo-gap				: 15px;
 }
-  
 
 /************************************/
 /**** 	   02. General css		 ****/
@@ -223,29 +214,6 @@ a:focus{
 
 .btn-default i{
 	margin-left: 10px;
-}
-
-#magic-cursor {
-	position: absolute;
-	width: 24px !important;
-	height: 24px !important;
-	pointer-events: none;
-	z-index:1000000;
-}
-
-#ball{
-	position: fixed;
-	display: block;
-	left: 0;
-	top: 0;
-	transform: translate(-50%, -50%);
-	width: 24px !important;
-	height: 24px !important;
-	border: 2px solid var(--primary-color);
-	border-radius: 50%;
-	pointer-events: none;
-	opacity:1 !important;
-	filter: invert(100);
 }
 
 .preloader{
@@ -502,60 +470,6 @@ header.main-header .header-sticky.active{
 .responsive-menu{
 	top: 15px;
 	position: relative;
-}
-
-.slicknav_btn{
-	background: none;
-	border: 2px solid var(--primary-color);
-	padding: 6px 0 0;
-	width: 42px;
-	height: 42px;
-	margin: 0;
-	border-radius: 30px;
-}
-
-.slicknav_icon .slicknav_icon-bar{
-	display: block;
-	width: 100%;
-	height: 3px;
-	width: 22px;
-	background-color: var(--dark-primary-color);
-	margin: 4px auto !important;
-}
-
-.slicknav_menu{
-	padding: 0;
-	background: var(--dark-primary-color);
-}
-
-.slicknav_nav{
-	padding-top: 5px;
-	padding-bottom: 5px;
-}
-
-.slicknav_nav li a{
-	font-size: 16px;
-	font-weight: 600;
-	font-family: var(--accent-font);
-	color: var(--primary-color);
-}
-
-.slicknav_nav a:hover,
-.slicknav_nav .slicknav_row:hover{
-	background-color: transparent;
-	color: var(--primary-color);
-}
-
-.slicknav_arrow{
-	font-size: 0 !important;
-}
-
-.slicknav_arrow:after{
-	content: '\f105';
-	font-family: 'FontAwesome';
-	font-weight: 900;
-	font-size: 14px;
-	margin-left: 8px;
 }
 
 /************************************/
@@ -1276,56 +1190,6 @@ header.main-header .header-sticky.active{
 }
 
 /*******************************************/
-/**** 	  	12. Gift & Offers css   	****/
-/*******************************************/
-
-.gift-cards{
-	padding: 100px 0;
-}
-
-.gift-box{
-	background: var(--secondary-color);
-	padding: 50px;
-	display: flex;
-	flex-wrap: wrap;
-	border-radius: 50px 50px 10px 50px;
-	justify-content: space-between;
-	align-items: center;
-	overflow: hidden;
-}
-
-.gift-box.left-shape{
-	border-radius: 50px 50px 50px 10px;
-}
-
-.gift-box .gift-content{
-	width: calc(100% - 250px);
-}
-
-.gift-box .gift-content h3{
-	font-size: 22px;
-	color: var(--primary-color);
-	margin-bottom: 15px;
-}
-
-.gift-box .gift-image{
-	width: 230px;
-}
-
-.gift-box .gift-image img{
-	margin-top: -30px;
-	margin-bottom: -50px;
-	position: relative;
-	right: -20px;
-	filter: var(--image-filter);
-	transition: var(--transition);
-}
-
-.gift-box:hover img{
-	filter: var(--image-filter-hover);
-}
-
-/*******************************************/
 /**** 	  	13. Testimonial css		  	****/
 /*******************************************/
 
@@ -1604,7 +1468,53 @@ footer.footer{
 }
 
 /*******************************************/
-/**** 	  	16. About us Page css	  	****/
+/**** 	   	20. Blog Archive css	  	****/
+/*******************************************/
+
+.page-blog-archive{
+	padding: 100px 0;
+}
+
+.page-blog-archive .post-item{
+	margin-bottom: 30px;
+}
+
+.post-pagination{
+	margin-top: 30px;
+	text-align: center;
+}
+
+.post-pagination ul{
+	justify-content: center;
+	padding: 0;
+	margin: 0;
+}
+
+.post-pagination ul li a,
+.post-pagination ul li span{
+	display: flex;
+	text-decoration: none;
+	justify-content: center;
+	align-items: center;
+	width: 40px;
+	height: 40px;
+	background: var(--secondary-color);
+	margin: 0 4px;
+	border-radius: 30px 30px 4px 30px;
+	font-family: var(--accent-font);
+	font-weight: 700;
+	color: var(--primary-color);
+	transition: var(--transition);
+}
+
+.post-pagination ul li.active a,
+.post-pagination ul li a:hover{
+	background: var(--primary-color);
+	color: var(--dark-primary-color);
+}
+
+/*******************************************/
+/**** 	   	21. Blog Single css	  		****/
 /*******************************************/
 
 .page-header{
@@ -1658,670 +1568,6 @@ footer.footer{
 .page-header-icon img{
 	max-width: 50%;
 }
-
-.our-goal{
-	padding: 100px 0;
-	background: var(--secondary-color);
-}
-
-.goal-item{
-	background: var(--dark-primary-color);
-	border-radius: 50px 50px 10px 50px;
-	overflow: hidden;
-}
-
-.goal-item figure{
-	overflow: hidden;
-}
-
-.goal-image img{
-	width: 100%;
-	filter: var(--image-filter);
-	transition: var(--transition);
-}
-
-.goal-item:hover .goal-image img{
-	transform: scale(1.1);
-}
-
-.goal-item:hover .hover-anime:after{
-	animation: shine .75s;
-}
-
-.goal-item:hover .goal-image img{
-	filter: var(--image-filter-hover);
-}
-
-.goal-content{
-	text-align: center;
-	padding: 0 40px 40px 40px;
-	margin-top: -50px;
-	z-index: 1;
-	position: relative;
-}
-
-.goal-icon{
-	width: 100px;
-	height: 100px;
-	background: var(--primary-color);
-	border-radius: 50px 50px 10px 50px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	margin: 0 auto 20px;
-	border: 4px solid var(--dark-primary-color);
-}
-
-.goal-icon img{
-	max-width: 50%;
-}
-
-.goal-content h3{
-	font-size: 22px;
-	color: var(--primary-color);
-	margin-bottom: 15px;
-}
-
-.goal-content p{
-	margin-bottom: 0;
-}
-
-.our-team{
-	padding: 100px 0;
-}
-
-.team-item{
-	background: var(--secondary-color);
-	border-radius: 50px 50px 10px 50px;
-	overflow: hidden;
-}
-
-.team-image img{
-	width: 100%;
-	filter: var(--image-filter);
-	transition: var(--transition);
-}
-
-.team-item:hover img{
-	transform: scale(1.1);
-}
-
-.team-item:hover .hover-anime:after{
-	animation: shine .75s;
-}
-
-.team-item:hover .team-image img{
-	filter: var(--image-filter-hover);
-}
-
-.team-item .team-info{
-	text-align: center;
-	padding: 30px;
-}
-
-.team-item .team-info h3{
-	color: var(--primary-color);
-	font-size: 22px;
-	margin-bottom: 5px;
-}
-
-.team-item .team-info p{
-	margin-bottom: 0;
-}
-
-.team-item .team-social-links{
-	margin-top: 15px;
-}
-
-.team-item .team-social-links ul{
-	padding: 0;
-	margin: 0;
-	list-style: none;
-	display: flex;
-	justify-content: center;
-}
-
-.team-item .team-social-links ul li{
-	margin: 0 5px;
-}
-
-.team-item .team-social-links ul li a{
-	display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--primary-color);
-    width: 40px;
-    height: 40px;
-    color: var(--dark-primary-color);
-    font-size: 16px;
-    border-radius: 20px 20px 6px 20px;
-    transition: var(--transition);
-}
-
-.team-item .team-social-links ul li a:hover{
-	opacity: 0.8;
-}
-
-.we-use{
-	padding: 100px 0;
-}
-
-.brand-logo{
-	width: 100%;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	background: var(--secondary-color);
-	padding: 40px 20px;
-	border-radius: 50px 50px 10px 50px;
-	height: 100%;
-}
-
-/*******************************************/
-/**** 	  	17. Services Page css  	    ****/
-/*******************************************/
-
-.services-lists{
-	padding: 100px 0 20px;
-}
-
-.service-item-layout2{
-	background: var(--secondary-color);
-	margin-bottom: 30px;
-	border-radius: 50px 50px 10px 50px;
-	overflow: hidden;
-}
-
-.service-item-layout2 .service-image img{
-	width: 100%;
-	filter: var(--image-filter);
-	transition: var(--transition);
-}
-
-.service-item-layout2:hover .service-image img{
-	filter: var(--image-filter-hover);
-}
-
-.service-item-layout2:hover .hover-anime:after{
-	animation: shine .75s;
-}
-
-.service-item-layout2:hover .service-image img{
-	transform: scale(1.1);
-}
-
-.service-item-layout2 .service-content{
-	padding: 40px;
-	text-align: center;
-}
-
-.service-item-layout2 .service-content h3{
-	font-size: 22px;
-	color: var(--primary-color);
-	margin-bottom: 15px;
-}
-
-.service-item-layout2 .service-content p{
-	margin-bottom: 0;
-}
-
-.service-item-layout2 .service-content .service-readmore{
-	display: inline-block;
-	margin-top: 20px;
-	font-family: var(--accent-font);
-	font-weight: 600;
-	color: var(--primary-color);
-	line-height: 1em;
-	border-bottom: 1px solid var(--primary-color);
-	transition: var(--transition);
-}
-
-.service-item-layout2 .service-content .service-readmore:hover{
-	border-color: transparent;
-}
-
-.offers-gift-cards{
-	padding: 50px 0 100px;
-}
-
-/*******************************************/
-/**** 	   18. Service Single css	  	****/
-/*******************************************/
-
-.page-service-single{
-	padding: 100px 0;
-}
-
-.service-sidebar{
-	padding-right: 40px;
-	position: sticky;
-	top: 100px;
-}
-
-.service-list-box{
-	background: var(--secondary-color);
-	padding: 40px;
-	border-radius: 50px 50px 10px 50px;
-	margin-bottom: 40px;
-}
-
-.service-list-box h3{
-	font-size: 22px;
-	margin-bottom: 20px;
-	color: var(--primary-color);
-}
-
-.service-list-box .service-list-entry ul{
-	padding: 0;
-	margin: 0;
-	list-style: none;
-}
-
-.service-list-box .service-list-entry ul li{
-	border-bottom: 1px solid var(--divider-color);
-}
-
-.service-list-box .service-list-entry ul li:last-child{
-	border-bottom: none;
-}
-
-.service-list-box .service-list-entry ul li:last-child a{
-	padding-bottom: 0;
-}
-
-.service-list-box .service-list-entry ul li a{
-	position: relative;
-	display: block;
-	font-family: var(--accent-font);
-	font-weight: 700;
-	color: var(--text-color);
-	padding: 8px 0 8px 24px;
-	transition: var(--transition);
-}
-
-.service-list-box .service-list-entry ul li a:before{
-	content: '';
-	display: block;
-	width: 12px;
-	height: 12px;
-	border-radius: 10px 10px 2px 10px;
-	background: var(--text-color);
-	position: absolute;
-	left: 0;
-	top: 14px;
-	transition: var(--transition);
-}
-
-.service-list-box .service-list-entry ul li a:hover{
-	color: var(--primary-color);
-}
-
-.service-list-box .service-list-entry ul li a:hover:before{
-	background-color: var(--primary-color);
-}
-
-.service-help{
-	background-color: var(--secondary-color);
-	text-align: center;
-	padding: 40px;
-	border-radius: 50px 50px 10px 50px;
-}
-
-.help-image{
-	margin-bottom: 20px;
-}
-
-.help-image img{
-	filter: var(--image-filter);
-	width: 100%;
-	max-width: 120px;
-	aspect-ratio: 1/1;
-	object-fit: cover;
-	border-radius: 100px 100px 10px 100px;
-	transition: var(--transition);
-}
-
-.service-help:hover .help-image img{
-	filter: var(--image-filter-hover);
-}
-
-.help-content h3{
-	font-size: 32px;
-	color: var(--primary-color);
-	font-weight: 700;
-	letter-spacing: -0.6px;
-	margin-bottom: 20px;
-}
-
-.help-content h5{
-	font-size: 18px;
-	font-weight: 700;
-	margin-bottom: 6px;
-	color: var(--primary-color);
-}
-
-.help-content p{
-	color: var(--text-color);
-	margin-bottom: 0;
-	font-size: 16px;
-	font-weight: 600;
-}
-
-.service-content .service-image{
-	margin-bottom: 30px;
-}
-
-.service-content .service-image img{
-	border-radius: 50px 50px 10px 50px;
-	filter: var(--image-filter);
-	transition: var(--transition);
-}
-
-.service-content .service-image:hover img{
-	filter: var(--image-filter-hover);
-}
-
-.service-content .service-entry h1,
-.service-content .service-entry h2,
-.service-content .service-entry h3,
-.service-content .service-entry h4,
-.service-content .service-entry h5,
-.service-content .service-entry h6{
-	color: var(--primary-color);
-	letter-spacing: -0.5px;
-	margin: 0 0 0.5em;
-}
-
-.service-content .service-entry h1{
-	font-size: 40px;
-}
-
-.service-content .service-entry h2{
-	font-size: 36px;
-}
-
-.service-content .service-entry h3{
-	font-size: 30px;
-}
-
-.service-content .service-entry h4{
-	font-size: 26px;
-}
-
-.service-content .service-entry h5{
-	font-size: 20px;
-}
-
-.service-content .service-entry h6{
-	font-size: 16px;
-}
-
-.service-content .service-entry ul{
-	padding: 0;
-	margin: 0 0 1.7em;
-	list-style: none;
-}
-
-.service-content .service-entry ul li{
-	margin-bottom: 6px;
-	position: relative;
-	padding-left: 26px;
-}
-
-.service-content .service-entry ul li:before{
-	content: '';
-	display: block;
-	position: absolute;
-	left: 0;
-	top: 6px;
-	width: 12px;
-	height: 12px;
-	background-color: var(--primary-color);
-	border-radius: 10px 10px 4px 10px;
-}
-
-.service-photo-gallery{
-	margin-top: 50px;
-}
-
-.service-photo-gallery .service-photo-gallery-header h2{
-	font-size: 36px;
-	color: var(--primary-color);
-	letter-spacing: -0.5px;
-	margin-bottom: 30px;
-}
-
-.service-photo-gallery-entry{
-	display: flex;
-	flex-wrap: wrap;
-}
-
-.service-photo-gallery-entry .service-photo-item{
-	width: calc(25% - 15px);
-	margin-right: 20px;
-	margin-bottom: 20px;
-}
-
-.service-photo-gallery-entry .service-photo-item:nth-of-type(4n + 4){
-	margin-right: 0;
-}
-
-.service-photo-gallery-entry .service-photo-item img{
-	aspect-ratio: 1/1;
-	object-fit: cover;
-	border-radius: 30px 30px 8px 30px;
-	filter: var(--image-filter);
-	transition: var(--transition);
-}
-
-.service-photo-gallery-entry .service-photo-item:hover img{
-	filter: var(--image-filter-hover);
-}
-
-.faqs{
-	margin-top: 30px;
-}
-
-.faqs .faq-header h2{
-	font-size: 36px;
-	color: var(--primary-color);
-	letter-spacing: -0.5px;
-	margin-bottom: 30px;
-}
-
-.faq-accordion .accordion-item{
-	margin-bottom: 15px;
-	background: var(--secondary-color);
-	border: none;
-	border-radius: 14px 14px 4px 14px;
-}
-
-.faq-accordion .accordion-item:last-child{
-	margin-bottom: 0;
-}
-
-.faq-accordion .accordion-item .accordion-header{
-	padding-left: 30px;
-	padding-right: 30px;
-}
-
-.faq-accordion .accordion-item .accordion-header button{
-	font-size: 18px;
-	color: var(--primary-color);
-	font-weight: 700;
-	border: none;
-	background: none;
-	border-radius: 0;
-	outline: 0;
-	padding: 20px 0;
-	box-shadow: none;
-}
-
-.faq-accordion .accordion-item  .accordion-collapse{
-	padding: 0 30px;
-}
-
-.faq-accordion .accordion-item  .accordion-collapse .accordion-body{
-	border-top: 1px solid var(--divider-color);
-	padding: 20px 0 30px;
-	color: var(--text-color);
-}
-
-.faq-accordion .accordion-item  .accordion-collapse .accordion-body p:last-child{
-	margin-bottom: 0;
-}
-
-/*******************************************/
-/**** 	   	19. Contact us css	  		****/
-/*******************************************/
-
-.contact-information{
-	padding: 100px 0;
-}
-
-.contact-box{
-	text-align: center;
-	position: relative;
-}
-
-.contact-box:after{
-	content: '';
-    display: block;
-    width: 1px;
-    height: 80%;
-    top: 10%;
-    right: -15px;
-    position: absolute;
-    background-color: var(--divider-color);
-}
-
-.contact-information .row [class*='col-']:last-child .contact-box::after{
-	display: none;
-}
-
-.contact-box .icon-box{
-	display: flex;
-	width: 100px;
-	height: 100px;
-	align-items: center;
-	justify-content: center;
-	background: var(--primary-color);
-	border-radius: 50px 50px 10px 50px;
-	margin: 0 auto 20px;
-}
-
-.contact-box .icon-box img{
-	max-width: 50%;
-}
-
-.contact-box h3{
-	font-size: 22px;
-	color: var(--primary-color);
-	margin-bottom: 10px;
-}
-
-.contact-box p{
-	margin-bottom: 0;
-}
-
-.get-in-touch{
-	background: var(--secondary-color);
-	padding: 100px 0;
-}
-
-.contact-form .form-control{
-	border: none;
-	background: var(--dark-primary-color);
-	font-family: var(--default-font);
-	font-size: 16px;
-	outline: 0;
-	box-shadow: none;
-	padding: 14px 20px;
-	border-radius: 10px 10px 2px 10px;
-}
-
-.contact-form .with-errors ul{
-	margin-bottom: 0;
-	color: rgb(202, 64, 64);
-	margin-top: 2px;
-	margin-top: 2px;
-}
-
-.google-map .container-fluid,
-.google-map .container-fluid .row > *{
-	padding-left: 0;
-	padding-right: 0;
-}
-
-.google-map .container-fluid .row{
-	margin-left: 0;
-	margin-right: 0;
-}
-
-.google-map-iframe{
-	line-height: 0;
-}
-
-.google-map-iframe iframe{
-	width: 100%;
-	min-height: 600px;
-	filter: var(--image-filter);
-	transition: var(--transition);
-}
-
-.google-map-iframe:hover iframe{
-	filter: var(--image-filter-hover);
-}
-
-/*******************************************/
-/**** 	   	20. Blog Archive css	  	****/
-/*******************************************/
-
-.page-blog-archive{
-	padding: 100px 0;
-}
-
-.page-blog-archive .post-item{
-	margin-bottom: 30px;
-}
-
-.post-pagination{
-	margin-top: 30px;
-	text-align: center;
-}
-
-.post-pagination ul{
-	justify-content: center;
-	padding: 0;
-	margin: 0;
-}
-
-.post-pagination ul li a,
-.post-pagination ul li span{
-	display: flex;
-	text-decoration: none;
-	justify-content: center;
-	align-items: center;
-	width: 40px;
-	height: 40px;
-	background: var(--secondary-color);
-	margin: 0 4px;
-	border-radius: 30px 30px 4px 30px;
-	font-family: var(--accent-font);
-	font-weight: 700;
-	color: var(--primary-color);
-	transition: var(--transition);
-}
-
-.post-pagination ul li.active a,
-.post-pagination ul li a:hover{
-	background: var(--primary-color);
-	color: var(--dark-primary-color);
-}
-
-/*******************************************/
-/**** 	   	21. Blog Single css	  		****/
-/*******************************************/
 
 .page-header-box .post-meta ul{
 	padding: 0;
@@ -2514,26 +1760,6 @@ footer.footer{
 }
 
 /*******************************************/
-/**** 	   	22. Pricing Page css	  	****/
-/*******************************************/
-
-.page-pricing{
-	padding: 100px 0 20px;
-}
-
-.page-pricing .pricing-item{
-	background: var(--secondary-color);
-}
-
-/*******************************************/
-/**** 	   	23. FAQs Page css	  		****/
-/*******************************************/
-
-.page-faqs{
-	padding: 100px 0;
-}
-
-/*******************************************/
 /**** 	   	24. Page Not Found css	 	****/
 /*******************************************/
 
@@ -2560,10 +1786,6 @@ footer.footer{
 /******************************************/
 
 @media only screen and (max-width: 991px){
-    #magic-cursor {
-        display: none !important;
-    }
-
 	.responsive-menu,
     .navbar-toggle{
         display: block;
@@ -2644,18 +1866,6 @@ footer.footer{
         padding: 60px 0 30px;
     }
 
-    .gift-cards{
-        padding: 60px 0 30px;
-    }
-
-    .gift-box{
-        margin-bottom: 30px;
-    }
-
-    .gift-box.left-shape{
-        border-radius:  50px 50px 10px 50px;
-    }
-
     .testimonials{
         padding: 60px 0;
     }
@@ -2714,72 +1924,6 @@ footer.footer{
         height: 70px;
     }
 
-    .our-goal{
-        padding: 60px 0 30px;
-    }
-
-    .goal-item{
-        margin-bottom: 30px;
-    }
-
-    .our-team{
-        padding: 60px 0 30px;
-    }
-
-    .team-item{
-        margin-bottom: 30px;
-    }
-
-    .we-use{
-        padding: 60px 0;
-    }
-
-    .brand-logo{
-        padding: 30px 20px;
-    }
-
-    .services-lists{
-        padding: 60px 0 0;
-    }
-
-    .offers-gift-cards{
-        padding: 30px 0;
-    }
-
-    .page-service-single{
-        padding: 60px 0;
-    }
-
-    .service-sidebar{
-        padding-right: 0;
-        margin-bottom: 40px;
-        position: inherit;
-    }
-
-    .service-list-box{
-        margin-bottom: 30px;
-    }
-
-    .contact-information{
-        padding: 60px 0 20px;
-    }
-
-    .contact-box{
-        margin-bottom: 40px;
-    }
-
-    .contact-box:after{
-        display: none;
-    }
-
-    .get-in-touch{
-        padding: 60px 0;
-    }
-
-    .google-map-iframe iframe{
-        min-height: 450px;
-    }
-
     .blog-single-page{
         padding: 60px 0;
     }
@@ -2806,14 +1950,6 @@ footer.footer{
 
     .post-pagination{
         margin-top: 10px;
-    }
-
-    .page-pricing{
-        padding: 60px 0 0;
-    }
-
-    .page-faqs{
-        padding: 60px 0;
     }
 
 	.page-not-found{
@@ -2990,36 +2126,6 @@ footer.footer{
         font-size: 20px;
     }
 
-    .gift-cards{
-        padding: 50px 0 20px;
-    }
-
-    .gift-box,
-    .gift-box.left-shape{
-        padding: 30px;
-        border-radius: 30px 30px 8px 30px;
-    }
-
-    .gift-box .gift-content{
-        width: 100%;
-        text-align: center;
-    }
-
-    .gift-box .gift-content h3{
-        font-size: 20px;
-    }
-
-    .gift-box .gift-image{
-        width: 100%;
-        text-align: center;
-    }
-
-    .gift-box .gift-image img{
-        max-width: 120px;
-        margin: 20px 0 -30px;
-        right: 0;
-    }
-
     .testimonials{
         padding: 50px 0;
     }
@@ -3106,196 +2212,6 @@ footer.footer{
         font-size: 14px;
     }
 
-    .our-goal{
-        padding: 50px 0 20px;
-    }
-
-    .goal-item{
-        border-radius: 30px 30px 8px 30px;
-    }
-
-    .goal-icon{
-        width: 78px;
-        height: 78px;
-    }
-
-    .goal-content{
-        margin-top: -35px;
-        padding: 0 20px 20px 20px;
-    }
-
-    .goal-content h3{
-        font-size: 20px;
-    }
-
-    .our-team{
-        padding: 50px 0 20px;
-    }
-
-    .team-item{
-        border-radius: 30px 30px 8px 30px;
-    }
-
-    .team-item .team-info h3{
-        font-size: 20px;
-    }
-
-    .we-use{
-        padding: 50px 0 20px;
-    }
-
-    .brand-logo{
-        height: calc(100% - 30px);
-        margin-bottom: 30px;
-        border-radius: 30px 30px 8px 30px;
-    }
-
-    .services-lists{
-        padding: 50px 0 0;
-    }
-
-    .service-item-layout2{
-        border-radius: 30px 30px 8px 30px;
-    }
-
-    .service-item-layout2 .service-content{
-        padding: 30px;
-    }
-
-    .offers-gift-cards{
-        padding: 30px 0 20px;
-    }
-
-    .page-service-single{
-        padding: 50px 0;
-    }
-
-    .service-list-box,
-    .service-help{
-        border-radius: 30px 30px 8px 30px;
-    }
-
-    .help-image img{
-        max-width: 100px;
-    }
-
-    .help-content h3{
-        font-size: 28px;
-    }
-
-    .service-content .service-image img{
-        border-radius: 30px 30px 8px 30px;
-    }
-
-    .service-content .service-entry h1,
-    .service-content .service-entry h2,
-    .service-content .service-entry h3,
-    .service-content .service-entry h4,
-    .service-content .service-entry h5,
-    .service-content .service-entry h6{
-        margin: 0 0 1em;
-    }
-
-    .service-content .service-entry h1{
-        font-size: 26px;
-    }
-
-    .service-content .service-entry h2{
-        font-size: 22px;
-    }
-
-    .service-content .service-entry h3{
-        font-size: 20px;
-    }
-
-    .service-content .service-entry h4{
-        font-size: 18px;
-    }
-
-    .service-content .service-entry h5{
-        font-size: 16px;
-    }
-
-    .service-content .service-entry h6{
-        font-size: 14px;
-    }
-
-    .service-photo-gallery{
-        margin-top: 30px;
-    }
-
-    .service-photo-gallery-entry .service-photo-item img{
-        border-radius: 30px 30px 8px 30px;
-    }
-
-    .service-photo-gallery-entry .service-photo-item{
-        width: calc(50% - 10px);
-    }
-
-    .service-photo-gallery-entry .service-photo-item:nth-of-type(2n + 2){
-        margin-right: 0;
-    }
-
-    .service-photo-gallery .service-photo-gallery-header h2,
-    .faqs .faq-header h2{
-        font-size: 22px;
-        margin-bottom: 20px;
-    }
-
-    .faq-accordion .accordion-item .accordion-header{
-        padding-left: 20px;
-        padding-right: 20px;
-    }
-
-    .faq-accordion .accordion-item .accordion-header button{
-        font-size: 16px;
-        padding: 15px 0;
-    }
-
-    .faq-accordion .accordion-item .accordion-collapse{
-        padding: 0 20px;
-    }
-
-    .contact-information{
-        padding: 50px 0;
-    }
-
-    .contact-box{
-        margin-bottom: 60px;
-    }
-
-    .contact-information .row [class*='col-']:last-child .contact-box{
-        margin-bottom: 0;
-    }
-
-    .contact-box:after{
-        display: block;
-        width: 70%;
-        height: 1px;
-        top: auto;
-        bottom: -30px;
-        right: auto;
-        left: 15%;
-    }
-
-    .contact-box .icon-box{
-        width: 70px;
-        height: 70px;
-        border-radius: 50px 50px 8px 50px;
-    }
-
-    .contact-box h3{
-        font-size: 20px;
-    }
-
-    .get-in-touch{
-        padding: 50px 0;
-    }
-
-    .google-map-iframe iframe{
-        min-height: 350px;
-    }
-
     .blog-single-page{
         padding: 50px 0;
     }
@@ -3357,14 +2273,6 @@ footer.footer{
     }
 
     .page-blog-archive{
-        padding: 50px 0;
-    }
-
-    .page-pricing{
-        padding: 50px 0 0;
-    }
-
-    .page-faqs{
         padding: 50px 0;
     }
 

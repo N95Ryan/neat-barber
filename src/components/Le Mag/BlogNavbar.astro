@@ -45,7 +45,7 @@
         <li class="nav-item d-flex">
           <a class="nav-link" href="/#prices"> TARIFS </a>
           <a class="nav-link" href="/#gallery"> GALERIE </a>
-          <a class="nav-link" href="/le-mag">LE MAG</a>
+          <a class="nav-link active" href="/le-mag">LE MAG</a>
         </li>
       </ul>
     </div>
@@ -62,7 +62,7 @@
     </div>
 
     <!-- Bouton burger mobile -->
-    <button class="burger-menu-btn" id="burgerMenuBtn" aria-label="Menu">
+    <button class="burger-menu-btn" id="blogBurgerMenuBtn" aria-label="Menu">
       <span class="burger-line"></span>
       <span class="burger-line"></span>
       <span class="burger-line"></span>
@@ -71,42 +71,44 @@
 </nav>
 
 <!-- Menu mobile overlay -->
-<div class="mobile-menu-overlay" id="mobileMenuOverlay">
-  <div class="mobile-menu-content">
-    <div class="mobile-menu-header">
-      <h2
-        style="color: white; font-size: 50px; font-weight; margin: 0; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif"
-      >
-        NEAT
-      </h2>
+<div class="blog-mobile-menu-overlay" id="blogMobileMenuOverlay">
+  <div class="blog-mobile-menu-content">
+    <div class="blog-mobile-menu-header">
+      <a href="/">
+        <h2
+          style="color: white; font-size: 50px; font-weight; margin: 0; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif"
+        >
+          NEAT
+        </h2>
+      </a>
       <button
-        class="close-menu-btn"
-        id="closeMenuBtn"
+        class="blog-close-menu-btn"
+        id="blogCloseMenuBtn"
         aria-label="Fermer le menu"
       >
-        <span class="close-line"></span>
-        <span class="close-line"></span>
+        <span class="blog-close-line"></span>
+        <span class="blog-close-line"></span>
       </button>
     </div>
 
-    <nav class="mobile-menu-nav">
-      <ul class="mobile-menu-list">
-        <li class="mobile-menu-item">
-          <a class="mobile-menu-link" href="/#prices"> TARIFS </a>
+    <nav class="blog-mobile-menu-nav">
+      <ul class="blog-mobile-menu-list">
+        <li class="blog-mobile-menu-item">
+          <a class="blog-mobile-menu-link" href="/#prices"> TARIFS </a>
         </li>
-        <li class="mobile-menu-item">
-          <a class="mobile-menu-link" href="/#gallery"> GALERIE </a>
+        <li class="blog-mobile-menu-item">
+          <a class="blog-mobile-menu-link" href="/#gallery"> GALERIE </a>
         </li>
-        <li class="mobile-menu-item">
-          <a class="mobile-menu-link" href="/le-mag"> LE MAG </a>
+        <li class="blog-mobile-menu-item">
+          <a class="blog-mobile-menu-link active" href="/le-mag"> LE MAG </a>
         </li>
-        <li class="mobile-menu-item">
-          <a class="mobile-menu-link mobile-cta" href="/booking">
+        <li class="blog-mobile-menu-item">
+          <a class="blog-mobile-menu-link blog-mobile-cta" href="/booking">
             PRENDRE RENDEZ-VOUS
           </a>
         </li>
-        <li class="mobile-menu-item">
-          <div class="mobile-social-icons">
+        <li class="blog-mobile-menu-item">
+          <div class="blog-mobile-social-icons">
             <a
               href="https://www.instagram.com/neat_paris/"
               target="_blank"
@@ -137,8 +139,14 @@
 
 <style>
   .navbar {
-    position: relative;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
     z-index: 1000;
+    background: rgba(42, 52, 42, 0.98);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
     height: 80px;
     display: flex;
     align-items: center;
@@ -151,7 +159,6 @@
     height: 100%;
     width: 100%;
   }
-
   .navbar-brand {
     flex: 0 0 auto;
   }
@@ -266,11 +273,10 @@
     padding: 0 10px;
   }
 
-  .nav-link:hover {
+  .nav-link:hover,
+  .nav-link.active {
     color: #6b7a6b !important;
   }
-
-  /* Mobile burger button */
   .burger-menu-btn {
     display: none;
     flex-direction: column;
@@ -307,7 +313,7 @@
   }
 
   /* Menu mobile overlay */
-  .mobile-menu-overlay {
+  .blog-mobile-menu-overlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -321,19 +327,19 @@
     transition: all 0.3s ease;
   }
 
-  .mobile-menu-overlay.active {
+  .blog-mobile-menu-overlay.active {
     opacity: 1;
     visibility: visible;
   }
 
-  .mobile-menu-content {
+  .blog-mobile-menu-content {
     display: flex;
     flex-direction: column;
     height: 100%;
     padding: 80px 20px 40px;
   }
 
-  .mobile-menu-header {
+  .blog-mobile-menu-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -341,7 +347,7 @@
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   }
 
-  .close-menu-btn {
+  .blog-close-menu-btn {
     width: 30px;
     height: 30px;
     background: none;
@@ -351,7 +357,7 @@
     padding: 0;
   }
 
-  .close-line {
+  .blog-close-line {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -361,33 +367,33 @@
     transform-origin: center;
   }
 
-  .close-line:nth-child(1) {
+  .blog-close-line:nth-child(1) {
     transform: translate(-50%, -50%) rotate(45deg);
   }
 
-  .close-line:nth-child(2) {
+  .blog-close-line:nth-child(2) {
     transform: translate(-50%, -50%) rotate(-45deg);
   }
 
-  .mobile-menu-nav {
+  .blog-mobile-menu-nav {
     flex: 1;
     display: flex;
     align-items: center;
     justify-content: center;
   }
 
-  .mobile-menu-list {
+  .blog-mobile-menu-list {
     list-style: none;
     padding: 0;
     margin: 0;
     width: 100%;
   }
 
-  .mobile-menu-item {
+  .blog-mobile-menu-item {
     margin-bottom: 20px;
   }
 
-  .mobile-menu-link {
+  .blog-mobile-menu-link {
     display: block;
     color: #ffffff;
     text-decoration: none;
@@ -399,12 +405,13 @@
     border-radius: 8px;
   }
 
-  .mobile-menu-link:hover {
+  .blog-mobile-menu-link:hover,
+  .blog-mobile-menu-link.active {
     color: #6b7a6b;
     background-color: rgba(255, 255, 255, 0.05);
   }
 
-  .mobile-menu-link.mobile-cta {
+  .blog-mobile-menu-link.blog-mobile-cta {
     background: linear-gradient(135deg, #4a5d4a 0%, #6b7a6b 100%);
     color: #ffffff;
     padding: 15px 30px;
@@ -416,13 +423,13 @@
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  .mobile-menu-link.mobile-cta:hover {
+  .blog-mobile-menu-link.blog-mobile-cta:hover {
     background: linear-gradient(135deg, #3a4a3a 0%, #5a6a5a 100%);
     color: #ffffff;
   }
 
   /* Mobile social networks */
-  .mobile-social-icons {
+  .blog-mobile-social-icons {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -430,7 +437,7 @@
     margin-top: 30px;
   }
 
-  .mobile-social-icons a {
+  .blog-mobile-social-icons a {
     color: #ffffff;
     font-size: 22px;
     transition: all 0.3s ease;
@@ -443,10 +450,47 @@
     background-color: rgba(255, 255, 255, 0.1);
   }
 
-  .mobile-social-icons a:hover {
+  .blog-mobile-social-icons a:hover {
     color: #ffffff;
     transform: translateY(-2px);
     background-color: rgba(107, 122, 107, 0.7);
+  }
+
+  /* Mobile booking button integrated into navbar */
+  .mobile-booking-btn-container {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    width: auto;
+    max-width: 80%;
+  }
+
+  .mobile-booking-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #4a5d4a 0%, #6b7a6b 100%);
+    color: #ffffff;
+    text-decoration: none;
+    padding: 8px 12px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+  }
+
+  .mobile-booking-btn:hover {
+    background: linear-gradient(135deg, #3a4a3a 0%, #5a6a5a 100%);
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.35);
   }
 
   /* Responsive */
@@ -542,21 +586,9 @@
       padding: 8px 0;
       justify-content: flex-start;
     }
-  }
 
-  @media (max-width: 768px) {
-    .navbar {
-      min-height: 65px;
-      padding: 8px 0;
-    }
-
-    .navbar .container {
-      gap: 10px;
-      padding: 8px 0;
-    }
-
-    .nav-link {
-      font-size: 0.9rem;
+    .mobile-booking-btn-container {
+      display: block;
     }
   }
 
@@ -574,20 +606,6 @@
     .burger-menu-btn {
       margin-left: 12px;
     }
-
-    .btn-booking-centered {
-      max-width: 260px;
-      padding: 10px 16px;
-      font-size: 0.85rem;
-    }
-
-    .navbar-nav {
-      gap: 10px;
-    }
-
-    .nav-link {
-      font-size: 0.85rem;
-    }
   }
 
   @media (max-width: 480px) {
@@ -603,20 +621,6 @@
 
     .burger-menu-btn {
       margin-left: 10px;
-    }
-
-    .btn-booking-centered {
-      max-width: 240px;
-      padding: 8px 14px;
-      font-size: 0.8rem;
-    }
-
-    .navbar-nav {
-      gap: 8px;
-    }
-
-    .nav-link {
-      font-size: 0.8rem;
     }
   }
 
@@ -634,157 +638,15 @@
     .burger-menu-btn {
       margin-left: 8px;
     }
-
-    .btn-booking-centered {
-      max-width: 220px;
-      padding: 7px 12px;
-      font-size: 0.75rem;
-    }
-
-    .navbar-nav {
-      gap: 6px;
-    }
-
-    .nav-link {
-      font-size: 0.75rem;
-    }
-  }
-
-  /* Additional mobile optimizations */
-  @media (max-width: 768px) {
-    .btn-booking-centered {
-      /* Touch optimization */
-      min-height: 44px;
-      touch-action: manipulation;
-    }
-
-    .nav-link {
-      /* Touch optimization */
-      min-height: 44px;
-      display: flex;
-      align-items: center;
-      padding: 8px 12px;
-      touch-action: manipulation;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .btn-booking-centered {
-      /* More accessible button on small screen */
-      min-height: 48px;
-      border-radius: 24px;
-    }
-
-    .nav-link {
-      /* More accessible links */
-      min-height: 48px;
-      padding: 10px 15px;
-      border-radius: 8px;
-    }
-
-    .nav-link:hover {
-      /* Background effect instead of color */
-      background-color: rgba(107, 122, 107, 0.1);
-      color: #ffffff !important;
-    }
-  }
-
-  @media (max-width: 375px) {
-    .btn-booking-centered {
-      /* Optimization for very small screen */
-      min-height: 44px;
-      font-size: 0.7rem;
-      letter-spacing: 0.3px;
-    }
-
-    .navbar-brand h1 {
-      /* More compact logo */
-      font-size: 1.1rem;
-    }
-
-    .nav-link {
-      /* Ultra-compact navigation */
-      min-height: 40px;
-      padding: 8px 12px;
-      font-size: 0.7rem;
-    }
-  }
-
-  /* Landscape orientation on mobile */
-  @media (max-width: 768px) and (orientation: landscape) {
-    .navbar {
-      min-height: 50px;
-      padding: 4px 0;
-    }
-
-    .navbar .container {
-      gap: 8px;
-      padding: 4px 0;
-    }
-
-    .btn-booking-centered {
-      max-width: 200px;
-      padding: 8px 16px;
-      font-size: 0.8rem;
-    }
-
-    .navbar-nav {
-      gap: 8px;
-    }
-  }
-
-  /* Mobile booking button integrated into navbar */
-  .mobile-booking-btn-container {
-    display: none;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 1000;
-    width: auto;
-    max-width: 80%;
-  }
-
-  .mobile-booking-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(135deg, #4a5d4a 0%, #6b7a6b 100%);
-    color: #ffffff;
-    text-decoration: none;
-    padding: 8px 12px;
-    border-radius: 20px;
-    font-weight: 600;
-    font-size: 0.7rem;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    white-space: nowrap;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    transition: all 0.3s ease;
-  }
-
-  /* Remove style for icon that is no longer used */
-
-  .mobile-booking-btn:hover {
-    background: linear-gradient(135deg, #3a4a3a 0%, #5a6a5a 100%);
-    color: #ffffff;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.35);
-  }
-
-  @media (max-width: 768px) {
-    .mobile-booking-btn-container {
-      display: block;
-    }
   }
 </style>
 
 <script>
-  // Mobile burger menu management
+  // Mobile burger menu management for Blog Navbar
   (function () {
-    const burgerBtn = document.getElementById("burgerMenuBtn");
-    const closeBtn = document.getElementById("closeMenuBtn");
-    const mobileMenu = document.getElementById("mobileMenuOverlay");
+    const burgerBtn = document.getElementById("blogBurgerMenuBtn");
+    const closeBtn = document.getElementById("blogCloseMenuBtn");
+    const mobileMenu = document.getElementById("blogMobileMenuOverlay");
     const body = document.body;
 
     function openMenu() {
@@ -818,7 +680,9 @@
     });
 
     // Close menu when clicking on a link
-    const mobileLinks = document.querySelectorAll(".mobile-menu-link");
+    const mobileLinks = document.querySelectorAll(
+      "#blogMobileMenuOverlay .blog-mobile-menu-link"
+    );
     mobileLinks.forEach((link) => {
       link.addEventListener("click", closeMenu);
     });

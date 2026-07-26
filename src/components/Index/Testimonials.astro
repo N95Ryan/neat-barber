@@ -1,0 +1,107 @@
+---
+// Testimonials.astro
+---
+
+<div class="py-24 bg-gray-50">
+  <div class="container mx-auto px-4">
+    <div class="row">
+      <div class="col-md-12">
+        <!-- Section Title Start -->
+        <div class="text-center mb-16 section-title">
+          <div class="section-title">
+            <h3
+              class="text-neutral-500 text-sm font-medium tracking-wider uppercase mb-2 animate-fade-in-up"
+            >
+              Témoignages Clients
+            </h3>
+          </div>
+        </div>
+        <!-- Section Title End -->
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <!-- Review Pixel Widget -->
+        <div class="mb-12">
+          <emr-simple-carousel widget-id="9ad155a2-7a40-4d40-8915-a7253b37557e"
+          ></emr-simple-carousel>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  /* Specific styles for Swiper pagination */
+  .swiper-pagination-bullet {
+    @apply w-3 h-3 bg-gray-300 opacity-100 mx-1.5 transition-all duration-300;
+  }
+
+  .swiper-pagination-bullet-active {
+    @apply bg-gray-800 scale-110;
+  }
+
+  @media (max-width: 768px) {
+    .swiper-pagination-bullet {
+      @apply w-2.5 h-2.5;
+    }
+  }
+</style>
+
+<!-- Review Pixel Script -->
+<script is:inline type="text/javascript">
+  !(function () {
+    var e,
+      t = document;
+    (e = function () {
+      if (window.EMRPixel) return console.info("EMR: Pixel already loaded");
+      var e = t.createElement("script");
+      (e.defer = !0),
+        (e.src =
+          "https://cdn2.revw.me/js/pixel.js?t=" +
+          864e5 * Math.ceil(new Date() / 864e5));
+      var n = t.getElementsByTagName("script")[0];
+      (n.charset = "utf-8"),
+        n.parentNode.insertBefore(e, n),
+        (e.onload = function () {
+          EMRPixel.init("app.getcoucou.io", 11);
+        });
+    }),
+      "interactive" === t.readyState || "complete" === t.readyState
+        ? e()
+        : t.addEventListener("DOMContentLoaded", e);
+  })();
+</script>
+
+<!-- Swiper Initialization -->
+<script is:inline>
+  // Initialize Swiper for testimonials
+  document.addEventListener("DOMContentLoaded", function () {
+    // @ts-ignore
+    if (typeof window.Swiper !== "undefined") {
+      // @ts-ignore
+      const testimonialSwiper = new window.Swiper(".py-24.bg-gray-50 .swiper", {
+        slidesPerView: 1,
+        spaceBetween: 30,
+        loop: true,
+        autoplay: {
+          delay: 5000,
+          disableOnInteraction: false,
+        },
+        pagination: {
+          el: ".py-24.bg-gray-50 .swiper-pagination",
+          clickable: true,
+        },
+        breakpoints: {
+          768: {
+            slidesPerView: 2,
+          },
+          1024: {
+            slidesPerView: 3,
+          },
+        },
+      });
+    }
+  });
+</script>

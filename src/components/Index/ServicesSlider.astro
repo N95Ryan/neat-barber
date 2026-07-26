@@ -1,0 +1,177 @@
+---
+import { Scissors, Sparkles, Slice } from "@lucide/astro";
+import ScissorsIcon from "astro-heroicons/solid/Scissors.astro";
+import FireIcon from "astro-heroicons/solid/Fire.astro";
+import FaceSmileIcon from "astro-heroicons/solid/FaceSmile.astro";
+
+// Interface pour les services
+interface Service {
+  name: string;
+  iconComponent: any;
+  description?: string;
+}
+
+// Default services with modern icons from Lucide and Heroicons
+const defaultServices: Service[] = [
+  {
+    name: "Coupe classique",
+    iconComponent: ScissorsIcon,
+    description: "Style impeccable",
+  },
+  {
+    name: "Coupe + shampoing",
+    iconComponent: Sparkles,
+    description: "Soin complet",
+  },
+  {
+    name: "Taille de barbe",
+    iconComponent: ScissorsIcon,
+    description: "Précision parfaite",
+  },
+  {
+    name: "Contours",
+    iconComponent: Slice,
+    description: "Finition soignée",
+  },
+  {
+    name: "Serviette chaude",
+    iconComponent: FireIcon,
+    description: "Détente ultime",
+  },
+  {
+    name: "Soin de visage",
+    iconComponent: FaceSmileIcon,
+    description: "Exfoliation premium",
+  },
+];
+
+// Props du composant
+interface Props {
+  services?: Service[];
+  speed?: number;
+  className?: string;
+}
+
+const { services = defaultServices, speed = 30, className = "" } = Astro.props;
+---
+
+<div
+  class={`services-slider w-full py-6 bg-neutral-100 overflow-hidden ${className}`}
+>
+  <div class="w-full overflow-hidden">
+    <div
+      class="services-slider-scroll"
+      style={`animation-duration: ${speed}s;`}
+    >
+      <!-- Première série de services -->
+      <div class="services-slider-track">
+        {
+          services.map((service) => {
+            const IconComponent = service.iconComponent;
+            return (
+              <div class="flex items-center gap-4 mx-6 md:mx-8 shrink-0 group">
+                <div class="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center bg-neutral-800 rounded-full transition-all duration-300 group-hover:bg-neutral-900">
+                  <IconComponent class="w-5 h-5 md:w-6 md:h-6 text-white" />
+                </div>
+                <div>
+                  <span class="block text-neutral-900 font-bold text-lg md:text-xl leading-tight whitespace-nowrap transition-all duration-300 group-hover:text-neutral-700">
+                    {service.name}
+                  </span>
+                  {service.description && (
+                    <span class="text-neutral-500 text-sm block mt-1 whitespace-nowrap">
+                      {service.description}
+                    </span>
+                  )}
+                </div>
+              </div>
+            );
+          })
+        }
+      </div>
+
+      <!-- Deuxième série de services (duplication pour boucle infinie) -->
+      <div class="services-slider-track" aria-hidden="true">
+        {
+          services.map((service) => {
+            const IconComponent = service.iconComponent;
+            return (
+              <div class="flex items-center gap-4 mx-6 md:mx-8 shrink-0 group">
+                <div class="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center bg-neutral-800 rounded-full transition-all duration-300 group-hover:bg-neutral-900">
+                  <IconComponent class="w-5 h-5 md:w-6 md:h-6 text-white" />
+                </div>
+                <div>
+                  <span class="block text-neutral-900 font-bold text-lg md:text-xl leading-tight whitespace-nowrap transition-all duration-300 group-hover:text-neutral-700">
+                    {service.name}
+                  </span>
+                  {service.description && (
+                    <span class="text-neutral-500 text-sm block mt-1 whitespace-nowrap">
+                      {service.description}
+                    </span>
+                  )}
+                </div>
+              </div>
+            );
+          })
+        }
+      </div>
+
+      <!-- Troisième série de services (pour transition encore plus fluide) -->
+      <div class="services-slider-track" aria-hidden="true">
+        {
+          services.map((service) => {
+            const IconComponent = service.iconComponent;
+            return (
+              <div class="flex items-center gap-4 mx-6 md:mx-8 shrink-0 group">
+                <div class="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center bg-neutral-800 rounded-full transition-all duration-300 group-hover:bg-neutral-900">
+                  <IconComponent class="w-5 h-5 md:w-6 md:h-6 text-white" />
+                </div>
+                <div>
+                  <span class="block text-neutral-900 font-bold text-lg md:text-xl leading-tight whitespace-nowrap transition-all duration-300 group-hover:text-neutral-700">
+                    {service.name}
+                  </span>
+                  {service.description && (
+                    <span class="text-neutral-500 text-sm block mt-1 whitespace-nowrap">
+                      {service.description}
+                    </span>
+                  )}
+                </div>
+              </div>
+            );
+          })
+        }
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  @keyframes servicesSliderScroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(calc(-100% / 3));
+    }
+  }
+
+  .services-slider-scroll {
+    display: flex;
+    gap: 0;
+    animation: servicesSliderScroll linear infinite;
+    will-change: transform;
+    width: fit-content;
+    /* Optimisations pour une transition fluide sans coupure */
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform-style: preserve-3d;
+  }
+
+  .services-slider-track {
+    display: flex;
+    gap: 0;
+    flex-shrink: 0;
+    /* Garantir que tous les tracks ont exactement la même structure */
+    min-width: 0;
+    align-items: center;
+  }
+</style>

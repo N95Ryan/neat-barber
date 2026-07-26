@@ -1,169 +1,181 @@
-# Neat Barber Paris - Site Web
+# 💈 Neat Barber Paris - Website
 
-Site web moderne pour le salon de coiffure Neat Barber Paris, développé avec **Astro** et **Tailwind CSS**.
+Professional website for **Neat Barber - Paris** barbershop. <br/>
+A modern, fast, and user-friendly platform to showcase the salon, services, and facilitate bookings.
 
-## 🚀 Structure du Projet
+---
 
-```text
-/
-├── public/
-│   ├── css/          # Styles Bootstrap + Personnalisés
-│   ├── js/           # Scripts JavaScript (jQuery, GSAP, etc.)
-│   └── images/       # Images et assets
-├── src/
-│   ├── components/   # Composants réutilisables
-│   │   ├── Header.astro
-│   │   ├── Footer.astro
-│   │   ├── Navbar.astro
-│   │   ├── About.astro
-│   │   ├── Services.astro
-│   │   ├── SliderServices.astro
-│   │   ├── Facts.astro
-│   │   ├── PhotoGallery.astro
-│   │   ├── Pricing.astro
-│   │   ├── GiftCards.astro
-│   │   ├── Testimonials.astro
-│   │   └── LatestPosts.astro
-│   ├── sections/     # Sections de page
-│   │   ├── About.astro
-│   │   ├── ProServices.astro
-│   │   ├── WhyChooseUs.astro
-│   │   └── SliderServices.astro
-│   ├── layouts/
-│   │   └── Layout.astro
-│   ├── pages/
-│   │   ├── index.astro
-│   │   └── api/
-│   │       └── photos.ts
-│   ├── lib/
-│   │   └── cloudinary.ts
-│   └── styles/
-│       └── global.css
-├── astro.config.mjs
-├── tailwind.config.js
-└── package.json
+## 📋 Overview
+
+### 🎯 Objective
+
+Create an attractive online presence that:
+
+- Showcases the salon and its services
+- Improves online visibility (SEO)
+- Facilitates bookings via Planity
+- Builds customer trust
+
+### ✨ Key Features
+
+- **Modern Design** - Elegant and professional
+- **Fast Loading** - Optimized for a great user experience
+- **Mobile Responsive** - Works perfectly on all devices
+- **Photo Gallery** - Showcase of the salon's work
+- **Integrated Blog** - Share tips and news
+- **Online Booking** - Planity integration for appointments
+
+---
+
+## 📝 Site Sections
+
+- **Home** - Salon presentation with visuals
+- **Services** - Catalog of services and pricing
+- **Gallery** - Photos of achievements
+- **Blog** - Articles and tips
+- **Client Reviews** - Testimonials and ratings
+- **Contact & Booking** - Via Planity
+
+---
+
+## 🛠️ Tech Stack
+
+- **Framework**: [Astro](https://astro.build/) v5.12
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/) v3.4 + Typography plugin
+- **Language**: TypeScript
+- **Images**: [Cloudinary](https://cloudinary.com/)
+- **Blog**: WordPress Headless CMS (GraphQL)
+- **Tests**: Vitest (unit) + Playwright (E2E) + Lighthouse CI (performance)
+- **Deployment**: Vercel
+- **CI/CD**: GitHub Actions
+
+---
+
+## 🚀 Installation & Development
+
+### Prerequisites
+
+- Node.js 18+
+- npm or yarn
+
+### Installation
+
+```bash
+# Clone the project
+git clone <repository-url>
+cd neat-barber
+
+# Install dependencies
+npm install
+# or
+yarn install
 ```
 
-## 🧞 Commandes
+### Available Commands
 
-Toutes les commandes sont exécutées depuis la racine du projet :
+```bash
+# Start development server
+npm run dev
+# or
+yarn dev
 
-| Commande            | Action                                                 |
-| :------------------ | :----------------------------------------------------- |
-| `npm install`       | Installe les dépendances                               |
-| `npm run dev`       | Lance le serveur de développement sur `localhost:4321` |
-| `npm run build`     | Construit le site pour la production dans `./dist/`    |
-| `npm run preview`   | Prévisualise le build localement avant le déploiement  |
-| `npm run astro ...` | Exécute les commandes CLI Astro                        |
+# Build for production
+npm run build
+# or
+yarn build
 
-## 🎨 Fonctionnalités Implémentées
+# Preview production build
+npm run preview
+# or
+yarn preview
+```
 
-### ✅ Design et Interface
+---
 
-- **Design moderne et responsive** avec Bootstrap 5
-- **Animations fluides** avec GSAP et WOW.js
-- **Curseur magique personnalisé** avec MagicCursor
-- **Sliders interactifs** avec Swiper.js
-- **Effets de parallaxe** et scroll smooth
-- **Preloader animé** au chargement
-- **Navigation mobile** avec menu burger et overlay
+## 📁 Project Structure
 
-### ✅ Technologies Utilisées
+```
+neat-barber/
+├── public/              # Static files (images, custom CSS)
+│   ├── css/
+│   └── images/
+├── src/
+│   ├── components/      # Reusable Astro components
+│   │   ├── Index/       # Homepage components
+│   │   └── Le Mag/      # Blog components
+│   ├── data/            # Static data (images, config)
+│   ├── layouts/         # Astro layouts
+│   ├── lib/             # Utilities and API
+│   │   ├── api/         # External integrations (Cloudinary)
+│   │   └── utils/       # Helper functions
+│   ├── pages/           # Site pages (Astro routing)
+│   │   ├── le-mag/      # Blog with pagination
+│   │   ├── index.astro  # Homepage
+│   │   ├── booking.astro
+│   │   └── 404.astro
+│   ├── styles/          # Global styles and overrides
+│   └── types/           # TypeScript types
+├── tests/
+│   └── e2e/             # End-to-end Playwright tests
+├── .github/
+│   └── workflows/       # CI/CD (tests, Lighthouse)
+└── ...config files
+```
 
-#### Framework Principal
+---
 
-- **Astro 5.12.0** - Framework web moderne pour des sites statiques performants
-- **Tailwind CSS 3.4.17** - Framework CSS utilitaire avec animations personnalisées
+## 🧪 Tests
 
-#### CSS & Styling
+The project uses three levels of testing:
 
-- **Bootstrap 5** - Framework CSS responsive
-- **Animate.css** - Bibliothèque d'animations CSS
-- **Font Awesome** - Icônes vectorielles
-- **Google Fonts** - Polices web (DM Sans, Hanken Grotesk)
+### Unit Tests (Vitest)
 
-#### JavaScript & Interactions
+```bash
+# Run unit tests
+npm run test
+# or
+yarn test
 
-- **jQuery 3.7.1** - Bibliothèque JavaScript
-- **GSAP** - Animations avancées
-- **Swiper.js** - Carousels et sliders
-- **WOW.js** - Animations au scroll
-- **MagicCursor** - Curseur personnalisé
-- **SmoothScroll** - Défilement fluide
+# Interactive mode with UI
+npm run test:ui
+# or
+yarn test:ui
 
-#### Intégrations
+# With code coverage
+npm run test:coverage
+# or
+yarn test:coverage
+```
 
-- **Cloudinary** - Gestion des images et galerie photos
-- **Planity** - Système de réservation en ligne
+### E2E Tests (Playwright)
 
-### ✅ Sections Implémentées
+```bash
+# Run end-to-end tests
+npm run test:e2e
+# or
+yarn test:e2e
 
-#### Page d'Accueil
+# Interactive mode with UI
+npm run test:e2e:ui
+# or
+yarn test:e2e:ui
+```
 
-- **Hero Section** - Section d'accueil avec titre et image
-- **Slider Services** - Carousel des services proposés
-- **About Section** - Présentation du salon
-- **Pro Services** - Services détaillés
-- **Why Choose Us** - Avantages concurrentiels
-- **Pricing** - Tarifs des prestations
-- **Facts** - Statistiques et chiffres clés
-- **Photo Gallery** - Galerie photos du salon
-- **Gift Cards** - Cartes cadeaux
-- **Testimonials** - Avis clients
-- **Latest Posts** - Articles de blog récents
+### Performance Tests (Lighthouse CI)
 
-#### Composants
+```bash
+# Run Lighthouse audit
+npm run test:lighthouse
+# or
+yarn test:lighthouse
+```
 
-- **Header** - Navigation responsive avec menu mobile
-- **Navbar** - Navigation sticky avec bouton CTA centré
-- **Footer** - Informations de contact et liens
-- **Layout** - Structure globale avec preloader et scripts
+Tests are automatically executed via GitHub Actions on every push.
 
-### ✅ Navigation et Responsive
+---
 
-- **Menu burger mobile** avec overlay plein écran
-- **Navigation sticky** avec effet de scroll
-- **Bouton CTA centré** dans la navbar
-- **Transitions fluides** et animations
-- **Support clavier** (Escape pour fermer le menu)
-- **Design adaptatif** pour tous les écrans
+## 🌐 Deployment
 
-### ✅ Optimisations
+The site is published on Vercel.
 
-#### Performance
-
-- **Images optimisées** pour le web (WebP)
-- **CSS et JS minifiés** (Bootstrap, jQuery, etc.)
-- **Chargement asynchrone** des scripts
-- **Preloader** pour une meilleure UX
-- **Lazy loading** des images
-
-#### SEO & Accessibilité
-
-- **Balises meta** optimisées
-- **Structure sémantique** correcte
-- **Images avec alt** pour l'accessibilité
-- **Navigation au clavier** possible
-- **Contraste des couleurs** suffisant
-
-## 📝 Configuration
-
-### Configuration Tailwind
-
-- Animations personnalisées (fade-in, scroll, etc.)
-- Plugin typography pour un meilleur rendu du texte
-- Configuration responsive complète
-- Palette de couleurs vert-gris (#4a5d4a, #6b7a6b)
-
-## 🚀 Déploiement
-
-Le site est prêt pour le déploiement sur n'importe quel hébergeur statique :
-
-- **Netlify**
-- **Vercel**
-- **GitHub Pages**
-- **Hébergement traditionnel**
-
-## 📊 État du Projet
-
-**🎯 Projet en développement actif - Version 0.0.3**
+---
