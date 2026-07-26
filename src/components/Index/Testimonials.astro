@@ -32,23 +32,6 @@
   </div>
 </div>
 
-<style>
-  /* Specific styles for Swiper pagination */
-  .swiper-pagination-bullet {
-    @apply w-3 h-3 bg-gray-300 opacity-100 mx-1.5 transition-all duration-300;
-  }
-
-  .swiper-pagination-bullet-active {
-    @apply bg-gray-800 scale-110;
-  }
-
-  @media (max-width: 768px) {
-    .swiper-pagination-bullet {
-      @apply w-2.5 h-2.5;
-    }
-  }
-</style>
-
 <!-- Review Pixel Script -->
 <script is:inline type="text/javascript">
   !(function () {
@@ -72,36 +55,4 @@
         ? e()
         : t.addEventListener("DOMContentLoaded", e);
   })();
-</script>
-
-<!-- Swiper Initialization -->
-<script is:inline>
-  // Initialize Swiper for testimonials
-  document.addEventListener("DOMContentLoaded", function () {
-    // @ts-ignore
-    if (typeof window.Swiper !== "undefined") {
-      // @ts-ignore
-      const testimonialSwiper = new window.Swiper(".py-24.bg-gray-50 .swiper", {
-        slidesPerView: 1,
-        spaceBetween: 30,
-        loop: true,
-        autoplay: {
-          delay: 5000,
-          disableOnInteraction: false,
-        },
-        pagination: {
-          el: ".py-24.bg-gray-50 .swiper-pagination",
-          clickable: true,
-        },
-        breakpoints: {
-          768: {
-            slidesPerView: 2,
-          },
-          1024: {
-            slidesPerView: 3,
-          },
-        },
-      });
-    }
-  });
 </script>
