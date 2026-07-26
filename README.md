@@ -40,7 +40,8 @@ Create an attractive online presence that:
 
 ## 🛠️ Tech Stack
 
-- **Framework**: [Astro](https://astro.build/) v5.12
+- **Framework**: [Astro](https://astro.build/) v7
+- **Package manager**: [Bun](https://bun.sh/)
 - **Styling**: [Tailwind CSS](https://tailwindcss.com/) v3.4 + Typography plugin
 - **Language**: TypeScript
 - **Images**: [Cloudinary](https://cloudinary.com/)
@@ -55,8 +56,7 @@ Create an attractive online presence that:
 
 ### Prerequisites
 
-- Node.js 18+
-- npm or yarn
+- [Bun](https://bun.sh/) 1.3+
 
 ### Installation
 
@@ -66,28 +66,20 @@ git clone <repository-url>
 cd neat-barber
 
 # Install dependencies
-npm install
-# or
-yarn install
+bun install
 ```
 
 ### Available Commands
 
 ```bash
 # Start development server
-npm run dev
-# or
-yarn dev
+bun dev
 
 # Build for production
-npm run build
-# or
-yarn build
+bun run build
 
 # Preview production build
-npm run preview
-# or
-yarn preview
+bun run preview
 ```
 
 ---
@@ -132,42 +124,30 @@ The project uses three levels of testing:
 
 ```bash
 # Run unit tests
-npm run test
-# or
-yarn test
+bun run test
 
 # Interactive mode with UI
-npm run test:ui
-# or
-yarn test:ui
+bun run test:ui
 
 # With code coverage
-npm run test:coverage
-# or
-yarn test:coverage
+bun run test:coverage
 ```
 
 ### E2E Tests (Playwright)
 
 ```bash
 # Run end-to-end tests
-npm run test:e2e
-# or
-yarn test:e2e
+bun run test:e2e
 
 # Interactive mode with UI
-npm run test:e2e:ui
-# or
-yarn test:e2e:ui
+bun run test:e2e:ui
 ```
 
 ### Performance Tests (Lighthouse CI)
 
 ```bash
 # Run Lighthouse audit
-npm run test:lighthouse
-# or
-yarn test:lighthouse
+bun run test:lighthouse
 ```
 
 Tests are automatically executed via GitHub Actions on every push.

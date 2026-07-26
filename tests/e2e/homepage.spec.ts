@@ -1,5 +1,23 @@
 import { test, expect } from '@playwright/test';
 
+/** Third-party / environment noise that should not fail CI */
+const IGNORED_CONSOLE_ERROR_PATTERNS = [
+  /favicon/i,
+  /\b404\b/i,
+  /Failed to load resource/i,
+  /googletagmanager/i,
+  /gtm/i,
+  /revw\.me/i,
+  /getcoucou/i,
+  /EMR/i,
+  /Content Security Policy/i,
+  /net::ERR_/i,
+];
+
+function isIgnoredConsoleError(message: string): boolean {
+  return IGNORED_CONSOLE_ERROR_PATTERNS.some((pattern) => pattern.test(message));
+}
+
 test.describe('Homepage', () => {
   test('should load successfully', async ({ page }) => {
     // Navigate to homepage
@@ -55,9 +73,8 @@ test.describe('Homepage', () => {
     
     page.on('console', (msg) => {
       if (msg.type() === 'error') {
-        // Filter out known non-critical errors (fonts, images, etc.)
         const text = msg.text();
-        if (!text.includes('favicon') && !text.includes('404')) {
+        if (!isIgnoredConsoleError(text)) {
           consoleErrors.push(text);
         }
       }
@@ -68,7 +85,9 @@ test.describe('Homepage', () => {
     // Wait for page to fully load
     await page.waitForLoadState('networkidle');
     
-    // Check no critical errors (allow some non-critical ones)
-    expect(consoleErrors.length).toBeLessThanOrEqual(2);
+    expect(
+      consoleErrors,
+      `Unexpected console errors:\n${consoleErrors.join('\n')}`
+    ).toEqual([]);
   });
 });

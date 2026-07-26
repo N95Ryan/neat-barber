@@ -8,7 +8,7 @@ module.exports = {
         ],
         
         // Start preview server with explicit configuration
-        startServerCommand: 'yarn preview',
+        startServerCommand: 'bun run preview',
         startServerReadyPattern: 'http://localhost:4321',
         startServerReadyTimeout: 60000,
         
