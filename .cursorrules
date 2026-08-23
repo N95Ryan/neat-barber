@@ -29,13 +29,20 @@ security:
 
 # Technology stack
 stack:
+  package_manager: Bun 1.3+
   frontend:
-    frameworks: Astro v5, Tailwind CSS 3, Bootstrap 5
-    js_libs: jQuery 3, GSAP, WOW.js, Swiper.js, MagicCursor, SmoothScroll
+    frameworks: Astro 7, Tailwind CSS 3.4
+    language: TypeScript
+    js: Vanilla JS (IntersectionObserver, no jQuery)
+    css: custom.clean.css (Bootstrap grid utilities inlined), Font Awesome, Google Fonts
   integrations:
     booking: Planity
     images: Cloudinary
-  styling: Animate.css, Font Awesome, Google Fonts
+    blog: WordPress Headless CMS (GraphQL)
+    analytics: Google Tag Manager
+  tests: Vitest 4, Playwright, Lighthouse CI
+  deployment: Vercel
+  ci: GitHub Actions
   optimizations: WebP images, async scripts, lazy-loading
   seo_accessibility: meta tags, alt attributes, keyboard navigation
 
