@@ -3,7 +3,6 @@ import Layout from "../../layouts/Layout.astro";
 import BlogNavbar from "../../components/Le Mag/BlogNavbar.astro";
 import BlogImage from "../../components/Le Mag/BlogImage.astro";
 import BlogBackButton from "../../components/Le Mag/BlogBackButton.astro";
-import Footer from "../../components/Footer.astro";
 import {
   fetchGraphQL,
   GET_ALL_SLUGS,
@@ -194,7 +193,6 @@ const transformedContent = transformImagesToCloudinary(post.content);
   <!-- Back to Blog Button -->
   <BlogBackButton />
 
-  <Footer />
 </Layout>
 
 <style>

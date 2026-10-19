@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  body {
+    font-family: "DM Sans", "Hanken Grotesk", system-ui, sans-serif;
+  }
+}
+
 /* Reveal animation for appearance */
 .reveal {
   @apply opacity-0 translate-y-8 transition-all duration-500 ease-in-out overflow-visible relative;

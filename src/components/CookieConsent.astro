@@ -1,0 +1,252 @@
+---
+import { EMR_WIDGET_ID } from "../lib/consent/config";
+---
+
+<div
+  id="neat-cookie-banner"
+  class="neat-cookie"
+  role="dialog"
+  aria-labelledby="neat-cookie-title"
+  aria-describedby="neat-cookie-desc"
+>
+  <div class="neat-cookie__inner">
+    <p id="neat-cookie-title" class="neat-cookie__title">Cookies et traceurs</p>
+    <p id="neat-cookie-desc" class="neat-cookie__text">
+      Nous utilisons des cookies pour mesurer l'audience et afficher des avis
+      clients. Vous pouvez accepter, refuser ou personnaliser vos choix. Consultez
+      notre
+      <a href="/politique-cookies">politique cookies</a>.
+    </p>
+    <div class="neat-cookie__actions">
+      <button type="button" class="neat-cookie__btn neat-cookie__btn--secondary" id="neat-cookie-reject-all">
+        Tout refuser
+      </button>
+      <button type="button" class="neat-cookie__btn neat-cookie__btn--secondary" id="neat-cookie-customize">
+        Personnaliser
+      </button>
+      <button type="button" class="neat-cookie__btn neat-cookie__btn--primary" id="neat-cookie-accept-all">
+        Tout accepter
+      </button>
+    </div>
+  </div>
+</div>
+
+<div
+  id="neat-cookie-panel"
+  class="neat-cookie neat-cookie--panel"
+  role="dialog"
+  aria-labelledby="neat-cookie-panel-title"
+  hidden
+>
+  <div class="neat-cookie__inner neat-cookie__inner--panel">
+    <p id="neat-cookie-panel-title" class="neat-cookie__title">Paramètres des cookies</p>
+    <ul class="neat-cookie__list">
+      <li class="neat-cookie__item">
+        <div>
+          <strong>Strictement nécessaires</strong>
+          <p>Fonctionnement du site (toujours actifs).</p>
+        </div>
+        <span class="neat-cookie__always" aria-hidden="true">Toujours actif</span>
+      </li>
+      <li class="neat-cookie__item">
+        <div>
+          <label for="neat-consent-analytics">
+            <strong>Mesure d'audience</strong>
+          </label>
+          <p>Google Tag Manager / statistiques de visite.</p>
+        </div>
+        <input type="checkbox" id="neat-consent-analytics" name="analytics" />
+      </li>
+      <li class="neat-cookie__item">
+        <div>
+          <label for="neat-consent-marketing">
+            <strong>Avis clients (widget)</strong>
+          </label>
+          <p>Affichage des témoignages via un service tiers.</p>
+        </div>
+        <input type="checkbox" id="neat-consent-marketing" name="marketing" />
+      </li>
+    </ul>
+    <div class="neat-cookie__actions">
+      <button type="button" class="neat-cookie__btn neat-cookie__btn--secondary" id="neat-cookie-panel-back">
+        Retour
+      </button>
+      <button type="button" class="neat-cookie__btn neat-cookie__btn--primary" id="neat-cookie-save">
+        Enregistrer mes choix
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Marqueur pour le chargement conditionnel du pixel avis (marketing) -->
+<template id="neat-emr-placeholder">
+  <emr-simple-carousel widget-id={EMR_WIDGET_ID}></emr-simple-carousel>
+</template>
+
+<style>
+  .neat-cookie {
+    position: fixed;
+    z-index: 10000;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 16px;
+    pointer-events: none;
+  }
+
+  .neat-cookie:not([hidden]) {
+    pointer-events: auto;
+  }
+
+  .neat-cookie__inner {
+    max-width: 960px;
+    margin: 0 auto;
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+    padding: 20px 24px;
+  }
+
+  .neat-cookie--panel {
+    top: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.45);
+  }
+
+  .neat-cookie__inner--panel {
+    max-height: 90vh;
+    overflow: auto;
+  }
+
+  .neat-cookie__title {
+    font-weight: 700;
+    font-size: 1.05rem;
+    margin: 0 0 8px;
+    color: #1f2937;
+  }
+
+  .neat-cookie__text {
+    margin: 0 0 16px;
+    color: #4b5563;
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  .neat-cookie__text a {
+    color: #4a5d4a;
+    font-weight: 600;
+    text-decoration: underline;
+  }
+
+  .neat-cookie__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: flex-end;
+  }
+
+  .neat-cookie__btn {
+    cursor: pointer;
+    border-radius: 999px;
+    padding: 10px 18px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border: 2px solid transparent;
+    min-width: 140px;
+    transition: transform 0.15s ease, background 0.15s ease;
+  }
+
+  .neat-cookie__btn--primary {
+    background: linear-gradient(135deg, #4a5d4a 0%, #6b7a6b 100%);
+    color: #fff;
+    border-color: #4a5d4a;
+  }
+
+  .neat-cookie__btn--secondary {
+    background: #fff;
+    color: #4a5d4a;
+    border-color: #4a5d4a;
+  }
+
+  .neat-cookie__btn:hover {
+    transform: translateY(-1px);
+  }
+
+  .neat-cookie__btn:focus-visible {
+    outline: 2px solid #4a5d4a;
+    outline-offset: 2px;
+  }
+
+  .neat-cookie__list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px;
+  }
+
+  .neat-cookie__item {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 14px 0;
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  .neat-cookie__item p {
+    margin: 4px 0 0;
+    font-size: 0.875rem;
+    color: #6b7280;
+  }
+
+  .neat-cookie__always {
+    font-size: 0.8rem;
+    color: #6b7280;
+    white-space: nowrap;
+  }
+
+  html:not(.neat-consent-pending) #neat-cookie-banner {
+    display: none;
+  }
+
+  html.neat-consent-pending #neat-cookie-banner[hidden] {
+    display: none;
+  }
+
+  @media (max-width: 640px) {
+    .neat-cookie__actions {
+      flex-direction: column;
+    }
+
+    .neat-cookie__btn {
+      width: 100%;
+    }
+  }
+</style>
+
+<script is:inline>
+  (function () {
+    function mountEmrIfAllowed() {
+      var root = document.getElementById("neat-emr-mount");
+      var tpl = document.getElementById("neat-emr-placeholder");
+      if (!root || !tpl || root.dataset.mounted === "1") return;
+      root.dataset.mounted = "1";
+      root.appendChild(tpl.content.cloneNode(true));
+    }
+
+    window.addEventListener("neat-consent-update", function (e) {
+      if (e.detail && e.detail.marketing) mountEmrIfAllowed();
+    });
+
+    document.addEventListener("DOMContentLoaded", function () {
+      var raw = document.cookie.match(/(?:^|; )neat_cookie_consent=([^;]*)/);
+      if (!raw) return;
+      try {
+        var data = JSON.parse(decodeURIComponent(raw[1]));
+        if (data.marketing) mountEmrIfAllowed();
+      } catch (_err) {}
+    });
+  })();
+</script>
