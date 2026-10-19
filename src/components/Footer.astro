@@ -1,3 +1,7 @@
+---
+const year = new Date().getFullYear();
+---
+
 <footer class="footer">
   <div class="footer-contact-information">
     <div class="container">
@@ -40,7 +44,7 @@
   <div class="footer-main">
     <div class="container">
       <div class="row align-items-center">
-        <div class="col-lg-5">
+        <div class="col-lg-4">
           <div class="footer-logo">
             <h2
               style="color: white; font-size: 50px; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; margin: 0;"
@@ -76,7 +80,7 @@
             </ul>
           </div>
         </div>
-        <div class="col-lg-7">
+        <div class="col-lg-8">
           <div class="footer-menu">
             <ul>
               <li>
@@ -86,14 +90,24 @@
                 <a href="/#gallery">GALERIE</a>
               </li>
               <li>
-                <a href="https://neatparis.fr/category/le-mag/" target="_blank"
-                  >LE MAG</a
-                >
+                <a href="/le-mag">LE MAG</a>
+              </li>
+              <li>
+                <a href="/mentions-legales">Mentions légales</a>
+              </li>
+              <li>
+                <a href="/politique-confidentialite">Confidentialité</a>
+              </li>
+              <li>
+                <a href="/politique-cookies">Cookies</a>
+              </li>
+              <li>
+                <a href="#" data-neat-open-cookies>Gérer les cookies</a>
               </li>
             </ul>
           </div>
           <div class="copyright">
-            <p>Copyright &copy; 2025 NEAT. Tous droits réservés.</p>
+            <p>Copyright &copy; {year} NEAT. Tous droits réservés.</p>
           </div>
         </div>
       </div>
@@ -136,8 +150,13 @@
     list-style: none;
     padding: 0;
     margin: 0;
-    gap: 20px;
+    gap: 12px 16px;
     justify-content: flex-end;
+    align-items: center;
+  }
+
+  .footer-menu ul li {
+    margin: 0;
   }
 
   .footer-menu a {
@@ -148,6 +167,29 @@
     font-size: 0.9rem;
     text-transform: uppercase;
     letter-spacing: 0.5px;
+    white-space: nowrap;
+  }
+
+  @media (min-width: 992px) {
+    .footer-menu ul {
+      flex-wrap: nowrap;
+      gap: 10px 12px;
+    }
+
+    .footer-menu a {
+      font-size: 0.72rem;
+      letter-spacing: 0.35px;
+    }
+  }
+
+  @media (min-width: 1200px) {
+    .footer-menu ul {
+      gap: 14px 18px;
+    }
+
+    .footer-menu a {
+      font-size: 0.8rem;
+    }
   }
 
   .footer-menu a:hover {

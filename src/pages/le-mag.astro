@@ -1,7 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import BlogNavbar from "../components/Le Mag/BlogNavbar.astro";
-import Footer from "../components/Footer.astro";
 import BlogHeader from "../components/Le Mag/BlogHeader.astro";
 import BlogCard from "../components/Le Mag/BlogCard.astro";
 import { fetchGraphQL, GET_LATEST_POSTS } from "../lib/graphql";
@@ -95,7 +94,6 @@ const hasNextPage = totalPages > 1;
     </div>
   </section>
 
-  <Footer />
 </Layout>
 
 <style>

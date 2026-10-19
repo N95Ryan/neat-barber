@@ -1,0 +1,86 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Navbar from "./Navbar.astro";
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<Layout title={title} description={description}>
+  <header class="main-header">
+    <Navbar />
+  </header>
+
+  <main class="legal-page">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <h1>{title}</h1>
+          <div class="legal-prose">
+            <slot />
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  .legal-page {
+    padding: 120px 0 80px;
+    background: #f8f9fa;
+    min-height: 70vh;
+  }
+
+  .legal-page h1 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: #1f2937;
+  }
+
+  .legal-prose :global(h2) {
+    font-size: 1.25rem;
+    margin: 2rem 0 0.75rem;
+    color: #374151;
+  }
+
+  .legal-prose :global(p),
+  .legal-prose :global(li) {
+    color: #4b5563;
+    line-height: 1.65;
+  }
+
+  .legal-prose :global(ul) {
+    padding-left: 1.25rem;
+    margin-bottom: 1rem;
+  }
+
+  .legal-prose :global(a) {
+    color: #4a5d4a;
+    font-weight: 600;
+    text-decoration: underline;
+  }
+
+  .legal-prose :global(table) {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0 1.5rem;
+    font-size: 0.9rem;
+  }
+
+  .legal-prose :global(th),
+  .legal-prose :global(td) {
+    border: 1px solid #e5e7eb;
+    padding: 8px 10px;
+    text-align: left;
+    vertical-align: top;
+  }
+
+  .legal-prose :global(th) {
+    background: #f3f4f6;
+  }
+</style>
