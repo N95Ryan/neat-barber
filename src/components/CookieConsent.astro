@@ -225,28 +225,3 @@ import { EMR_WIDGET_ID } from "../lib/consent/config";
     }
   }
 </style>
-
-<script is:inline>
-  (function () {
-    function mountEmrIfAllowed() {
-      var root = document.getElementById("neat-emr-mount");
-      var tpl = document.getElementById("neat-emr-placeholder");
-      if (!root || !tpl || root.dataset.mounted === "1") return;
-      root.dataset.mounted = "1";
-      root.appendChild(tpl.content.cloneNode(true));
-    }
-
-    window.addEventListener("neat-consent-update", function (e) {
-      if (e.detail && e.detail.marketing) mountEmrIfAllowed();
-    });
-
-    document.addEventListener("DOMContentLoaded", function () {
-      var raw = document.cookie.match(/(?:^|; )neat_cookie_consent=([^;]*)/);
-      if (!raw) return;
-      try {
-        var data = JSON.parse(decodeURIComponent(raw[1]));
-        if (data.marketing) mountEmrIfAllowed();
-      } catch (_err) {}
-    });
-  })();
-</script>
