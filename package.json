@@ -24,7 +24,7 @@
     "@fontsource/dm-sans": "^5.2.6",
     "@fontsource/hanken-grotesk": "^5.2.6",
     "@lucide/astro": "^0.562.0",
-    "astro": "7.4.0",
+    "astro": "7.4.13",
     "astro-heroicons": "^2.1.5",
     "cloudinary": "^2.7.0"
   },

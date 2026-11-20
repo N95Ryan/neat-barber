@@ -89,9 +89,30 @@
     })(window, document, "script", "dataLayer", GTM_ID);
   }
 
+  // Le widget vit dans un <template> (hors DOM) tant que le consentement
+  // marketing n'est pas donné : on le monte ici, avant de charger le pixel,
+  // sinon le pixel ne trouve aucun <emr-simple-carousel> à initialiser.
+  function mountEmrWidget() {
+    var root = document.getElementById("neat-emr-mount");
+    var tpl = document.getElementById("neat-emr-placeholder");
+    if (!root || !tpl) return false;
+    if (root.dataset.mounted !== "1") {
+      root.dataset.mounted = "1";
+      root.appendChild(tpl.content.cloneNode(true));
+    }
+    return true;
+  }
+
   function loadEmrPixel() {
     if (window.__neatEmrLoaded) return;
-    if (!document.querySelector("emr-simple-carousel")) return;
+    // consent.js s'exécute dans <head> : le mount et le template n'existent
+    // pas encore, on attend que le DOM soit prêt.
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", loadEmrPixel, { once: true });
+      return;
+    }
+    // Pages sans section avis : rien à faire.
+    if (!mountEmrWidget()) return;
     window.__neatEmrLoaded = true;
     if (window.EMRPixel) {
       window.EMRPixel.init(EMR_HOST, EMR_ACCOUNT);
